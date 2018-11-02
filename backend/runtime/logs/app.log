@@ -1,0 +1,223 @@
+2017-09-19 16:49:46 [127.0.0.1][-][-][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: site/first-login' in C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\base\Controller.php:125
+Stack trace:
+#0 C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('first-login', Array)
+#1 C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\web\Application.php(100): yii\base\Module->runAction('site/first-logi...', Array)
+#2 C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(common\components\Request))
+#3 C:\xampp\htdocs\fitmakerslive\backend\web\index.php(18): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\web\Application.php:112
+Stack trace:
+#0 C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(common\components\Request))
+#1 C:\xampp\htdocs\fitmakerslive\backend\web\index.php(18): yii\base\Application->run()
+#2 {main}
+2017-09-19 16:49:45 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    '_ga' => 'GA1.1.463229304.1499113956'
+    'advanced-frontend' => '4jkra6pubqj22gsd5f99rltoq7'
+    '_csrf-frontend' => 'b53cbc962e7337ad3e6bc070835f4e1c14236d6dbf5ecc4c99866b58de62c589a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"scKBKBhkgrkRWMmKytmi1cdrcgFtU3Ko\";}'
+    'advanced-backend' => 'rkq7io4obif3qnuvccn80u81d2'
+    '_csrf-backend' => '0763e542e47b59e55e74dbde88b6b55b55047d84011522ac1c9720360cade528a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"jv5s8gzUsVykBZBAwlSSGKf3G1kOQUEk\";}'
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; rv:55.0) Gecko/20100101 Firefox/55.0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_REFERER' => 'http://localhost/fitmakerslive/admin/'
+    'HTTP_COOKIE' => '_ga=GA1.1.463229304.1499113956; advanced-frontend=4jkra6pubqj22gsd5f99rltoq7; _csrf-frontend=b53cbc962e7337ad3e6bc070835f4e1c14236d6dbf5ecc4c99866b58de62c589a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22scKBKBhkgrkRWMmKytmi1cdrcgFtU3Ko%22%3B%7D; advanced-backend=rkq7io4obif3qnuvccn80u81d2; _csrf-backend=0763e542e47b59e55e74dbde88b6b55b55047d84011522ac1c9720360cade528a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22jv5s8gzUsVykBZBAwlSSGKf3G1kOQUEk%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Users\\sagar\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.23 (Win32) OpenSSL/1.0.2h PHP/5.5.38 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2h PHP/5.5.38'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/fitmakerslive/backend/web/index.php'
+    'REMOTE_PORT' => '3886'
+    'REDIRECT_URL' => '/fitmakerslive/admin/site/first-login'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/fitmakerslive/admin/site/first-login'
+    'SCRIPT_NAME' => '/fitmakerslive/backend/web/index.php'
+    'PHP_SELF' => '/fitmakerslive/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1505839785.659
+    'REQUEST_TIME' => 1505839785
+]
+2017-09-19 16:56:12 [127.0.0.1][-][-][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: site/first-login' in C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\base\Controller.php:125
+Stack trace:
+#0 C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\base\Module.php(454): yii\base\Controller->runAction('first-login', Array)
+#1 C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\web\Application.php(100): yii\base\Module->runAction('site/first-logi...', Array)
+#2 C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(common\components\Request))
+#3 C:\xampp\htdocs\fitmakerslive\backend\web\index.php(18): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\web\Application.php:112
+Stack trace:
+#0 C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(common\components\Request))
+#1 C:\xampp\htdocs\fitmakerslive\backend\web\index.php(18): yii\base\Application->run()
+#2 {main}
+2017-09-19 16:56:12 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    '_ga' => 'GA1.1.463229304.1499113956'
+    'advanced-frontend' => '4jkra6pubqj22gsd5f99rltoq7'
+    '_csrf-frontend' => 'b53cbc962e7337ad3e6bc070835f4e1c14236d6dbf5ecc4c99866b58de62c589a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"scKBKBhkgrkRWMmKytmi1cdrcgFtU3Ko\";}'
+    'advanced-backend' => 'rkq7io4obif3qnuvccn80u81d2'
+    '_csrf-backend' => '0763e542e47b59e55e74dbde88b6b55b55047d84011522ac1c9720360cade528a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"jv5s8gzUsVykBZBAwlSSGKf3G1kOQUEk\";}'
+    'PHPSESSID' => '6qkm6hhqm9b12kai063or6c7n3'
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; rv:55.0) Gecko/20100101 Firefox/55.0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_REFERER' => 'http://localhost/fitmakerslive/admin/'
+    'HTTP_COOKIE' => '_ga=GA1.1.463229304.1499113956; advanced-frontend=4jkra6pubqj22gsd5f99rltoq7; _csrf-frontend=b53cbc962e7337ad3e6bc070835f4e1c14236d6dbf5ecc4c99866b58de62c589a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22scKBKBhkgrkRWMmKytmi1cdrcgFtU3Ko%22%3B%7D; advanced-backend=rkq7io4obif3qnuvccn80u81d2; _csrf-backend=0763e542e47b59e55e74dbde88b6b55b55047d84011522ac1c9720360cade528a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22jv5s8gzUsVykBZBAwlSSGKf3G1kOQUEk%22%3B%7D; PHPSESSID=6qkm6hhqm9b12kai063or6c7n3'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Users\\sagar\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.23 (Win32) OpenSSL/1.0.2h PHP/5.5.38 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2h PHP/5.5.38'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/fitmakerslive/backend/web/index.php'
+    'REMOTE_PORT' => '4134'
+    'REDIRECT_URL' => '/fitmakerslive/admin/site/first-login'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/fitmakerslive/admin/site/first-login'
+    'SCRIPT_NAME' => '/fitmakerslive/backend/web/index.php'
+    'PHP_SELF' => '/fitmakerslive/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1505840171.311
+    'REQUEST_TIME' => 1505840171
+]
+2017-09-19 16:56:22 [127.0.0.1][-][-][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "site/site/first-login".' in C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\base\Module.php:462
+Stack trace:
+#0 C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\web\Application.php(100): yii\base\Module->runAction('site/site/first...', Array)
+#1 C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(common\components\Request))
+#2 C:\xampp\htdocs\fitmakerslive\backend\web\index.php(18): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\web\Application.php:112
+Stack trace:
+#0 C:\xampp\htdocs\fitmakerslive\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(common\components\Request))
+#1 C:\xampp\htdocs\fitmakerslive\backend\web\index.php(18): yii\base\Application->run()
+#2 {main}
+2017-09-19 16:56:22 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    '_ga' => 'GA1.1.463229304.1499113956'
+    'advanced-frontend' => '4jkra6pubqj22gsd5f99rltoq7'
+    '_csrf-frontend' => 'b53cbc962e7337ad3e6bc070835f4e1c14236d6dbf5ecc4c99866b58de62c589a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"scKBKBhkgrkRWMmKytmi1cdrcgFtU3Ko\";}'
+    'advanced-backend' => 'rkq7io4obif3qnuvccn80u81d2'
+    '_csrf-backend' => '0763e542e47b59e55e74dbde88b6b55b55047d84011522ac1c9720360cade528a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"jv5s8gzUsVykBZBAwlSSGKf3G1kOQUEk\";}'
+    'PHPSESSID' => '6qkm6hhqm9b12kai063or6c7n3'
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'C:/xampp/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'C:/xampp/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; rv:55.0) Gecko/20100101 Firefox/55.0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_REFERER' => 'http://localhost/fitmakerslive/admin/site/index'
+    'HTTP_COOKIE' => '_ga=GA1.1.463229304.1499113956; advanced-frontend=4jkra6pubqj22gsd5f99rltoq7; _csrf-frontend=b53cbc962e7337ad3e6bc070835f4e1c14236d6dbf5ecc4c99866b58de62c589a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22scKBKBhkgrkRWMmKytmi1cdrcgFtU3Ko%22%3B%7D; advanced-backend=rkq7io4obif3qnuvccn80u81d2; _csrf-backend=0763e542e47b59e55e74dbde88b6b55b55047d84011522ac1c9720360cade528a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22jv5s8gzUsVykBZBAwlSSGKf3G1kOQUEk%22%3B%7D; PHPSESSID=6qkm6hhqm9b12kai063or6c7n3'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Skype\\Phone\\;C:\\Program Files\\PuTTY\\;C:\\Users\\sagar\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.23 (Win32) OpenSSL/1.0.2h PHP/5.5.38 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2h PHP/5.5.38'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/xampp/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'C:/xampp/htdocs/fitmakerslive/backend/web/index.php'
+    'REMOTE_PORT' => '4143'
+    'REDIRECT_URL' => '/fitmakerslive/admin/site/site/first-login'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/fitmakerslive/admin/site/site/first-login'
+    'SCRIPT_NAME' => '/fitmakerslive/backend/web/index.php'
+    'PHP_SELF' => '/fitmakerslive/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1505840182.184
+    'REQUEST_TIME' => 1505840182
+]
