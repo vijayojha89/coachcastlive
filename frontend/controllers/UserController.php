@@ -111,37 +111,27 @@ class UserController extends Controller {
         }
     }
 
-    public function actionSignupUser() {
+    public function actionSignup() {
         $model = new User();
         $model->created_by = \Yii::$app->user->identity->id;
         $model->created_date = date("Y-m-d H:i:s");
-        $model->scenario = 'student_signup';
-        $model->user_type = 1;
-
-        
+       
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         } else if ($model->load(Yii::$app->request->post())) {
-            
             if ($user = $model->signup(Yii::$app->request->post()['User'])) {
                 Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Sign up successfull. Please verify your email address to activate account'));
                 return $this->redirect(['site/index']);
             }
         } else {
             
-                return $this->render('signup_user', [
+                return $this->render('signup', [
                             'model' => $model,
                 ]);
             
         }
     }
-    
-     public function actionDashboard()
-   {
-       return $this->render('dashboard'); 
-   }   
-   
 
     public function actionSignupTrainer() {
         $model = new User();
@@ -180,6 +170,40 @@ class UserController extends Controller {
             
         }
     }
+
+    public function actionSignupUser() {
+        $model = new User();
+        $model->created_by = \Yii::$app->user->identity->id;
+        $model->created_date = date("Y-m-d H:i:s");
+        $model->scenario = 'student_signup';
+        $model->user_type = 1;
+
+        
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        } else if ($model->load(Yii::$app->request->post())) {
+            
+            if ($user = $model->signup(Yii::$app->request->post()['User'])) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Sign up successfull. Please verify your email address to activate account'));
+                return $this->redirect(['site/index']);
+            }
+        } else {
+            
+                return $this->render('signup_user', [
+                            'model' => $model,
+                ]);
+            
+        }
+    }
+    
+     public function actionDashboard()
+   {
+       return $this->render('dashboard'); 
+   }   
+   
+
+  
      
     /**
      * Updates an existing User model.

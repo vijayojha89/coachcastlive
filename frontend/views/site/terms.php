@@ -14,39 +14,31 @@ $pagedata = Yii::$app->db->createCommand("SELECT * FROM cms WHERE page_key = 'te
 
 ?>
 <?php if($pagedata['header_image']) { ?>
-<div class="cmsbanner">
+<!--<div class="cmsbanner">
     <img src="<?php echo Yii::$app->homeUrl;?>uploads/header_image/<?php echo $pagedata['header_image'];?>" class="img-responsive" alt="" style="max-height: 300px;">
     <h1 style="left:48%;"><?=$pagedata['title'];?></h1>
-</div>
+</div>-->
 
 <?php } ?>
 
 
 
-<section class="brdcum-section">
-    <div class="container" style="padding:0px;">  
-         <ul class="brdcum">
-            	<li><a href="<?php echo Yii::$app->homeUrl;?>">Home</a></li>
-                <li>Terms And Conditions</li>
-            </ul>
-        
-      
-</div>
-</section>
-
-<section class="innerpage-section">
- 	 <div class="container">
-             <div class="row" style="min-height: 500px;"> 
-              
-             
+ <!-- Start Inner Banner area -->
+ <div class="inner-banner-area">
+            <div class="container">
+                <div class="row">
+                    <div class="innter-title">
+                        <h2><?=$pagedata['title'];?></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- End Inner Banner area -->
+<div class="padding-space">
+<div class="container">
+        <div class="row">
+        <h2 class="section-title-default2 title-bar-high2"><?=$pagedata['title'];?> </h2> 
               <?php echo $pagedata['content'];?>
-              
-              
-              
-              
-              
      	</div>
-     </div>
-</section>
-
- 
+</div>
+</div>

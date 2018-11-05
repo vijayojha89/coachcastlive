@@ -13,7 +13,7 @@ class AppAsset extends AssetBundle {
     public $baseUrl = '@web';
     public $depends = [
         'yii\web\YiiAsset',
-  //      'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapAsset',
     ];
   
     public $css = [
@@ -32,7 +32,6 @@ class AppAsset extends AssetBundle {
     ];
 
     public $js = [
-        'js/jquery-1.11.3.min.js',
         'js/bootstrap.min.js',
         'js/bootstrap-tabcollapse.js',
         'js/jquery.meanmenu.min.js',

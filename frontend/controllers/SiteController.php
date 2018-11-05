@@ -118,6 +118,7 @@ public function actionInvoicepdf() {
      */
     public function actionIndex() 
     {
+        
         if(!Yii::$app->user->isGuest)
         {
             $userdata = \common\models\User::findIdentity(Yii::$app->user->id); 
@@ -470,17 +471,18 @@ public function actionInvoicepdf() {
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
-        } else if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        } 
+        else if ($model->load(Yii::$app->request->post()) && $model->login()) {
            // Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Login successful'));
             return $this->redirect(['site/index']);
 //                return $this->goBack();
-        } else {
-            if (Yii::$app->request->isAjax) {
-                return $this->renderAjax('email_login', [
+        } 
+
+        return $this->render('email_login', [
                             'model' => $model,
                 ]);
-            }
-        }
+            
+        
     }
     
     

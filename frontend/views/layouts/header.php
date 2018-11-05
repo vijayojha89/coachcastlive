@@ -71,14 +71,14 @@ $unread_notifi_count = $mnl->unread_notifications(@Yii::$app->user->id);
                                 <nav>
                                     <ul>
                                     <?php if (Yii::$app->user->isGuest) { ?>
-                                    <li class="active">
+                                    <li class="<?php if (Yii::$app->controller->id == 'site' AND Yii::$app->controller->action->id == 'index' ) { ?>active<?php } ?>">
                                         <a href="<?php echo Url::to(['site/index']); ?>">Home</a>
                                     </li>
-                                    <li><a href="<?php echo Url::to(['site/about']); ?>">About Us</a></li>
-                                    <li><a href="<?php echo Url::to(['site/howitworks']); ?>">How It Works</a></li>
-                                    <li><a href="<?php echo Url::to(['site/contact']); ?>">Contact Us</a></li>
-                                    <li><a href="<?php echo Url::to(['site/login']); ?>">Login</a></li>
-                                    <li><a href="<?php echo Url::to(['site/signup']); ?>">Sign Up</a></li>   
+                                    <li class="<?php if (Yii::$app->controller->action->id == 'about' ) { ?>active<?php } ?>"><a href="<?php echo Url::to(['site/about']); ?>">About Us</a></li>
+                                    <li class="<?php if (Yii::$app->controller->action->id == 'howitworks' ) { ?>active<?php } ?>"><a href="<?php echo Url::to(['site/howitworks']); ?>">How It Works</a></li>
+                                    <li class="<?php if (Yii::$app->controller->action->id == 'contact' ) { ?>active<?php } ?>"><a href="<?php echo Url::to(['site/contact']); ?>">Contact Us</a></li>
+                                    <li class="<?php if (Yii::$app->controller->action->id == 'email-login' ) { ?>active<?php } ?>"><a href="<?php echo Url::to(['site/email-login']); ?>">Login</a></li>
+                                    <li class="<?php if (Yii::$app->controller->action->id == 'signup' ) { ?>active<?php } ?>"><a href="<?php echo Url::to(['user/signup']); ?>">Sign Up</a></li>   
 
                                 <?php } else { ?>
                                     <li><a href="<?php echo Url::to(['site/index']); ?>">Dashboard</a></li>
@@ -103,7 +103,7 @@ $unread_notifi_count = $mnl->unread_notifications(@Yii::$app->user->id);
                                     <ul>
 
                                     <?php if (Yii::$app->user->isGuest) { ?>
-                                    <li class="active">
+                                    <li class="<?php if (Yii::$app->controller->id == 'site' AND Yii::$app->controller->action->id == 'index' ) { ?>active<?php } ?>">
                                         <a href="<?php echo Url::to(['site/index']); ?>">Home</a>
                                     </li>
                                     <li><a href="<?php echo Url::to(['site/about']); ?>">About Us</a></li>

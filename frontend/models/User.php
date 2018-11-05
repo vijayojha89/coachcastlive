@@ -59,8 +59,7 @@ class User extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['first_name', 'last_name', 'email'], 'required'],
-            [['password_hash', 'confirm_password', 'mobile_no'], 'required', 'on' => 'trainer_signup'],
-            [['password_hash', 'confirm_password'], 'required', 'on' => 'student_signup'],
+            [['password_hash', 'confirm_password', 'mobile_no'], 'required'],
             [['bio'], 'string'],
             [['social_type', 'mobile_verified', 'email_verified', 'status', 'created_by', 'modified_by', 'created_at', 'updated_at'], 'integer'],
             [['created_date', 'modified_date', 'user_type'], 'safe'],

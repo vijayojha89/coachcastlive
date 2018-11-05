@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-
+use yii\helpers\Url;
 $this->title = 'Home';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply
                     dummy text of the printing and typesetting industry.</p>
 
-                <div class="button"><a href="#" class="btn custom-button" data-title="Join With Us">Join With Us</a></div>
+                <div class="button"><a href="<?php echo Url::to(['user/signup']); ?>" class="btn custom-button" data-title="Join With Us">Join With Us</a></div>    
             </div>
 
         </div>
@@ -93,9 +93,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div class="trainer-img-holder">
                                         <img src="<?php echo Yii::$app->homeUrl . 'images/trnee1.jpg'; ?>" class="img-responsive" alt="team">
                                         <div class="trainer-title-holder">
-                                            <h3><a href="#">Amanda</a></h3>
-                                            <div class="designation">AmandaDallas, Tx</div>
-                                            <a class="choosebtn" href="#">Choose</a>
+                                            <h3><a href="#">Hazel Wolfe</a></h3>
+                                            <!--<div class="designation">AmandaDallas, Tx</div>
+                                            <a class="choosebtn" href="#">Choose</a>-->
                                         </div>
                                     </div>
                                 </div>
@@ -105,9 +105,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div class="trainer-img-holder">
                                         <img src="<?php echo Yii::$app->homeUrl . 'images/trnee2.jpg'; ?>" class="img-responsive" alt="team">
                                         <div class="trainer-title-holder">
-                                            <h3><a href="#">Amanda</a></h3>
-                                            <div class="designation">AmandaDallas, Tx</div>
-                                            <a class="choosebtn" href="#">Choose</a>
+                                            <h3><a href="#">Franklin Howard</a></h3>
+                                            <!--<div class="designation">AmandaDallas, Tx</div>
+                                            <a class="choosebtn" href="#">Choose</a>-->
                                         </div>
                                     </div>
                                 </div>
@@ -117,9 +117,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div class="trainer-img-holder">
                                         <img src="<?php echo Yii::$app->homeUrl . 'images/trnee3.jpg'; ?>" class="img-responsive" alt="team">
                                         <div class="trainer-title-holder">
-                                            <h3><a href="#">Amanda</a></h3>
-                                            <div class="designation">AmandaDallas, Tx</div>
-                                            <a class="choosebtn" href="#">Choose</a>
+                                            <h3><a href="#">Thomas Adams</a></h3>
+                                            <!--<div class="designation">AmandaDallas, Tx</div>
+                                            <a class="choosebtn" href="#">Choose</a>-->
                                         </div>
                                     </div>
                                 </div>
@@ -129,9 +129,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div class="trainer-img-holder">
                                         <img src="<?php echo Yii::$app->homeUrl . 'images/trnee4.jpg'; ?>" class="img-responsive" alt="team">
                                         <div class="trainer-title-holder">
-                                            <h3><a href="#">Amanda</a></h3>
-                                            <div class="designation">AmandaDallas, Tx</div>
-                                            <a class="choosebtn" href="#">Choose</a>
+                                            <h3><a href="#">Elois Martinez</a></h3>
+                                            <!--<div class="designation">AmandaDallas, Tx</div>
+                                            <a class="choosebtn" href="#">Choose</a>-->
                                         </div>
                                     </div>
                                 </div>
@@ -141,9 +141,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div class="trainer-img-holder">
                                         <img src="<?php echo Yii::$app->homeUrl . 'images/trnee5.jpg'; ?>" class="img-responsive" alt="team">
                                         <div class="trainer-title-holder">
-                                            <h3><a href="#">Amanda</a></h3>
-                                            <div class="designation">AmandaDallas, Tx</div>
-                                            <a class="choosebtn" href="#">Choose</a>
+                                            <h3><a href="#">Howard Keith</a></h3>
+                                            <!--<div class="designation">AmandaDallas, Tx</div>
+                                            <a class="choosebtn" href="#">Choose</a>-->
                                         </div>
                                     </div>
                                 </div>
@@ -153,9 +153,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div class="trainer-img-holder">
                                         <img src="<?php echo Yii::$app->homeUrl . 'images/trnee6.jpg'; ?>" class="img-responsive" alt="team">
                                         <div class="trainer-title-holder">
-                                            <h3><a href="#">Amanda</a></h3>
-                                            <div class="designation">AmandaDallas, Tx</div>
-                                            <a class="choosebtn" href="#">Choose</a>
+                                            <h3><a href="#">Russell Brock</a></h3>
+                                            <!--<div class="designation">AmandaDallas, Tx</div>
+                                            <a class="choosebtn" href="#">Choose</a>-->
                                         </div>
                                     </div>
                                 </div>
@@ -175,7 +175,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="being-content">
                         <h2>GET TRAINING TODAY</h2>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                        <a class="custom-button2" href="#">JOIN WITH US</a>
+                        <a class="custom-button2" href="<?php echo Url::to(['user/signup']); ?>">JOIN WITH US</a>
                     </div>
                     <div class="being-right-img">
                         <img src="<?php echo Yii::$app->homeUrl . 'img/get-training.png'; ?>" alt="being-builder">
@@ -187,7 +187,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
         <!-- Start Expert trainers area -->
-        <div class="expert-trainer-area3">
+        <div class="expert-trainer-area3 class-section">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
