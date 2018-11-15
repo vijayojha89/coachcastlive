@@ -1,70 +1,59 @@
-<?php 
+<?php
 
-
-use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 $this->title = "Notifications";
-
-if(\Yii::$app->user->identity->role == 'user')
-{
-echo $this->render('//user/_user_header.php');
-}
-else if(\Yii::$app->user->identity->role == 'trainer')
-{
-echo $this->render('//trainer/_trainer_header.php');
-}
 ?>
- 
-  <!-- ============ Content Section ========= -->
-  <div id="content" class="inner_container notification_listing">
-    <section class="contentsection">
-    
-    <div class="container">
-    	<div class="row">
-     <h1 class="maintitle">Notifications</h1>
-    </div>
-    </div>
-    
-    
-      <div class="container">
-        <div class="row">
-          <div class="mainpanel">
-          <div class="tab-content">
-         
-            <?=
-                ListView::widget([
-                    'dataProvider' => $dataProvider,
-                    'options' => [
-                        'tag' => 'div',
-                        'class' => 'list-wrapper',
-                        'id' => 'list-wrapper',
-                    ],
-                    'itemOptions' => [
-        'class' => 'notification_item',
-    ],
-                    'layout' => "{items}\n{pager}",
-                    'itemView' => function ($model, $key, $index, $widget) {
-                        return $this->render('_notification_list_item',['model' => $model]);
-                    },
-                ]);
-                ?>
-            
-           </div> 
-            
-           </div> 
-            
-         
-        </div>
-      </div>
-    </section>
-  </div>
-  
+<!-- Start Inner Banner area -->
+<div class="inner-banner-area">
+            <div class="container">
+                <div class="row">
+                    <div class="innter-title">
+                        <h2>Notifications</h2>
+                    </div>
+                </div>
+            </div>
+ </div>
+<!-- End Inner Banner area -->
+
+
+
+<div class="online-store-grid padding-space">
+            <div class="container">
+                <div class="row">
+                    <?php echo $this->render('//user/_left_sidebar.php'); ?>
+                    <div class="col-lg-9 col-md-9 col-sm-9">
+                        <div class="pro-rgt-top">
+                            <?php echo $this->render('//user/_user_header.php'); ?>
+                        </div>
+                        <div class="whatclientsay">
+                            <h2 class="section-title-default2 title-bar-high2">Notifications</h2>
+                                <?=
+                                        ListView::widget([
+                                            'dataProvider' => $dataProvider,
+                                            'options' => [
+                                                'tag' => 'div',
+                                                'class' => 'list-wrapper',
+                                                'id' => 'list-wrapper',
+                                            ],
+                                            'itemOptions' => [
+                                                'class' => 'notification_item',
+                                            ],
+                                            'layout' => "{items}\n{pager}",
+                                            'itemView' => function ($model, $key, $index, $widget) {
+                                                return $this->render('_notification_list_item', ['model' => $model]);
+                                            },
+                                        ]);
+                                    ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
 <?php
 $this->registerJs(
-        '
+    '
 function removeNotification(id) {
     $.ajax({
             url: "remove-notification",
@@ -78,9 +67,9 @@ function removeNotification(id) {
             },
         });
 }
-  
+
 $(".list-wrapper").children().not(".pagination").wrapAll("<div class=notification_list />");
 
-            
+
             ', \yii\web\VIEW::POS_END);
 ?>

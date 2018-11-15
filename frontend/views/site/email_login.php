@@ -16,6 +16,7 @@ if ($cookies1->has('_email')){
 if ($cookies1->has('_password')){
     $cookie_pwd =  \Yii::$app->getRequest()->getCookies()->getValue('_password');    
 }
+$this->title = 'Login';
 ?>
  <!-- Start Inner Banner area -->
  <div class="inner-banner-area">

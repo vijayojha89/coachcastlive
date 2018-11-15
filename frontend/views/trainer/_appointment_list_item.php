@@ -2,7 +2,7 @@
 use yii\helpers\Url;
 $gnl = new \common\components\GeneralComponent();?>
 <div class="panel panel-default addappointmenttrainerlist">
-                                                         <div class="panel-heading"><?php echo $model->trainer->first_name.' '.$model->trainer->last_name;?>
+                                                         <div class="panel-heading"><?php echo $model->user->first_name.' '.$model->user->last_name;?>
                                                              <?php if($model->appointment_status != 2 && $model->status == "1"){ ?> 
                                                              <label><a class="btn btn-primary" href="<?php echo Url::to(['videocall/index']);?>"><i class="fa fa-phone"></i>&nbsp;&nbsp;Call</a></label>
                                                              <?php } ?>

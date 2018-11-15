@@ -15,7 +15,7 @@ use yii\web\Response;
 use yii\widgets\ActiveForm;
 use common\components\GeneralComponent;
 use yii\data\SqlDataProvider;
-
+use yii\helpers\Url;
 /**
  * UserController implements the CRUD actions for User model.
  */
@@ -307,6 +307,10 @@ class UserController extends Controller {
     
     public function actionNotifications()
     {
+        if(Yii::$app->user->isGuest) {
+            return $this->redirect(Url::toRoute('site/email-login'));
+        }
+
         $mnl = new \common\components\MasterComponent();
         $data = $mnl->notifications(\Yii::$app->user->identity->id,$_REQUEST['page']);
         $noti_data = "SELECT ng.*,

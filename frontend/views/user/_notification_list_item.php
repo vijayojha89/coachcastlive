@@ -25,23 +25,17 @@ $gnl = new GeneralComponent();
                     ?>
 
 
-<div class="notification-box" id="notifilistdiv_<?php echo $model['notification_generalization_id']; ?>">
-                                                <div class="pic-box"> 
-                                                <a> <img src="<?php echo $gnl->image_not_found_api_thumb('profile_photo', $model['notification_from_profile_photo']) ?>" alt=""></a>
-                                                </div>
-                                                <div class="info-box">
-                                                <div class="info-box-contant">
-													<a href="javascript:void(0);">  <h4><?=$model['notification_from_name'];?></h4> </a> 
-													<p>
-<p><?php echo $model['notification_text']; ?></p>
-												</div>
-                                                <div class="notification_time">
-                                                    <div class="notification_remove" onclick="removeNotification(<?php echo $model['notification_generalization_id']; ?>)"><div class="notification_close" ></div></div>
-                                                    <i class="fa fa-clock-o"></i> <?= $display_comment_time ?></div>
-                                                </div> 
-                                                </div>
+                    <div class="single-client-say" id="notifilistdiv_<?php echo $model['notification_generalization_id']; ?>">
+                                    <div class="pull-left client-picture">
+                                        <img src="<?php echo $gnl->image_not_found_api_thumb('profile_photo', $model['notification_from_profile_photo']) ?>">
+                                    </div>
+                                    <div class="media-body client-content">
+                                        <h3><?=$model['notification_from_name'];?></h3>
+                                        <p><?php echo $model['notification_text']; ?></p>
+                                        <p><i class="fa fa-clock-o"></i> <?= $display_comment_time ?></p>
+                                    </div>
+                                </div>
 
-  
 <?php
 $this->registerJs(
         '

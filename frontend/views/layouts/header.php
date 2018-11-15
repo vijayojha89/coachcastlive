@@ -21,10 +21,12 @@ $unread_notifi_count = $mnl->unread_notifications(@Yii::$app->user->id);
                                 </ul>
                             </div>
                         </div>
-                        <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                        <?php if (!Yii::$app->user->isGuest) { ?>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="header-top-right">
                                 <ul>
-                                    <li>
+                                    <!--<li>
                                         <div class="header-top-search search-box">
                                             <form>
                                                 <input class="search-text" type="text" placeholder="Search Here...">
@@ -33,28 +35,21 @@ $unread_notifi_count = $mnl->unread_notifications(@Yii::$app->user->id);
                                                 </a>
                                             </form>
                                         </div>
-                                    </li>
+                                    </li>-->
                                     <li>
-                                        <a href="#" class="cart-area floatright">
-                                            <i class="fa fa-bell-o"></i><span>2</span>
+                                        <a href="<?php echo Url::to(['user/notifications']); ?>" class="cart-area floatright">
+                                            <i class="fa fa-bell-o"></i>
+                                            <?php if ($unread_notifi_count > 0) { ?>
+                                                <span><?= $unread_notifi_count ?></span>
+                                            <?php } ?>
+                                          
                                         </a>
-                                        <ul class="notifications">
-                                            <li>
-
-                                                <a href="#">dummy text of the printing and typesetting industry</a>
-
-                                            </li>
-                                            <li>
-
-                                                <a href="#">dummy text of the printing and typesetting industry</a>
-
-                                            </li>
-
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
-                        </div>-->
+                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
