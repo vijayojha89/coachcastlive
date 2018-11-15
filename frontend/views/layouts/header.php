@@ -16,7 +16,7 @@ $unread_notifi_count = $mnl->unread_notifications(@Yii::$app->user->id);
                             <div class="top-bar-left">
                                 <ul>
                                     <li><i class="fa fa-phone" aria-hidden="true"></i><a href="Tel:+1234567890"> + 123
-                                            456 78910 </a></li>
+                                            0456 78910 </a></li>
                                     <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="#">info@coachcastlive.com</a></li>
                                 </ul>
                             </div>
