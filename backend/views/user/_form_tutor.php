@@ -59,7 +59,7 @@ $gnl = new GeneralComponent();
                                 'options' => ['multiple' => true, 'placeholder' => 'Select expertise'],
                     ]);
                     ?>  
-                    <?php// $form->field($model, 'company_name')->textInput(['maxlength' => true]) ?>
+                    <?php // $form->field($model, 'company_name')->textInput(['maxlength' => true]) ?>
 <div class="cl"></div>
     <?php
 

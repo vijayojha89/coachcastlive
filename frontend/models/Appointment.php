@@ -74,11 +74,11 @@ class Appointment extends \yii\db\ActiveRecord
     
     public function getTrainer()
     {
-        return $this->hasOne(User::className(), ['id' => 'created_by']);
+        return $this->hasOne(User::className(), ['id' => 'trainer_id']);
     }
     
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'trainer_id']);
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
 }
