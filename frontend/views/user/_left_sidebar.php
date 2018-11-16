@@ -18,16 +18,15 @@ $userdata = Yii::$app->db->createCommand("Select * from user where id = ".Yii::$
                             </div>
 
                             <div class="availa">
-                                <a class="fl choosebtn" href="<?php echo Url::to(['trainer/profile']); ?>"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;   About Me</a>
+                                <a class="fl choosebtn" href="<?php echo Url::to(['trainer/profile']); ?>"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;   Edit Profile</a>
                                 <a class="fl choosebtn" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;&nbsp;Availability</a>
                                 <!--<a class="fr choosebtn" href="#">My Schedule</a>-->
-                                <a class="fr choosebtn" href="<?php echo Url::to(['blog/index']); ?>"><i class="fa fa-book" aria-hidden="true"></i> &nbsp;&nbsp;Blogs</a>
+                                <a class="fr choosebtn" href="<?php echo Url::to(['blog/index']); ?>"><i class="fa fa-book" aria-hidden="true"></i> &nbsp;&nbsp;My Blogs</a>
                             </div>
 
                             <div class="msg-check">
-                                <a class="fl" href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i><span>Messages</span></a>
-                                <a class="fl" href="#"><i class="fa fa-user" aria-hidden="true"></i><span>Clients
-                                        Online</span></a>
+                                <a class="fl" href="<?php echo Url::to(['message/index']); ?>"><i class="fa fa-commenting-o" aria-hidden="true"></i><span>Messages <span class="badge btn-danger">2</span></span></a>
+                                <a class="fl" href="javascript:void(0);" style="cursor:default;"><i class="fa fa-user" aria-hidden="true" style="color:#8cc63f;"></i><span style="color:#8cc63f;">Online</span></a>
                             </div>
 
 

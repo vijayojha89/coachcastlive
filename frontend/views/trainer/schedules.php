@@ -8,7 +8,7 @@ use yii\helpers\Url;
 $this->title = "My Schedules";
 ?>
 
-<?php Pjax::begin(['id' => 'myschedulepjaxlist', 'timeout' => 100000]); ?>
+<?php //Pjax::begin(['id' => 'myschedulepjaxlist', 'timeout' => 100000]); ?>
 
 <!-- Start Inner Banner area -->
 <div class="inner-banner-area">
@@ -52,7 +52,7 @@ $this->title = "My Schedules";
                 </div>
             </div>
 </div>
-<?php Pjax::end(); ?>
+<?php //Pjax::end(); ?>
 
 
 <?php
@@ -80,15 +80,13 @@ function action_appointment(appointmentid,action)
           success:function(data)
           {
             data = $.trim(data);
-            
+            location.reload(); 
+            /*
             if(data == "success")
             {
                 $.pjax.reload({container:\'#myschedulepjaxlist\'});
             }
-            else
-            {
-                //location.reload(); 
-            }
+            */
             
           }
         })

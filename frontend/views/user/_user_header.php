@@ -49,7 +49,7 @@ echo $this->render('//trainer/_trainer_header.php');
                                                     </g>
                                                 </g>
                                             </svg>
-                                            <span>Create Class</span>
+                                            <span>Add New Class</span>
                                         </a>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@ echo $this->render('//trainer/_trainer_header.php');
                                                     </g>
                                                 </g>
                                             </svg>
-                                            <span>Upload Videos</span>
+                                            <span>Add New Videos</span>
                                         </a>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@ echo $this->render('//trainer/_trainer_header.php');
                                                     </g>
                                                 </g>
                                             </svg>
-                                            <span>Create Blog</span>
+                                            <span>Add New Blog</span>
                                         </a>
                                     </div>
                                 </div>

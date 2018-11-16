@@ -12,51 +12,47 @@ use yii\helpers\Url;
 /* @var $searchModel frontend\models\BlogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Blog';
-echo $this->render('//trainer/_trainer_header.php');
-
+$this->title = 'My Blog';
 ?>
+<!-- Start Inner Banner area -->
+<div class="inner-banner-area">
+            <div class="container">
+                <div class="row">
+                    <div class="innter-title">
+                        <h2>My Blog</h2>
+                    </div>
+                </div>
+            </div>
+ </div>
+<!-- End Inner Banner area -->
 
-<div id="content" class="inner_container">
-  <section class="contentsection">
-    <div class="container">
-      
-         
-         <div class="row">
-          <div class="col-xs-6">
-           <h1 class="maintitle">Blogs</h1>
-          </div>
-          <div class="col-xs-6">
-              <div class="provideo-add"> 
-                  <a class="add_vbtn" href="<?php echo Url::to(['blog/create']);?>">
-                      <span><i class="fa fa-plus-circle"></i> Add New</span>
-                  </a>
-             </div>
-          </div>
-          
-     </div>
-    </div>
-      <div class="container">
-      <?php Pjax::begin(); ?>
-          <?= 
-ListView::widget([
-    'dataProvider' => $dataProvider,
-    'options' => [
-        'tag' => 'div',
-        'class' => 'search-result-pg row trainer_dashbord_blog',
-        'id' => 'list-wrapper',
-    ],
-    'layout' => "\n{items}\n{pager}",
-    'itemView' => '_list_item',
-]);
-    
+<div class="online-store-grid padding-space">
+            <div class="container">
+                <div class="row">
+                    <?php echo $this->render('//user/_left_sidebar.php'); ?>
+                    <div class="col-lg-9 col-md-9 col-sm-9">
+                        <div class="pro-rgt-top">
+                            <?php echo $this->render('//user/_user_header.php'); ?>
+                        </div>
+                        <div class="whatclientsay">
+                            <h2 class="section-title-default2 title-bar-high2">My Blog</h2>
+                            <?= 
+                                ListView::widget([
+                                    'dataProvider' => $dataProvider,
+                                    'options' => [
+                                        'tag' => 'div',
+                                        'class' => 'search-result-pg row trainer_dashbord_blog',
+                                        'id' => 'list-wrapper',
+                                    ],
+                                    'layout' => "\n{items}\n{pager}",
+                                    'itemView' => '_list_item',
+                                ]);
+                                    
 
-?>
-          
-<?php Pjax::end(); ?>
-          
-    </div>
-      
-      
-  </section>
+                                ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 </div>

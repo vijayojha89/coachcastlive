@@ -6,31 +6,39 @@ use yii\helpers\Html;
 /* @var $model frontend\models\TrainerClass */
 
 $this->title = 'Update Class';
-echo $this->render('//trainer/_trainer_header.php');
 ?>
 
-<div id="content" class="inner_container">
-    <section class="contentsection">
-        <div class="container">
 
-
-            <div class="row">
-                <div class="col-xs-6">
-                    <h1 class="maintitle">Update Class</h1>
+<!-- Start Inner Banner area -->
+<div class="inner-banner-area">
+            <div class="container">
+                <div class="row">
+                    <div class="innter-title">
+                        <h2>Update Class</h2>
+                    </div>
                 </div>
-
-
             </div>
-        </div>   
+ </div>
+<!-- End Inner Banner area -->
 
-        <div class="container">
-<?=
-$this->render('_form', [
-    'model' => $model,
-])
-?>
-        </div>
+<div class="online-store-grid padding-space">
+            <div class="container">
+                <div class="row">
+                    <?php echo $this->render('//user/_left_sidebar.php'); ?>
+                    <div class="col-lg-9 col-md-9 col-sm-9">
+                        <div class="pro-rgt-top">
+                            <?php echo $this->render('//user/_user_header.php'); ?>
+                        </div>
+                        <div class="whatclientsay">
+                            <h2 class="section-title-default2 title-bar-high2">Update Class</h2>
+                            <?=
+                                $this->render('_form', [
+                                    'model' => $model,
+                                ])
+                                ?>
 
-
-    </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </div>

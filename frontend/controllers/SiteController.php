@@ -128,14 +128,8 @@ public function actionInvoicepdf() {
             }
             else
             {
-                if($userdata['trainer_profile_complete'] == "0")
-                {
-                     return $this->redirect(['trainer/profile']);
-                }
-                else
-                {    
-                     return $this->redirect(['trainer/dashboard']);
-                }
+                     return $this->redirect(['trainer/schedules']);
+                
             }   
             return $this->render('index');
         }    
