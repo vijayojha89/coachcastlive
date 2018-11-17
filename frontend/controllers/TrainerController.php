@@ -256,6 +256,8 @@ class TrainerController extends \yii\web\Controller
             ]);
         }
     }
+
+
     
     public function actionSetting()
     {
@@ -265,11 +267,13 @@ class TrainerController extends \yii\web\Controller
                              'checkinvoice'=>$user['email_on_invoice']]);
         
     } 
-    public function actionFinancials()
+    
+    public function actionAvailability()
     {
-       return $this->render('financials');
-        
-    } 
+       return $this->render('availability');
+    }
+    
+    
     public function actionReject()
     {
         $tnl = new TutorComponent();
