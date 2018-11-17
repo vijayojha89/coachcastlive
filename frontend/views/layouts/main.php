@@ -69,6 +69,13 @@ if (Yii::$app->request->get('incomplete') == 1) {
         </div>
         <a href="#" class="scrollToTop"></a>
         <?php $this->endBody() ?>
+
+
+<script>
+$("document").ready(function(){
+  $("#user-user_type .radio label").append("<span class='checkmark'></span>");
+});
+</script>
     </body>
 </html>
 <?php $this->endPage() ?>

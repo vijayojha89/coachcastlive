@@ -7698,15 +7698,15 @@ ul.counter-list li:last-child {
 .sliderbox .slider_left{ width: 100%; margin: 0; padding: 0; float: left;}
 .sliderbox .slider_right{ width: 100%; margin: 0; padding: 0;float: right;}
 .profile-pic{ width:100%; margin: 0; padding: 0 0 15px 0; display:inline-block; vertical-align: middle; text-align: center;}
-.userpic{width:100%; margin: 0; padding: 0; background: #f5f5f5; border:2px dotted #ccc; position: relative; height:150px;overflow: hidden; vertical-align: middle; text-align: center;}
+.userpic{width:100%; margin: 0; padding: 0; background: #f5f5f5; position: relative; height:150px;overflow: hidden; vertical-align: middle; text-align: center;}
 /* .userpic .imguser{ display: inline-block;} */
 .userpic img{ max-width: 100%; max-height: 100%; width: auto; height: auto;}
 a.editpic{position: absolute; top: 0; right: 0; background:#8cc63f; color: #fff; padding: 5px 10px;}
 .profile-pic span{ width:100%; margin: 0; padding:5px 0 0 0; display:inline-block; font-size:20px; }
 
 .availa{width:100%; margin: 0; padding:15px 0 0px 0; display:inline-block;}
-.availa a{ width: 100%; max-width: 48%; text-align: center; margin: 0;}
-
+.availa a{ width: 100%; max-width:100%; margin: 0 0 15px 0; text-align: center;}
+.userpic .editpic{ display: none;}
 /* 
 .availa{width:100%; margin: 0; padding:0px 0; display:inline-block;}
 .availa a{width: 100%; max-width: 48%; text-align: center; color: #333;}
@@ -7715,11 +7715,12 @@ a.editpic{position: absolute; top: 0; right: 0; background:#8cc63f; color: #fff;
 .availa a span{ display: inline-block; width: 100%; font-size: 16px;} */
 
 .msg-check{width:100%; margin: 0; padding:25px 0; display:inline-block;}
-.msg-check a{width: 100%; max-width: 48%; text-align: center; color: #333;}
+.msg-check a{width: 100%; max-width: 48%; text-align: center; color:#8cc63f;}
 .msg-check a:hover{ color: #8cc63f;}
-.msg-check a i{ font-size: 18px;}
-.msg-check a span{ display: inline-block; width: 100%; font-size: 16px;}
-
+.msg-check a i{ font-size:25px;}
+.msg-check a span{ display: inline-block; width: 100%; font-size:14px;}
+.msg-check a span{position: relative;}
+.msg-check a span span.badge{position: absolute; background: #ff5653; top:-20px; right:35px; width:20px; height:20px; border-radius: 100%; text-align: center;}
 
 .pro-rgt-top{ width: 100%; margin: 0; padding: 0;display:inline-block;}
 .findclass{ width: 100%; margin: 0; padding:0px 0px; text-align: center;}
@@ -7748,7 +7749,7 @@ a.editpic{position: absolute; top: 0; right: 0; background:#8cc63f; color: #fff;
 .appo ul li a{width:100%; margin: 0; padding:10px 0;float: left; border:1px solid #666; color: #666; border-radius:100px; text-align: center; font-size: 16px; }
 .appo ul li a:hover{background: #8cc63f; color: #fff; border: 1px solid #8cc63f;}
 
-.whatclientsay{ width: 100%; margin: 0; padding:25px 0 0 0; display: inline-block;}
+.whatclientsay{ width: 100%; margin: 0; padding:0px 0 0 0; display: inline-block;}
 .active-inactive{width: 100%; margin: 0; padding:35px 0 0 0; display: inline-block;}
 .active-inactive ul{width: 100%; margin: 0; padding: 0;display:inline-block; text-align: center;border-bottom:1px solid #eee;}
 .active-inactive ul li{width:auto; margin:0 0 -1px 0; padding: 0 0px;display: inline-block;}
@@ -7770,6 +7771,11 @@ a.editpic{position: absolute; top: 0; right: 0; background:#8cc63f; color: #fff;
 .videoslider p span strong{ color:#8cc63f; }
 
 #signup{ width: 100%; margin:100px 0; padding: 0;}
+
+.loginpage h2.section-title-default2{ text-align: center;}
+.loginpage h2.section-title-default2::before{left: 50%;margin: 0 0 0 -33px;}
+
+
 
 
 /* Full-width input fields */
@@ -7803,7 +7809,8 @@ input[type=text], input[type=password] {
   padding-top: 4px;
 }
 .signup #user-user_type .radio {
-  width: 45%;
+  width:auto;
+  min-width:20%;
   margin-top: 10px;
   display:inline-block;
 }
@@ -7918,17 +7925,238 @@ hr {
 
   width: 100%;
   margin: 0 0 15px 0;}
+
+.availa a {max-width: 100%;margin: 15px 0 0 0;font-size: 15px;padding: 8px 0;}
 }
 
-.availa a {
+/***** New css changwes ******************/
+.form-group label{ font-size: 16px; color: #999 !important; font-weight: 300; margin: 0; padding: 0;}
+.form-group label i{color: #898989;}
+.form-group input.form-control{ margin: 0 !important;border: none !important;border-bottom: 1px solid #eee !important;
+  box-shadow: none !important;padding: 0 !important; font-size:14px; height: 35px; }
 
-  max-width: 100%;
-  margin: 15px 0 0 0;
-  font-size: 15px;
-  padding: 8px 0;
+.form-group.has-error input.form-control{border-bottom: 1px solid #ff5653 !important; color:#ff5653}
+.form-group.has-error .help-block{position: absolute;color:#ff5653;
+    bottom: -32px;
+    left: 0;
+    font-size: 12px;
 
 }
+.form-control::placeholder {color: #c9c9c9;}
+/* input[type=text], input[type=password]{ margin: 0 !important;} */
+
+#user-user_type{ margin: 0; padding:0;}
+#user-user_type .radio{position: relative;}
+#user-user_type .radio label{ padding: 0 0 0 30px;}
+#user-user_type .radio label input{margin: 0; left: 0; top: 0;}
+
+
+
+
+#user-user_type .radio label {
+  display: block;
+  position: relative;
+  padding-left:25px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size:16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
+/* Hide the browser's default radio button */
+#user-user_type .radio label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+#user-user_type .radio label .checkmark {
+  position: absolute;
+  top:4px;
+  left: 0;
+  height:16px;
+  width:16px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+#user-user_type .radio label:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+#user-user_type .radio label input:checked ~ .checkmark {
+  background-color:#8cc63f;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+#user-user_type .radio label .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+#user-user_type .radio label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+#user-user_type .radio label .checkmark:after {
+  top:4px;
+  left:4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+.signup .footer_signin{ text-align: center; padding:15px 0;}
+.signup .footer_signin a{ padding:15px 0 0 0; display: inline-block;}
+
+.signup .modal-footer{ font-size:14px;}
+
+.notification_list{ width: 100%; margin:30px 0 0px 0; display: inline-block;}
+.notification_list .notification_item{ width: 100%; margin: 0 0 30px 0; border-bottom:1px solid #eee; }
+.notification_list .notification_item p:last-child{ font-size:13px; color:#999;}
+.pagination{text-align: center;
+  width: 100%;
+  display: inline-block;
+
+}
+.pagination li{display: inline-block; float: none;}
+.pagination li.disabled span{ padding: 7px 12px; border-radius:0 !important;  }
+.pagination > li:first-child > a, .pagination > li:first-child > span{ border-radius:0 !important;}
+
+.addappointmenttrainerlist .panel-body .pic-box{ width: 100%; max-width: 200px; float:left;}
+.addappointmenttrainerlist .panel-body .info-box{ width: 100%; max-width:72%; float:left;}
+
+.addappointmenttrainerlist .panel-body .pic-box a{ width: 150px; height: 150px; display: inline-block; border: 2px solid #ccc; text-align: center; border-radius:100%; }
+.addappointmenttrainerlist .panel-body .pic-box a img{ width: auto; max-width: 100%; height: auto; max-height:100%;}
+.panel-heading{ font-size:20px;}
+.addappointmenttrainerlist .panel-heading label a.btn {padding: 4px 12px; margin: 0 0 -5px 15px; background:#8cc63f; border-color:#8cc63f;}
+
+
+
+.checkboxbox {
+  display:inline-block;
+  position: relative;
+  padding-left:25px;
+  margin-bottom:12px;
+  cursor: pointer;
+  font-size:16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkboxbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkboxbox .checkmark {
+  position: absolute;
+  top:4px;
+  left: 0;
+  height:18px;
+  width:18px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkboxbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkboxbox input:checked ~ .checkmark {
+  background-color: #8cc63f;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkboxbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkboxbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkboxbox .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+.Profile-contnet {
+  width: 100%;
+  margin: 0;
+  padding: 25px;
+  border: 1px solid #eee;
+
+}
+.edit_profile .form-group{ width: 100%; max-width:100%; float:left;}
+.edit_profile .img_users{ width: 100%; max-width:50%; float:left;}
+.edit_profile .form-group.field-user-bio{ width: 100%; max-width:50%; float:left;}
+
+.img_users .field-user-profile_photo{ float:left; max-width:200px;padding-right: 25px; position: relative;}
+.img_users img#preview{max-width:150px; height:150px; max-height:150px; max-width:150px;}
+.img_users .field-user-profile_photo input.form-control{position: absolute;
+  top:0;
+  left: 0;
+  width:180px; height:150px; z-index:99; opacity: 0; cursor: pointer;}
+.img_users .field-user-profile_photo .fileupload{position: absolute;
+  top:0;
+  left: 0;
+  width:100%;
+  max-width: 180px;
+  height:150px;
+  background: #eee;
+  color: #999;
+  text-align: center;
+  font-size:16px;
+  line-height: 186px;
+}
+.img_users .field-user-profile_photo .fileupload:after{width: auto;
+  height: 50px;
+  position: absolute;
+  top:20%;
+  left: 50%;
+  content: '\f0ee';
+  font: normal normal normal 14px/1 FontAwesome;
+  display: inline-block;
+  font-size: 40px;
+  margin: 0 0 0 -20px;
+}
+
+form.edit_profile .form-group{ width:100%; margin:0; padding:0 15px; max-width:50%;}
+form.edit_profile .height20{ width:100%; margin:0; padding:0 15px; max-width:100%; height: 50px;
+
+  float: left;}
 
 

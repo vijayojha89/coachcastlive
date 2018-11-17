@@ -30,11 +30,11 @@ $this->title = 'Login';
  </div>
 <!-- End Inner Banner area -->
 
-<div class="contact-us-area signup" id="">
+<div class="contact-us-area signup loginpage" id="">
             <div class="container">
-                <div class="row">
+                <!-- <div class="row">
                 <h2 class="section-title-default2 title-bar-high2">Login</h2>    
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="signupform">
@@ -54,16 +54,16 @@ $this->title = 'Login';
                                   
                                 <?php
                                  echo $form->field($model, 'email', [
-                                    'template' => '{label}<i class="fa fa-envelope" aria-hidden="true"></i> {input}{error}{hint}'
-                                ])->textInput(['autofocus' => true,'value'=>'','class'=>'form-control','placeholder'=>'Email','autocomplete'=>'off']) ;
+                                  'template' => '{label}<i class="fa fa-envelope" aria-hidden="true"></i> {input}{error}{hint}'
+                                ])->textInput(['autofocus' => true,'value'=>'','class'=>'form-control','placeholder'=>'Enter your email ID','autocomplete'=>'off']) ;
                                 ?>
 `                 
 
 <?=
-                                    $form->field($model, 'password', [
-                                        'template' => '{label}<i class="fa fa-key" aria-hidden="true"></i> {input}{error}{hint}'
-                                    ])->passwordInput(['value'=>'','class'=>'form-control','placeholder'=>'Password'])
-                                    ?>
+                                $form->field($model, 'password', [
+                                 'template' => '{label}<i class="fa fa-key" aria-hidden="true"></i> {input}{error}{hint}'
+                                ])->passwordInput(['value'=>'','class'=>'form-control','placeholder'=>'Enter your Password'])
+                                ?>
 
                                  
                                   <div class="clearfix">

@@ -53,8 +53,8 @@ $model->old_password = '';
                                 <div class="panel-heading">Month Availability</div>
                                 <div class="panel-body">
                                 <h4><span class="label label-default"><?php echo date('F');?></span></h4>
-                                <label class="checkbox-inline"><input type="checkbox" value="1">Turn On</label>
-                                <label class="checkbox-inline"><input type="checkbox" value="0">Turn Off</label>
+                                <label class="checkbox-inline checkboxbox"><input type="checkbox" value="1"> <span class="checkmark"></span>Turn On</label>
+                                <label class="checkbox-inline checkboxbox"><input type="checkbox" value="0"> <span class="checkmark"></span>Turn Off</label>
 
                                 </div>
                             </div>
