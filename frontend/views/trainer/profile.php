@@ -44,9 +44,9 @@ $model->old_password = '';
                         <div class="pro-rgt-top">
                             <?php echo $this->render('//user/_user_header.php'); ?>
                         </div>
-                        <div class="whatclientsay">
+                        <div class="whatclientsay ">
                             <h2 class="section-title-default2 title-bar-high2">Edit Profile</h2>
-                            <div class="row">
+                            <div class="editpro_page">
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a data-toggle="tab" href="#PersonalInformation">Personal / Business Details</a></li>
                                     <li><a data-toggle="tab" href="#ChangePassword">Change Password</a></li>
@@ -66,7 +66,7 @@ $model->old_password = '';
                                         </div>
                                         <?=$form->field($model, 'bio')->textarea(['row' => 10])?>
                                         <div class="height20"></div>
-                                        
+
                                         <?=$form->field($model, 'first_name')->textInput(['maxlength' => true])?>
                                        
                                         <?=$form->field($model, 'last_name')->textInput(['maxlength' => true])?>
@@ -80,10 +80,11 @@ $model->old_password = '';
                                         <?=$form->field($model, 'twitter_url')->textInput(['maxlength' => true])?>
                                          <?=$form->field($model, 'google_url')->textInput(['maxlength' => true])?>
                                         <?=$form->field($model, 'schedule_call_fee')->textInput(['maxlength' => true])?>
-                                        <div class="row">
+                                        <div class="col-md-12">
                                             <?=Html::submitButton(Yii::t('app', 'Update'), ['class' => 'btn', 'id' => 'updateprofilesavebutton'])?>
                                             <a href="<?php echo Url::to(['trainer/dashboard']); ?>" class="btn btn-dark">Cancel</a>
                                         </div>
+                                        <div class="clearfix"></div>
                                         <?php ActiveForm::end();?>
                                     </div>
                                     <div id="ChangePassword" class="tab-pane fade">
@@ -99,6 +100,8 @@ $model->old_password = '';
                                   <?php ActiveForm::end();?>      
                                     </div>
                                 </div>
+                            
+                                <div class="clearfix"></div>
                             </div>
                         </div>
                     </div>

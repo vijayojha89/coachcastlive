@@ -76,7 +76,8 @@ echo $this->render('//trainer/_trainer_header.php');
                                 <div class="col-md-4 col-sm-4">
                                     <div class="findclass">
                                         <a href="<?php echo Url::to(['blog/create']); ?>">
-                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                        <i class="fa fa-feed" aria-hidden="true"></i>
+                                            <!-- <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
                                                 <g>
                                                     <g>
@@ -102,7 +103,7 @@ echo $this->render('//trainer/_trainer_header.php');
                                                         C384,154.641,383.718,155.614,383.693,156.655z M435.2,256h-25.6v-76.8h25.6V256z" />
                                                     </g>
                                                 </g>
-                                            </svg>
+                                            </svg> -->
                                             <span>Add New Blog</span>
                                         </a>
                                     </div>

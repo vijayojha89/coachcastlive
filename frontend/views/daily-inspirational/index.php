@@ -49,7 +49,7 @@ $this->title = 'My Classes';
                                     </div>
                                     <div class="input-row">
                                         <textarea class="input-field" type="text" name="comment"
-                                            id="comment" placeholder="Add a Comment">  </textarea>
+                                            id="comment" placeholder="Add a Comment"></textarea>
                                     </div>
                                     <div>
                                         <input type="button" class="btn-submit" id="submitButton"

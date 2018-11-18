@@ -148,7 +148,7 @@ $this->title = "Availability";
 
                                 </div>
                             </div>
-                                <button type="submit" class="btn btn-info">Save</button>
+                                <button type="submit" class="btn">Save</button>
                             </form>
                         </div>
                     </div>
