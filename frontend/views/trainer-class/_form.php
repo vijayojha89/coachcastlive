@@ -66,15 +66,27 @@ echo DatePicker::widget([
     </div>
     </div>
     <div  class="row">
-        <div  class="col-sm-2">
-    <?= $form->field($model, 'class_image')->fileInput() ?>
+    <div  class="col-sm-12">
+        <div class="img_users">
+                                           
+         <?php echo $form->field($model, 'class_image', [
+         'template' => '{label}<span class="fileupload">Upload pic</span> {input}{error}{hint}'
+         ])->fileInput(['autofocus' => true,'value'=>'','class'=>'form-control']) ;
+         ?>
+        <!-- <img id="preview" class="mCS_img_loaded" src="<//?php echo $gnl->image_not_found_hb($model->profile_photo, 'profile_photo', 1); ?>" alt="" width="200" height="200">  -->
+        <img id="preview_class_image_0" class="mCS_img_loaded img-border upload-preview" src="<?php echo $gnl->image_not_found_hb( $model->class_image,'class_image',1); ?>" />
+        </div>
+        </div>
+        <!-- <div  class="col-sm-2">
+        <//?= $form->field($model, 'class_image')->fileInput() ?>
         </div>
          <div  class="col-sm-3">
-             <img id="preview_class_image_0" class="img-border" src="<?php echo $gnl->image_not_found_hb( $model->class_image,'class_image',1); ?>" />
-     </div>
+            
+            
+        </div> -->
          </div>
     <div class="form-group pro-bottom-btn" id="button_update_delete">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn' : 'btn']) ?>
         <?= Html::a(Yii::t('app', 'Cancel'), ['trainer-class/index'], ['class' => 'btn btn-dark']) ?>
     </div>
 

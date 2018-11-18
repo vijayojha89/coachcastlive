@@ -38,16 +38,43 @@ $gnl = new \common\components\GeneralComponent();
 </div>
     
     <div class="row">
-    <div class="col-sm-2">
-    <?= $form->field($model, 'video_image')->label('Video Image')->fileInput() ?>
-    </div>
-        <div class="col-sm-3">
-            <img id="preview_video_image_0" class="img-border" src="<?php echo $gnl->image_not_found_hb( $model->video_image,'video_image',1); ?>" />
+
+
+        <div  class="col-sm-6">
+        <div class="img_users">
+                                           
+         <?php echo $form->field($model, 'video_image', [
+         'template' => '{label}<span class="fileupload">Upload video images</span> {input}{error}{hint}'
+         ])->fileInput(['autofocus' => true,'value'=>'','class'=>'form-control']) ;
+         ?>
+         <img id="preview_video_image_0" class="img-border  upload-preview" src="<?php echo $gnl->image_not_found_hb( $model->video_image,'video_image',1); ?>" />
         </div>
-        <div class="col-sm-1">
-            &nbsp;
-        </div>    
-     <div class="col-sm-2">   
+        </div>
+
+        <div  class="col-sm-12">
+        <div class="img_users">
+                                           
+         <?php echo $form->field($model, 'video_file', [
+         'template' => '{label}<span class="fileupload">Upload video</span> {input}{error}{hint}'
+         ])->fileInput(['autofocus' => true,'value'=>'','class'=>'form-control']) ;
+         ?>
+         
+         <?php if (!$model->isNewRecord && !empty($model->video_file) ) { ?>
+                    <div class="videosource">
+                    <video controls>
+                        <source src="<?php echo $gnl->video_not_found_hb( $model->video_file,'video_file'); ?>" type="video/mp4">
+                    </video>
+                    </div>
+        <?php } ?>
+        </div>
+        </div>
+       
+         </div>
+
+
+
+       
+     <!-- <div class="col-sm-2">   
     <?= $form->field($model, 'video_file')->fileInput() ?>
      </div>
         <div class="col-sm-12">
@@ -58,10 +85,10 @@ $gnl = new \common\components\GeneralComponent();
                     </video>
                     </div>
         <?php } ?>
-        </div>
+        </div> -->
     </div>
     <div class="form-group pro-bun-wrap pro-bottom-btn" id="button_update_delete">
-        <?= Html::submitButton($model->isNewRecord ? 'Save' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Save' : 'Update', ['class' => $model->isNewRecord ? 'btn' : 'btn']) ?>
         <?= Html::a(Yii::t('app', 'Cancel'), ['trainer-video/index'], ['class' => 'btn btn-dark']) ?>
     </div>
 
