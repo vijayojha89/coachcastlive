@@ -76,6 +76,7 @@ $("document").ready(function(){
   $("#user-user_type .radio label").append("<span class='checkmark'></span>");
 });
 </script>
-    </body>
+
+</body>
 </html>
 <?php $this->endPage() ?>

@@ -57,9 +57,8 @@ $this->title = 'Login';
                                   'template' => '{label}<i class="fa fa-envelope" aria-hidden="true"></i> {input}{error}{hint}'
                                 ])->textInput(['autofocus' => true,'value'=>'','class'=>'form-control','placeholder'=>'Enter your email ID','autocomplete'=>'off']) ;
                                 ?>
-`                 
-
-<?=
+                                
+                                <?=
                                 $form->field($model, 'password', [
                                  'template' => '{label}<i class="fa fa-key" aria-hidden="true"></i> {input}{error}{hint}'
                                 ])->passwordInput(['value'=>'','class'=>'form-control','placeholder'=>'Enter your Password'])
