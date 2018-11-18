@@ -14,14 +14,15 @@ $userdata = Yii::$app->db->createCommand("Select * from user where id = ".Yii::$
                             <div class="profile-pic">
                                 <div class="userpic"><a class="imguser" href="#"><img src="<?php echo $gnl->image_not_found_hb( $userdata['profile_photo'],'profile_photo',1);?>" alt="profile"></a><a
                                         class="editpic" href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
-                                <span><?php  echo $userdata['first_name'].' '.$userdata['last_name'];?></span>
+                                <span><?php  echo $userdata['first_name'].' '.$userdata['last_name'];?> "(test)"</span>
                             </div>
 
                             <div class="availa">
                                 <a class="fl choosebtn" href="<?php echo Url::to(['trainer/profile']); ?>"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;   Edit Profile</a>
                                 <a class="fl choosebtn" href="<?php echo Url::to(['trainer/availability']); ?>"><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;&nbsp;Availability</a>
                                 <!--<a class="fr choosebtn" href="#">My Schedule</a>-->
-                                <a class="fr choosebtn" href="<?php echo Url::to(['blog/index']); ?>"><i class="fa fa-book" aria-hidden="true"></i> &nbsp;&nbsp;My Blogs</a>
+                                <a class="fr choosebtn" href="<?php echo Url::to(['blog/index']); ?>"><i class="fa fa-feed" aria-hidden="true"></i> &nbsp;&nbsp;My Blogs</a>
+                                <a class="fr choosebtn" href="<?php echo Url::to(['daily-inspirational/index']); ?>"><i class="fa fa-book" aria-hidden="true"></i> &nbsp;&nbsp;Daily Inspirational Wall</a>
                             </div>
 
                             <div class="msg-check">
