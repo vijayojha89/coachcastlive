@@ -27,9 +27,9 @@ $this->title = "Sign Up";
 
 <div class="contact-us-area signup" id="">
             <div class="container">
-                <div class="row">
+                <!-- <div class="row">
                 <h2 class="section-title-default2 title-bar-high2">Sign Up</h2>    
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="signupform">
@@ -51,43 +51,43 @@ $this->title = "Sign Up";
                                 <div class="signup">
                                   
                                 <?= $form->field($model, 'user_type')->label("Select User Role")->radioList(array('1'=>'User',2=>'Coach')); ?>
-
-
                                 <?= $form->field($model, 'social_type')->hiddenInput()->label(false) ?>
                                 <?= $form->field($model, 'social_id')->hiddenInput()->label(false) ?>
+
                                 
 
 
                                 <?php
                                 echo $form->field($model, 'first_name', [
                                     'template' => '{label}<i class="fa fa-user" aria-hidden="true"></i> {input}{error}{hint}'
-                                ]);
+                                    ])->textInput(['placeholder'=>'Ente yourr first name',]) ;
+                                    
 
 
                                 echo $form->field($model, 'last_name', [
                                     'template' => '{label}<i class="fa fa-user" aria-hidden="true"></i> {input}{error}{hint}'
-                                ]);
+                                    ])->textInput(['placeholder'=>'Enter your last name',]) ;
 
                                 echo $form->field($model, 'mobile_no', [
                                     'template' => '{label}<i class="fa fa-phone" aria-hidden="true"></i> {input}{error}{hint}'
-                                ]);
+                                    ])->textInput(['placeholder'=>'Enter your mobile Number',]) ;
 
                                 echo $form->field($model, 'email', [
                                     'template' => '{label}<i class="fa fa-envelope" aria-hidden="true"></i> {input}{error}{hint}'
-                                ]);
+                                    ])->textInput(['placeholder'=>'Enter your email ID',]) ;
                                 ?>
 
                                     
                                     <?=
                                     $form->field($model, 'password_hash', [
                                         'template' => '{label}<i class="fa fa-key" aria-hidden="true"></i> {input}{error}{hint}'
-                                    ])->passwordInput()
+                                    ])->passwordInput(['placeholder'=>'Enter your password',])
                                     ?>
 
                                     <?=
                                     $form->field($model, 'confirm_password', [
                                         'template' => '{label}<i class="fa fa-key" aria-hidden="true"></i> {input}{error}{hint}'
-                                    ])->passwordInput()
+                                    ])->passwordInput(['placeholder'=>'Enter your confirm password',])
                                     ?>
 
                                   <div class="clearfix">
@@ -96,16 +96,18 @@ $this->title = "Sign Up";
                                         </div>
                                   </div>
                                   
-                                <p class="footer_privacy_policy">
-                                    By signing up you agree to our <a href="<?php echo Url::to(['/site/terms']); ?>" target="_blank">Terms and Conditions</a> and <a href="<?php echo Url::to(['/site/privacy']); ?>" target="_blank">Privacy Policy</a>
-                                </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <p class="footer_signin">
+                                  <p class="footer_signin">
                                         Already have an account ?<br />
                                         <a href="<?php echo Url::to(['/site/email-login']); ?>" id="btn_email_signin">Log in to continue</a>
                                     </p>
 
+                                </div>
+                                <div class="modal-footer">
+
+                                 <p class="footer_privacy_policy">
+                                    By signing up you agree to our <a href="<?php echo Url::to(['/site/terms']); ?>" target="_blank">Terms and Conditions</a> and <a href="<?php echo Url::to(['/site/privacy']); ?>" target="_blank">Privacy Policy</a>
+                                </p>
+                                   
                                 </div>
                                 <?php ActiveForm::end(); ?>
                        </div>

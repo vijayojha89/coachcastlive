@@ -53,15 +53,21 @@ $model->old_password = '';
                                 </ul>
 
 
-                                 <div class="tab-content">
+                                 <div class="tab-content Profile-contnet">
                                     <div id="PersonalInformation" class="tab-pane fade in active">
                                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data', 'class' => 'edit_profile tutorprofile-form']]);?>
                                         <div class="img_users">
-                                            <?=$form->field($model, 'profile_photo')->fileInput()?>
+                                            <!-- <//?=$form->field($model, 'profile_photo')->fileInput()?> -->
+                                             <?php echo $form->field($model, 'profile_photo', [
+                                                'template' => '{label}<span class="fileupload">Upload profile pic</span> {input}{error}{hint}'
+                                                ])->fileInput(['autofocus' => true,'value'=>'','class'=>'form-control']) ;
+                                                ?>
                                             <img id="preview" class="mCS_img_loaded" src="<?php echo $gnl->image_not_found_hb($model->profile_photo, 'profile_photo', 1); ?>" alt="" width="200" height="200"> 
                                         </div>
                                         <?=$form->field($model, 'bio')->textarea(['row' => 10])?>
+                                        <div class="height20"></div>
                                         <?=$form->field($model, 'first_name')->textInput(['maxlength' => true])?>
+                                       
                                         <?=$form->field($model, 'last_name')->textInput(['maxlength' => true])?>
                                         <?=$form->field($model, 'email', ['enableAjaxValidation' => true])->textInput(['maxlength' => true, 'autocomplete' => false, "disabled" => "disabled"])?>
                                         <?=$form->field($model, 'mobile_no')->textInput(['maxlength' => true])?>

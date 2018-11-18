@@ -29,7 +29,7 @@ $this->title = "Availability";
                         </div>
                         <div class="whatclientsay">
                             <h2 class="section-title-default2 title-bar-high2">Availability</h2>
-                            <form method="post" action="<?php Url::to['trainer/coachcastlive'];?>">
+                            <form method="post" action="<?php echo Yii::$app->homeUrl; ?>">
                             
                             
                             <div class="panel panel-default">
@@ -61,10 +61,11 @@ $this->title = "Availability";
                                     'Sunday',
                                 ];
                                  foreach($days as $key => $value){
-                                    echo '<label class="checkbox-inline"><input type="checkbox" value="'.($key+1).'">'.$value.'</label>'; 
+                                    echo '<label class="checkbox-inline checkboxbox"><input type="checkbox" value="'.($key+1).'"><span class="checkmark"></span>'.$value.'</label>'; 
                                  }
                                  ?>
-
+                                <h4><span class="label label-default"><?php echo date('F');?></span></h4>
+                                
                                 </div>
                             </div>
 
