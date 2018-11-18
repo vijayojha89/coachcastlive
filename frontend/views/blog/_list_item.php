@@ -7,7 +7,7 @@ use yii\helpers\Url;
 $gnl = new \common\components\GeneralComponent();
 ?>
 
-<div class="col-sm-3"> 
+<div class="col-sm-4"> 
     <div class="box-wrap wow fadeInUp"> 
         <div class="box-img"> 
             <div class="box-img-center"> 

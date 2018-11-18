@@ -48,7 +48,7 @@ $this->title = 'Send Message';
            <?= $form->field($model, 'message_text')->textarea(['rows' => 6]) ?>
 
        <div class="form-group">
-        <?= Html::submitButton('Send', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Send', ['class' => 'btn']) ?>
     </div>
 
             

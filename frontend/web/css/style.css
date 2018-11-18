@@ -8507,6 +8507,7 @@
  .grid-view table.table-bordered tr td:nth-child(02){
      text-align: center;
 }
+.grid-view table.table-bordered tr td a.btn, .grid-view table.table-bordered tr td a.btn:hover{color:#8cc63f;}
 .bootstrap-timepicker span.picker{ background: transparent; border: none;border-bottom: 1px solid #eee !important;}
 input.krajee-datepicker, .input-group input.form-control{margin: 0 !important;
     border: none !important;
@@ -8540,7 +8541,7 @@ input.krajee-datepicker, .input-group input.form-control{margin: 0 !important;
   flex-direction: column;}
 .box-wrap .box-contan .box-left h4{ width: 100%; text-align:left;margin: 0;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;}
 .box-wrap .box-contan .box-right{ background:#9ddd49; color: #fff;display: inline-block; margin:15px 0 0 0;  width: 100%; padding: 5px 15px;}
-.box-wrap .box-contan .box-right h4{ float:left; color: #fff; margin: 0; padding: 0;line-height: 24px; font-size: 15px;}
+.box-wrap .box-contan .box-right h4{ float:left; color: #fff; margin: 0; padding:0 5px 0 0;line-height: 24px; font-size: 15px;}
 .box-wrap .box-contan .box-right .btnsbox{ float:right; color: #fff;}
 .box-wrap .box-contan .box-right .btnsbox a{ color:#fff;}
 
@@ -8554,6 +8555,11 @@ input.krajee-datepicker, .input-group input.form-control{margin: 0 !important;
 #button_update_delete{ margin:25px 0 0 0;}
 #button_update_delete .btn{ width:auto;}
 
+.mce-btn button {padding: 4px 6px !important;}
+.datepicker{ z-index:9999 !important;}
+
+.form-group .bootstrap-timepicker{ padding:0 0 0 15px;}
+.form-inline .form-group label{ vertical-align: top;line-height: 38px;}
 
 
  @media only screen and (max-width: 1024px) {

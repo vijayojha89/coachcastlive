@@ -94,6 +94,14 @@ span.posted-by {
     color: #189a18;
     display: none;
 }
+
+.rpl a{ padding:0 0; margin:0 15px 0 0; color:#8cc63f;}
+
+.comment-row .comment-info{ font-size:14px;}
+span.posted-by{color:#8cc63f;}
+ul.outer-comment{ width:100%; margin:0 0 15px 0; padding:0;}
+ul.outer-comment li{ width:100%; margin:0 0 15px 0; padding:0 15px;}
+ul.outer-comment li ul{ width:100%; margin:0 0 15px 0; padding:0 0 0 15px;}
 </style>
 
 <!-- Start Inner Banner area -->
@@ -214,7 +222,7 @@ function listComment() {
                         comments = "<div class=\'comment-row\'>"+
                         "<div class=\'comment-info\'><span class=\'commet-row-label\'>from</span> <span class=\'posted-by\'>" + data[i][\'comment_sender_name\'] + " </span> <span class=\'commet-row-label\'>at</span> <span class=\'posted-at\'>" + data[i][\'date\'] + "</span></div>" + 
                         "<div class=\'comment-text\'>" + data[i][\'comment\'] + "</div>"+
-                        "<div><a class=\'btn-reply\' onClick=\'postReply(" + commentId + ")\'>Reply</a></div><a class=\'btn-reply\' onClick=\'postReply(" + commentId + ")\'>Likes 5</a></div></div>";
+                        "<div class=\'rpl\'><a class=\'btn-reply\' onClick=\'postReply(" + commentId + ")\'>Reply</a><a class=\'btn-reply\' onClick=\'postReply(" + commentId + ")\'>Likes 5</a></div></div></div>";
 
                         var item = $("<li>").html(comments);
                         list.append(item);
@@ -238,7 +246,7 @@ function listReplies(commentId, data, list) {
             var comments = "<div class=\'comment-row\'>"+
             " <div class=\'comment-info\'><span class=\'commet-row-label\'>from</span> <span class=\'posted-by\'>" + data[i][\'comment_sender_name\'] + " </span> <span class=\'commet-row-label\'>at</span> <span class=\'posted-at\'>" + data[i][\'date\'] + "</span></div>" + 
             "<div class=\'comment-text\'>" + data[i][\'comment\'] + "</div>"+
-            "<div><a class=\'btn-reply\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'>Reply</a><a class=\'btn-reply\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'>Likes 5</a></div></div>"+
+            "<div class=\'rpl\'><a class=\'btn-reply\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'>Reply</a><a class=\'btn-reply\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'>Likes 5</a></div></div>"+
             "</div>";
             var item = $("<li>").html(comments);
             var reply_list = $(\'<ul>\');
