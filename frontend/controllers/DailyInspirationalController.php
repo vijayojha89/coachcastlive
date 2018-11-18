@@ -56,6 +56,8 @@ class DailyInspirationalController extends Controller
     
     public function actionCommentList()
     {
+        $sql = "SELECT * FROM tbl_comment ORDER BY parent_comment_id asc, comment_id asc";
+
         echo "RE";
         die;
     }
