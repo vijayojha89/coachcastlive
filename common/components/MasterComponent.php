@@ -488,10 +488,17 @@ class MasterComponent extends Component {
         
        return $result;
     }
-    public function     unread_notifications($user_id)
+    public function  unread_notifications($user_id)
     {
            $unread_notification_count = \common\models\NotificationGeneralization::find()->where(['notification_to'=>$user_id,'is_read'=>0])->asarray()->all();
            return count($unread_notification_count);
+    }
+    
+
+    public function  unread_message($user_id)
+    {
+           $unread_count = Yii::$app->db->createCommand("Select * from message where to_id = ".$user_id)->queryAll();
+           return count($unread_count);
     }
     
      public function remove_notification($notification_id) {

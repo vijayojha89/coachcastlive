@@ -2,8 +2,10 @@
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-
+$mnl = new common\components\MasterComponent();
 $gnl = new common\components\GeneralComponent();
+$unreadMessageCount = $mnl->unread_message(Yii::$app->user->id);
+
 $userdata = Yii::$app->db->createCommand("Select * from user where id = ".Yii::$app->user->id)->queryOne();
 ?>
 
@@ -26,7 +28,7 @@ $userdata = Yii::$app->db->createCommand("Select * from user where id = ".Yii::$
                             </div>
 
                             <div class="msg-check">
-                                <a class="fl" href="<?php echo Url::to(['message/index']); ?>"><i class="fa fa-commenting-o" aria-hidden="true"></i><span>Messages <span class="badge btn-danger">2</span></span></a>
+                                <a class="fl" href="<?php echo Url::to(['message/index']); ?>"><i class="fa fa-commenting-o" aria-hidden="true"></i><span>Messages <span class="badge btn-danger"><?php echo $unreadMessageCount;?></span></span></a>
                                 <a class="fl" href="javascript:void(0);" style="cursor:default;"><i class="fa fa-user" aria-hidden="true" style="color:#8cc63f;"></i><span style="color:#8cc63f;">Online</span></a>
                             </div>
 
