@@ -270,7 +270,33 @@ class TrainerController extends \yii\web\Controller
     
     public function actionAvailability()
     {
-       return $this->render('availability');
+        
+        if(@Yii::$app->user->identity->role == "trainer")
+        {
+            $sql = "SELECT * From trainer_availability WHERE trainer_id = ".\Yii::$app->user->identity->id;
+            $availability_Detail = yii::$app->db->createCommand($sql)->queryOne();
+            if(!$availability_Detail)
+            {
+
+               Yii::$app->db->createCommand()->insert('trainer_availability',
+                    [
+                        'month_availability' => 'a:0:{}',
+                        'day_availability' => 'a:0:{}',
+                        'time_availability' => 'a:0:{}',   
+                        'trainer_id'=> \Yii::$app->user->identity->id,  
+                        'created_by'=> \Yii::$app->user->identity->id,  
+                        'created_date' => date('Y-m-d H:i:s'),
+                        'status' => 1
+                    ])->execute();
+                return $this->redirect(['trainer/availability']);                
+            }
+            return $this->render('availability', ['availabilityDetail'=>$availability_Detail]);
+        }
+        else
+        {
+            return $this->redirect(['site/index']);
+        }
+        
     }
     
     
