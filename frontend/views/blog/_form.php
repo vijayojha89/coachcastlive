@@ -79,16 +79,31 @@ $gnl = new \common\components\GeneralComponent();
     <input name="image" type="file" id="upload" class="hidden" onchange="">
 
     <div class="row">
-    <div class="col-sm-2">
-    <?= $form->field($model, 'blog_image')->fileInput() ?>
+
+<div  class="col-sm-12">
+        <div class="img_users">
+                                           
+         <?php echo $form->field($model, 'blog_image', [
+         'template' => '{label}<span class="fileupload">Upload blog image</span> {input}{error}{hint}'
+         ])->fileInput(['autofocus' => true,'value'=>'','class'=>'form-control']) ;
+         ?>
+        <!-- <img id="preview" class="mCS_img_loaded" src="<//?php echo $gnl->image_not_found_hb($model->profile_photo, 'profile_photo', 1); ?>" alt="" width="200" height="200">  -->
+                <img id="preview_blog_image_0" class="img-border upload-preview" src="<?php echo $gnl->image_not_found_hb($model->blog_image, 'blog_image',1); ?>" />
+        </div>
+        </div>
+
+
+
+    <!-- <div class="col-sm-2">
+    <//?= $form->field($model, 'blog_image')->fileInput() ?>
     </div>
      <div class="col-sm-3">
-         <img id="preview_blog_image_0" class="img-border" src="<?php echo $gnl->image_not_found_hb($model->blog_image, 'blog_image',1); ?>" />
-     </div>
+         <img id="preview_blog_image_0" class="img-border upload-preview" src="<//?php echo $gnl->image_not_found_hb($model->blog_image, 'blog_image',1); ?>" />
+     </div> -->
     </div>
     
     <div class="form-group pro-bottom-btn" id="button_update_delete">
-        <?= Html::submitButton($model->isNewRecord ? 'Save' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Save' : 'Update', ['class' => $model->isNewRecord ? 'btn' : 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Cancel'), ['blog/index'], ['class' => 'btn btn-dark']) ?>
     </div>
 
