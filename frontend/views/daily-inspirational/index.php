@@ -64,9 +64,11 @@ $this->title = 'My Classes';
 }
 
 .outer-comment {
-	background: #F0F0F0;
-	padding: 20px;
-	border: #dedddd 1px solid;
+
+background: #F9F9F9;
+padding: 20px;
+border: #F9F9F9 1px solid;
+
 }
 
 span.commet-row-label {
@@ -94,14 +96,40 @@ span.posted-by {
     color: #189a18;
     display: none;
 }
+.rpl{text-align:right;}
+.rpl a{ padding:0 0; margin:0 15px 0 0; color:#8cc63f; font-size:14px;}
+.rpl a.btn-like{ border: 1px solid #8cc63f;
+    padding: 3px 15px;
+    border-radius: 3px;
 
-.rpl a{ padding:0 0; margin:0 15px 0 0; color:#8cc63f;}
+}
+.rpl a.btn-reply{background: #8cc63f;
+    color: #fff;
+    padding: 3px 15px;
+    border-radius: 3px;
+    text-decoration: none;
 
-.comment-row .comment-info{ font-size:14px;}
+}
+.comment-row .comment-info{ font-size:17px;}
 span.posted-by{color:#8cc63f;}
 ul.outer-comment{ width:100%; margin:0 0 15px 0; padding:0;}
-ul.outer-comment li{ width:100%; margin:0 0 15px 0; padding:0 15px;}
+ul.outer-comment li{ width:100%; margin:0 0 15px 0; padding:0 15px 0 15px;}
 ul.outer-comment li ul{ width:100%; margin:0 0 15px 0; padding:0 0 0 15px;}
+ul.outer-comment li ul li{ padding:0 0px 0 15px;}
+textarea#comment{ padding:15px !important;}
+#frm-comment input#submitButton{
+    float:right; width:auto;
+}
+#output {
+
+width: 100%;
+margin: 0;
+padding: 15px 0 0px 0;
+float: left;
+
+}
+
+
 </style>
 
 <!-- Start Inner Banner area -->
@@ -222,7 +250,7 @@ function listComment() {
                         comments = "<div class=\'comment-row\'>"+
                         "<div class=\'comment-info\'><span class=\'commet-row-label\'>from</span> <span class=\'posted-by\'>" + data[i][\'comment_sender_name\'] + " </span> <span class=\'commet-row-label\'>at</span> <span class=\'posted-at\'>" + data[i][\'date\'] + "</span></div>" + 
                         "<div class=\'comment-text\'>" + data[i][\'comment\'] + "</div>"+
-                        "<div class=\'rpl\'><a class=\'btn-reply\' onClick=\'postReply(" + commentId + ")\'>Reply</a><a class=\'btn-reply\' onClick=\'postReply(" + commentId + ")\'>Likes 5</a></div></div></div>";
+                        "<div class=\'rpl\'><a class=\'btn-like\' onClick=\'postReply(" + commentId + ")\'>5 Likes</a><a class=\'btn-reply\' onClick=\'postReply(" + commentId + ")\'>Reply</a></div></div></div>";
 
                         var item = $("<li>").html(comments);
                         list.append(item);
@@ -246,7 +274,7 @@ function listReplies(commentId, data, list) {
             var comments = "<div class=\'comment-row\'>"+
             " <div class=\'comment-info\'><span class=\'commet-row-label\'>from</span> <span class=\'posted-by\'>" + data[i][\'comment_sender_name\'] + " </span> <span class=\'commet-row-label\'>at</span> <span class=\'posted-at\'>" + data[i][\'date\'] + "</span></div>" + 
             "<div class=\'comment-text\'>" + data[i][\'comment\'] + "</div>"+
-            "<div class=\'rpl\'><a class=\'btn-reply\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'>Reply</a><a class=\'btn-reply\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'>Likes 5</a></div></div>"+
+            "<div class=\'rpl\'><a class=\'btn-like\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'> 5 Likes</a><a class=\'btn-reply\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'>Reply</a></div></div>"+
             "</div>";
             var item = $("<li>").html(comments);
             var reply_list = $(\'<ul>\');
