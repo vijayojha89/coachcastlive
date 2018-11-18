@@ -49,16 +49,17 @@ class DailyInspirationalController extends Controller
         $date = date('Y-m-d H:i:s');
 
         $sql = "INSERT INTO tbl_comment(parent_comment_id,comment,comment_sender_name,date) VALUES ('" . $commentId . "','" . $comment . "','" . $commentSenderName . "','" . $date . "')";
-        echo "test";
-        die;
+        $query = \Yii::$app->db->createCommand($sql)->execute();
+        return true;
 
     }   
     
     public function actionCommentList()
     {
         $sql = "SELECT * FROM tbl_comment ORDER BY parent_comment_id asc, comment_id asc";
-
-        echo "RE";
+        $query = \Yii::$app->db->createCommand($sql);
+        $record_set = $query->queryAll();
+        echo json_encode($record_set);
         die;
     }
         /**
