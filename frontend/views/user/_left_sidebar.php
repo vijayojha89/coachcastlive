@@ -21,7 +21,8 @@ $userdata = Yii::$app->db->createCommand("Select * from user where id = ".Yii::$
                                 <a class="fl choosebtn" href="<?php echo Url::to(['trainer/profile']); ?>"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;   Edit Profile</a>
                                 <a class="fl choosebtn" href="<?php echo Url::to(['trainer/availability']); ?>"><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;&nbsp;Availability</a>
                                 <!--<a class="fr choosebtn" href="#">My Schedule</a>-->
-                                <a class="fr choosebtn" href="<?php echo Url::to(['blog/index']); ?>"><i class="fa fa-book" aria-hidden="true"></i> &nbsp;&nbsp;My Blogs</a>
+                                <a class="fr choosebtn" href="<?php echo Url::to(['blog/index']); ?>"><i class="fa fa-feed" aria-hidden="true"></i> &nbsp;&nbsp;My Blogs</a>
+                                <a class="fr choosebtn" href="<?php echo Url::to(['daily-inspirational/index']); ?>"><i class="fa fa-book" aria-hidden="true"></i> &nbsp;&nbsp;Daily Inspirational Wall</a>
                             </div>
 
                             <div class="msg-check">
