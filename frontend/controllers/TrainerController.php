@@ -270,7 +270,65 @@ class TrainerController extends \yii\web\Controller
     
     public function actionAvailability()
     {
-       return $this->render('availability');
+        if(@Yii::$app->user->identity->role == "trainer")
+        {
+            $sql = "SELECT * From trainer_availability WHERE trainer_id = ".\Yii::$app->user->identity->id;
+            $availability_Detail = yii::$app->db->createCommand($sql)->queryOne();
+            if(!$availability_Detail)
+            {
+
+               Yii::$app->db->createCommand()->insert('trainer_availability',
+                    [
+                        'month_availability' => 'a:0:{}',
+                        'day_availability' => 'a:0:{}',
+                        'time_availability' => 'a:0:{}',   
+                        'trainer_id'=> \Yii::$app->user->identity->id,  
+                        'created_by'=> \Yii::$app->user->identity->id,  
+                        'created_date' => date('Y-m-d H:i:s'),
+                        'status' => 1
+                    ])->execute();
+                return $this->redirect(['trainer/availability']);                
+            }
+
+            if(@$_POST)
+            {
+                $monthAvail = $availability_Detail['month_availability']; 
+                if(@$_POST['monthselected'])
+                {
+                    $monthAvail = serialize($_POST['monthselected']);
+                }
+
+                $dayAvail = $availability_Detail['day_availability']; 
+                if(@$_POST['dayselected'])
+                {
+                    $dayAvail = serialize($_POST['dayselected']);
+                }
+
+                $timeAvail = $availability_Detail['day_availability']; 
+                if(@$_POST['timecall'])
+                {
+                    $timeAvail = serialize($_POST['timecall']);
+                }
+                
+                Yii::$app->db->createCommand()->update('trainer_availability',
+                    [
+                        'month_availability' => $monthAvail,
+                        'day_availability' => $dayAvail,
+                        'time_availability' => $timeAvail, 
+                        'modified_date'=>date('Y-m-d H:i:s'),
+                    ],'trainer_id ='.Yii::$app->user->identity->id)->execute();
+
+                    Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Availability upated successfully.'));
+                    return $this->redirect(['trainer/availability']);        
+            }
+
+            return $this->render('availability', ['availabilityDetail'=>$availability_Detail]);
+        }
+        else
+        {
+            return $this->redirect(['site/index']);
+        }
+        
     }
     
     
