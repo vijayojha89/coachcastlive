@@ -25,8 +25,10 @@ $gnl = new \common\components\GeneralComponent();
 
                 <div class="tr-info">
                     <div class="video_edit">
+                    <span class="btnsbox">
                         <a class="edit_vdo" title="Edit" href="<?php echo Url::to(['blog/update', 'id' => \common\components\GeneralComponent::encrypt($model->blog_id)]); ?>"> <i class="fa fa-edit"></i> </a>
                         <a class="delete_vdo" title="Delete" href="<?php echo Url::to(['blog/delete', 'id' => \common\components\GeneralComponent::encrypt($model->blog_id)]); ?>" onclick="return confirm('Are you sure want to delete?')" ><i class="fa fa-remove"></i></a>
+</span>
                     </div>
 
 

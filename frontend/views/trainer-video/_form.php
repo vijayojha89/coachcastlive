@@ -50,9 +50,9 @@ $gnl = new \common\components\GeneralComponent();
      <div class="col-sm-2">   
     <?= $form->field($model, 'video_file')->fileInput() ?>
      </div>
-        <div class="col-sm-4">
+        <div class="col-sm-12">
      <?php if (!$model->isNewRecord && !empty($model->video_file) ) { ?>
-                    <div>
+                    <div class="videosource">
                     <video controls>
                         <source src="<?php echo $gnl->video_not_found_hb( $model->video_file,'video_file'); ?>" type="video/mp4">
                     </video>
@@ -61,7 +61,7 @@ $gnl = new \common\components\GeneralComponent();
         </div>
     </div>
     <div class="form-group pro-bun-wrap pro-bottom-btn" id="button_update_delete">
-        <?= Html::submitButton($model->isNewRecord ? 'Save' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Save' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn']) ?>
         <?= Html::a(Yii::t('app', 'Cancel'), ['trainer-video/index'], ['class' => 'btn btn-dark']) ?>
     </div>
 

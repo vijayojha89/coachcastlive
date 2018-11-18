@@ -31,8 +31,10 @@ $workoutdetail = Yii::$app->db->createCommand("SELECT name FROM workout_type WHE
                 <div class="tr-info">
                     <div class="video_edit class_prize">
                         <h4>Price <span> $<?php echo $model->price; ?></span></h4>
+                        <span class="btnsbox">
                         <a class="edit_vdo" title="Edit" href="<?php echo Url::to(['trainer-class/update', 'id' => \common\components\GeneralComponent::encrypt($model->trainer_class_id)]); ?>"> <i class="fa fa-edit"></i> </a>
                         <a class="delete_vdo" title="Delete" onclick="return confirm('Are you sure want to delete?')" href="<?php echo Url::to(['trainer-class/delete', 'id' => \common\components\GeneralComponent::encrypt($model->trainer_class_id)]); ?>"><i class="fa fa-remove"></i></a>
+                        <span>
                     </div>
                     
 
