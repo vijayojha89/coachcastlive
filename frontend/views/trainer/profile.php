@@ -66,6 +66,7 @@ $model->old_password = '';
                                         </div>
                                         <?=$form->field($model, 'bio')->textarea(['row' => 10])?>
                                         <div class="height20"></div>
+                                        
                                         <?=$form->field($model, 'first_name')->textInput(['maxlength' => true])?>
                                        
                                         <?=$form->field($model, 'last_name')->textInput(['maxlength' => true])?>
