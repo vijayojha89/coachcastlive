@@ -16,7 +16,7 @@ $userdata = Yii::$app->db->createCommand("Select * from user where id = ".Yii::$
                             <div class="profile-pic">
                                 <div class="userpic"><a class="imguser" href="#"><img src="<?php echo $gnl->image_not_found_hb( $userdata['profile_photo'],'profile_photo',1);?>" alt="profile"></a><a
                                         class="editpic" href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
-                                <span><?php  echo $userdata['first_name'].' '.$userdata['last_name'];?> "(test)"</span>
+                                <span><?php  echo $userdata['first_name'].' '.$userdata['last_name'];?></span>
                             </div>
 
                             <div class="availa">
@@ -28,7 +28,7 @@ $userdata = Yii::$app->db->createCommand("Select * from user where id = ".Yii::$
                             </div>
 
                             <div class="msg-check">
-                                <a class="fl" href="<?php echo Url::to(['message/index']); ?>"><i class="fa fa-commenting-o" aria-hidden="true"></i><span>Messages <span class="badge btn-danger"><?php echo $unreadMessageCount;?></span></span></a>
+                                <a class="fl" href="<?php echo Url::to(['message/index']); ?>"><i class="fa fa-commenting-o" aria-hidden="true"></i><span>Messages <!--<span class="badge btn-danger"><?php echo $unreadMessageCount;?></span>--></span></a>
                                 <a class="fl" href="javascript:void(0);" style="cursor:default;"><i class="fa fa-user" aria-hidden="true" style="color:#8cc63f;"></i><span style="color:#8cc63f;">Online</span></a>
                             </div>
 

@@ -104,12 +104,18 @@ class BlogController extends Controller
                 $model->title = ucwords($model->title);
                              $gnl = new \common\components\GeneralComponent();
                         
-             $imageUrl_0 = $gnl->uploadImageS3HB($model,'blog_image');
-             $model->blog_image =  $imageUrl_0;
+             
 
-            if ($model->blog_image == '') {
+
+            $gnl = new \common\components\GeneralComponent();
+                      
+            $gnl->fileupload(realpath('../../') . '/uploads/', 'blog_image', $model, 'blog_image');
+            if ($model->blog_image == '')
+            {
                 unset($model->blog_image);
             }
+
+
                     $model->save();
             
                                 
