@@ -8,7 +8,7 @@ $gnl = new \common\components\GeneralComponent();
 $workoutdetail = Yii::$app->db->createCommand("SELECT name FROM workout_type WHERE workout_type_id =" . $model->workout_type_id)->queryOne();
 ?>
 <?php //echo Url::to(['user/profile','id'=>$model->id]); ?>
-<div class="col-sm-3"> 
+<div class="col-sm-4"> 
     <div class="box-wrap wow fadeInUp"> 
         <div class="box-img"> 
             <div class="box-img-center"> 

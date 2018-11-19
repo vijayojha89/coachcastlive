@@ -47,7 +47,7 @@ $this->title = "Availability";
                                     } 
                                        
                                     $month = date('F', mktime(0,0,0,$m, 1, date('Y')));
-                                    echo '<label class="checkbox-inline"><input type="checkbox" name="monthselected[]" value="'.$m.'" '.$checked.'>'.$month.'</label>';
+                                    echo '<label class="checkbox-inline checkboxbox"><input type="checkbox" name="monthselected[]" value="'.$m.'" '.$checked.'><span class="checkmark"></span>'.$month.'</label>';
                                 } ?>
                                 
                                 </div>
