@@ -65,12 +65,17 @@ class AppointmentSearch extends Appointment
                  $query->andFilterWhere(['=', 'appointment.status', 3]);
              }
              else if(@$_REQUEST['astatus'] == 'cancelled')
-             {    
-                 $query->andFilterWhere(['=', 'appointment.status', 2]);
-             }
+             {   
+                $query->orFilterWhere(['or',
+                                            ['=', 'appointment.status', 2],
+                                            ['=', 'appointment.appointment_status', 2]
+                ]); 
+                 //$query->andFilterWhere();
+             }  
              else
-             {    
-                 $query->andFilterWhere(['=', 'appointment.status', 1]);
+             {   
+                $query->andFilterWhere(['=', 'appointment.status', 1]); 
+                 $query->andFilterWhere(['<=', 'appointment.appointment_status', 1]);
              }
              
              //$query->andFilterWhere(['=', 'appointment.created_by', Yii::$app->user->id]);

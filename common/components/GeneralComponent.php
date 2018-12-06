@@ -566,6 +566,24 @@ class GeneralComponent extends Component {
 
     public function saveMail($to, $sub, $message, $from = "") 
     {
+
+        $site_name = Yii::$app->name;
+        $settings = \common\models\Setting::find(['status' => 1])->one();
+        $logoimage = GeneralComponent::getlogo();
+        if ($from == "") {
+            $from = Yii::$app->params['sitename'];
+        }
+        $data = Yii::$app
+                ->mailer
+                ->compose(
+                        ['html' => 'emailTemplate-html', 'text' => 'emailTemplate-text'], ['messegedata' => $message,'logoimage'=>$logoimage]
+                )
+                ->setFrom([$settings['setting_email'] => Yii::$app->name . ' Support'])
+                ->setTo($to)
+                ->setSubject($sub)
+                ->send();
+
+                
         $mail = array();
         $mail['to_email'] = $to;
         $mail['subject'] = $sub;

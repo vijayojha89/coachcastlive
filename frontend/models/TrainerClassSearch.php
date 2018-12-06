@@ -57,6 +57,14 @@ class TrainerClassSearch extends TrainerClass
             // $query->where('0=1');
             return $dataProvider;
         }
+
+        if(\Yii::$app->user->identity->role != 'user')
+        {    
+            $query->andFilterWhere([
+               'created_by' => YII::$app->user->identity->id
+           ]);
+        }
+
         $query->andFilterWhere(['!=', 'status', 2]);
                 $query->andFilterWhere([
             'trainer_class_id' => $this->trainer_class_id,

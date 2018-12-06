@@ -20,7 +20,7 @@ $gnl = new \common\components\GeneralComponent();
 
         <?= $form->field($model, 'title')->textInput() ?>
 
-    <?php //$form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <div class="row">
     <div class="col-sm-6">

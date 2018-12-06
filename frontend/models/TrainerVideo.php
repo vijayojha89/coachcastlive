@@ -37,16 +37,16 @@ class TrainerVideo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'string'],
-            [['title','workout_type_id', 'created_by','price'], 'required'],
-            [['workout_type_id', 'created_by', 'modified_by', 'status'], 'integer'],
-            [['price'], 'number','min' => 1],
+            [['title','description'], 'string'],
+            [['title','description','workout_type_id', 'created_by'], 'required'],
+            [['workout_type_id', 'created_by', 'modified_by', 'status','no_of_view'], 'integer'],
+            [['price'], 'number'],
             [['created_date', 'modified_date'], 'safe'],
             [['video_image', 'video_file'], 'string', 'max' => 255],
             [['video_image'],'file' ,'extensions'=>'jpg, jpeg, png, bmp'],
             [['video_file'],'file' ,'extensions'=>'mp4'],
         ];
-    }
+    }   
 
     /**
      * @inheritdoc
@@ -67,5 +67,10 @@ class TrainerVideo extends \yii\db\ActiveRecord
             'modified_date' => 'Modified Date',
             'status' => 'Status',
         ];
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
 }

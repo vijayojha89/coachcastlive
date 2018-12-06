@@ -49,6 +49,8 @@ class TrainerClassController extends Controller
      */
     public function actionView($id)
     {
+        $id = \common\components\GeneralComponent::decrypt($id);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -69,12 +71,15 @@ class TrainerClassController extends Controller
         if ($model->load(Yii::$app->request->post())) {
                 $model->title = ucwords($model->title);
                              $gnl = new \common\components\GeneralComponent();
-                         $imageUrl_0 = $gnl->uploadImageS3HB($model,'class_image');
-             $model->class_image =  $imageUrl_0;
 
-            if ($model->class_image == '') {
-                unset($model->class_image);
-            }
+                             $gnl->fileupload(realpath('../../') . '/uploads/', 'class_image', $model, 'class_image');
+                             if ($model->class_image == '')
+                             {
+                                 unset($model->class_image);
+                             }
+
+
+                      
            
             $model->save();
             Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Class Added Successfully'));
@@ -105,10 +110,11 @@ class TrainerClassController extends Controller
                 $model->title = ucwords($model->title);
                              $gnl = new \common\components\GeneralComponent();
                         
-             $imageUrl_0 = $gnl->uploadImageS3HB($model,'class_image');
-             $model->class_image =  $imageUrl_0;
+             
 
-            if ($model->class_image == '') {
+            $gnl->fileupload(realpath('../../') . '/uploads/', 'class_image', $model, 'class_image');
+            if ($model->class_image == '')
+            {
                 unset($model->class_image);
             }
                     $model->save();
@@ -124,7 +130,46 @@ class TrainerClassController extends Controller
     }
     
     
-   
+    public function actionJoin($id)
+    {
+        $encodeId = $id;
+        $id = \common\components\GeneralComponent::decrypt($id);
+        $model = $this->findModel($id);
+
+        $sql = "SELECT * From user_class WHERE created_by = '".\Yii::$app->user->identity->id."' AND class_id=".$model->trainer_class_id;
+        $class_Detail = yii::$app->db->createCommand($sql)->queryOne();
+       
+        if(!$class_Detail)
+        {   
+            Yii::$app->db->createCommand()->insert('user_class',
+            [
+                'class_id' => $model->trainer_class_id,
+                'title' => $model->title,
+                'description' => $model->description,   
+                'workout_type_id' => $model->workout_type_id,
+                'price' => $model->price,
+                'class_image' => $model->class_image,
+                'class_image' => $model->class_image,
+                'created_by'=> \Yii::$app->user->identity->id,  
+                'created_date' => date('Y-m-d H:i:s'),
+                'status' => 1,
+                'start_date'=> $model->start_date,  
+                'end_date'=> $model->end_date,  
+                'time'=> $model->time,  
+                'trainer_id'=> $model->created_by,  
+               
+            ])->execute();
+
+                               
+            Yii::$app->getSession()->setFlash('success', Yii::t('app', 'You have successfully joined class.'));
+            return $this->redirect(['view','id' => $encodeId]);
+        } 
+        else 
+        {
+            Yii::$app->getSession()->setFlash('error', Yii::t('app', 'You have already joined this class.'));
+            return $this->redirect(['view','id' => $encodeId]);
+        }
+    }
                    
      
     /**

@@ -82,7 +82,7 @@ $model->old_password = '';
                                         <?=$form->field($model, 'schedule_call_fee')->textInput(['maxlength' => true])?>
                                         <div class="col-md-12">
                                             <?=Html::submitButton(Yii::t('app', 'Update'), ['class' => 'btn', 'id' => 'updateprofilesavebutton'])?>
-                                            <a href="<?php echo Url::to(['trainer/dashboard']); ?>" class="btn btn-dark">Cancel</a>
+                                            <a href="<?php echo Url::to(['trainer/schedules']); ?>" class="btn btn-dark">Cancel</a>
                                         </div>
                                         <div class="clearfix"></div>
                                         <?php ActiveForm::end();?>
@@ -95,7 +95,7 @@ $model->old_password = '';
                                         <p>*Atleast 8 characters with a mixture of lower, upper case or digits</p>
                                         <div class="col-md-12 nextbtn pro-bun-wrap">
                                             <?=Html::submitButton(Yii::t('app', 'Update'), ['class' => 'btn button_btn next'])?>
-                                            <a href="<?php echo Url::to(['trainer/dashboard']); ?>" class="btn btn-dark">Cancel</a>
+                                            <a href="<?php echo Url::to(['trainer/schedules']); ?>" class="btn btn-dark">Cancel</a>
                                         </div>
                                   <?php ActiveForm::end();?>      
                                     </div>

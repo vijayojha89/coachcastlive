@@ -70,4 +70,9 @@ class TrainerClass extends \yii\db\ActiveRecord
             'time' => 'Time',
         ];
     }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
 }

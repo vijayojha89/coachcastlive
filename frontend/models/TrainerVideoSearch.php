@@ -20,7 +20,7 @@ class TrainerVideoSearch extends TrainerVideo
         return [
             [['trainer_video_id', 'workout_type_id', 'created_by', 'modified_by', 'status'], 'integer'],
             [['title', 'description', 'video_image', 'video_file', 'created_date', 'modified_date'], 'safe'],
-            [['price'], 'number'],
+            [['price','no_of_view'], 'number'],
         ];
     }
 
@@ -46,7 +46,7 @@ class TrainerVideoSearch extends TrainerVideo
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => array('pageSize' => 8),
+            'pagination' => array('pageSize' => 9),
             'sort'=> ['defaultOrder' => ['trainer_video_id'=>SORT_DESC]]
         ]);
 
@@ -57,6 +57,14 @@ class TrainerVideoSearch extends TrainerVideo
             // $query->where('0=1');
             return $dataProvider;
         }
+
+        if(\Yii::$app->user->identity->role != 'user')
+        {    
+            $query->andFilterWhere([
+               'created_by' => YII::$app->user->identity->id
+           ]);
+        }
+        
         $query->andFilterWhere(['!=', 'status', 2]);
                 $query->andFilterWhere([
             'trainer_video_id' => $this->trainer_video_id,

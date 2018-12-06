@@ -158,7 +158,7 @@ float: left;
                             <h2 class="section-title-default2 title-bar-high2">Daily Inspirational Wall</h2>
                             <h3>Post your thoughts to the Wall</h3>    
                             <div class="comment-form-container">
-
+                            <div id="comment-message">Comments Added Successfully!</div>
                                 <form id="frm-comment">
                                     <div class="input-row">
                                         <input type="hidden" name="comment_id" id="commentId" placeholder="Name" /> 
@@ -171,7 +171,7 @@ float: left;
                                     </div>
                                     <div>
                                         <input type="button" class="btn-submit" id="submitButton"
-                                            value="Publish" /><div id="comment-message">Comments Added Successfully!</div>
+                                            value="Publish" />
                                     </div>
 
                                 </form>
@@ -200,6 +200,12 @@ $this->registerJs('
     
 
 $("#submitButton").click(function () {
+    if($.trim($("#comment").val())  == "")
+    {
+        alert("Comment field is required!")
+        return false;
+    }
+
     $("#comment-message").css("display", "none");
  var str = $("#frm-comment").serialize();
 
@@ -250,7 +256,7 @@ function listComment() {
                         comments = "<div class=\'comment-row\'>"+
                         "<div class=\'comment-info\'><span class=\'commet-row-label\'>from</span> <span class=\'posted-by\'>" + data[i][\'comment_sender_name\'] + " </span> <span class=\'commet-row-label\'>at</span> <span class=\'posted-at\'>" + data[i][\'date\'] + "</span></div>" + 
                         "<div class=\'comment-text\'>" + data[i][\'comment\'] + "</div>"+
-                        "<div class=\'rpl\'><a class=\'btn-like\' onClick=\'postReply(" + commentId + ")\'>5 Likes</a><a class=\'btn-reply\' onClick=\'postReply(" + commentId + ")\'>Reply</a></div></div></div>";
+                        "<div class=\'rpl\'><!--<a class=\'btn-like\' onClick=\'postReply(" + commentId + ")\'>5 Likes</a>--><a class=\'btn-reply\' onClick=\'postReply(" + commentId + ")\'>Reply</a></div></div></div>";
 
                         var item = $("<li>").html(comments);
                         list.append(item);
@@ -274,7 +280,7 @@ function listReplies(commentId, data, list) {
             var comments = "<div class=\'comment-row\'>"+
             " <div class=\'comment-info\'><span class=\'commet-row-label\'>from</span> <span class=\'posted-by\'>" + data[i][\'comment_sender_name\'] + " </span> <span class=\'commet-row-label\'>at</span> <span class=\'posted-at\'>" + data[i][\'date\'] + "</span></div>" + 
             "<div class=\'comment-text\'>" + data[i][\'comment\'] + "</div>"+
-            "<div class=\'rpl\'><a class=\'btn-like\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'> 5 Likes</a><a class=\'btn-reply\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'>Reply</a></div></div>"+
+            "<div class=\'rpl\'><!--<a class=\'btn-like\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'> 5 Likes</a>--><a class=\'btn-reply\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'>Reply</a></div></div>"+
             "</div>";
             var item = $("<li>").html(comments);
             var reply_list = $(\'<ul>\');

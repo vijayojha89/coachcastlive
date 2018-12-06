@@ -7,84 +7,73 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 $this->title = "My Appointment";
-echo $this->render('_user_header.php');
+
 ?>
 
-<?php Pjax::begin(['id' => 'myappointmentpjaxlist', 'timeout' => 50000]); ?>
-
-<div class="inner_container">
-    <section class="contentsection">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-6">
-                </div>  
-                <div class="col-xs-6">
-                     <div class="provideo-add"> 
-                        <a class="add_vbtn" href="<?php echo Url::to(['user/addappointment']); ?>">
-                            <span><i class="fa fa-plus-circle"></i> Add New</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-<div class="inner_container">
-    <section class="contentsection">
-        <div class="userinformation three-col-tab">
+<!-- Start Inner Banner area -->
+<div class="inner-banner-area">
             <div class="container">
                 <div class="row">
-                    <ul class="profiletab">
-                        <li class="<?= (!@$_REQUEST['astatus']) ? 'active' : ''; ?>"><a href="<?php echo Url::to(['user/myappointment']); ?>"><span class="tabname">Active</span> </a></li>
-                        <li class="<?= (@$_REQUEST['astatus'] == 'completed') ? 'active' : ''; ?>"><a href="<?php echo Url::to(['user/myappointment', 'astatus' => 'completed']); ?>" class=""><span class="tabname">Completed</span></a></li>
-                        <li class="<?= (@$_REQUEST['astatus'] == 'cancelled') ? 'active' : ''; ?>"><a href="<?php echo Url::to(['user/myappointment', 'astatus' => 'cancelled']); ?>"><span class="tabname">Cancelled</span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="mainpanel">
-                    <div class="tab-content">
-                        
-                                <?=
-                                ListView::widget([
-                                    'dataProvider' => $dataProvider,
-                                    'options' => [
-                                        'tag' => 'div',
-                                        'class' => 'list-wrapper',
-                                        'id' => 'list-wrapper',
-                                    ],
-                                    'layout' => "{items}\n{pager}",
-                                    'itemView' => function ($model, $key, $index, $widget) {
-                                        return $this->render('_appointment_list_item', ['model' => $model]);
-                                    },
-                                ]);
-
-
-                                /*
-                                  ListView::widget([
-                                  'dataProvider' => $dataProvider,
-                                  'itemOptions' => ['class' => 'item'],
-                                  'itemView' => function ($model, $key, $index, $widget) {
-                                  return $this->render('_question_list_item',['model' => $model]);
-                                  },
-                                  'pager' => ['class' => \kop\y2sp\ScrollPager::className(),'triggerText' => 'Load More','noneLeftText'=>'']
-                                  ]);
-                                 * 
-                                 */
-                                ?>
-                            
+                    <div class="innter-title">
+                        <h2>My Appointment</h2>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+ </div>
+<!-- End Inner Banner area -->
+
+
+<div class="online-store-grid padding-space">
+            <div class="container">
+                <div class="row">
+                    <?php echo $this->render('//user/_left_sidebar.php'); ?>
+                    <div class="col-lg-9 col-md-9 col-sm-9">
+                        <div class="pro-rgt-top">
+                            <?php echo $this->render('_user_header.php'); ?>
+                        </div>
+                        <div class="whatclientsay">
+                            <div>
+                                <h2 class="section-title-default2 title-bar-high2">My Appointment</h2>
+                                <!--<a class="add_vbtn" href="<?php echo Url::to(['user/addappointment']); ?>">
+                                    <span><i class="fa fa-plus-circle"></i> Add New</span>
+                                </a>-->
+                            </div>
+
+                            <div class="pro-rgt-middel" style="margin:0px;">
+                                <div class="active-inactive" style="padding:0px;">
+                                    <ul>
+                                        <li><a class="<?= (!@$_REQUEST['astatus']) ? 'active' : ''; ?>" href="<?php echo Url::to(['user/myappointment']); ?>">Active</a></li>
+                                        <li><a class="<?= (@$_REQUEST['astatus'] == 'completed') ? 'active' : ''; ?>" href="<?php echo Url::to(['user/myappointment', 'astatus' => 'completed']); ?>">Completed</a></li>
+                                        <li><a class="<?= (@$_REQUEST['astatus'] == 'cancelled') ? 'active' : ''; ?>" href="<?php echo Url::to(['user/myappointment', 'astatus' => 'cancelled']); ?>">Cancelled</a></li>
+                                    </ul>
+                                </div>
+                            </div>    
+
+
+
+
+
+                                <?=
+                                        ListView::widget([
+                                            'dataProvider' => $dataProvider,
+                                            'options' => [
+                                                'tag' => 'div',
+                                                'class' => 'list-wrapper',
+                                                'id' => 'list-wrapper',
+                                            ],
+                                            'layout' => "{items}\n{pager}",
+                                            'itemView' => function ($model, $key, $index, $widget) {
+                                                return $this->render('_appointment_list_item', ['model' => $model]);
+                                            },
+                                        ]);
+        
+                                    ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 </div>
-
-<?php Pjax::end(); ?>
-
 <?php
 $this->registerJs(
         '
@@ -111,7 +100,8 @@ function cancelAppointment(appointmentid)
             data = $.trim(data);
             if(data == "success")
             {
-                $.pjax.reload({container:\'#myappointmentpjaxlist\'});
+                //$.pjax.reload({container:\'#myappointmentpjaxlist\'});
+                location.reload(); 
             }
             else
             {

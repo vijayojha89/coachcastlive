@@ -7,44 +7,51 @@ use common\components\GeneralComponent;
 use yii\bootstrap\Tabs;
 use kartik\datetime\DateTimePicker;
 use yii\widgets\Pjax;
-Pjax::begin(['id' => 'addappointmentPage', 'timeout' => 50000]);
 $this->title = "Add Appointment";
-echo $this->render('_user_header.php');
 ?>
-<style>
-    .tab-pane {
-        display: none;
-    }
-</style>
-<div class="inner_container">
-    <section class="contentsection">
-        <div class="container">
-            <div class="row">
-                <h1 class="maintitle">Add Appointment</h1>
-                <div class="mainpanel">
-                    <div class="tab-content">
-                        <?php $form = ActiveForm::begin(['id' => 'form-addappointment']); ?>
-                        <!--=========================--> 
-                        <!-- Start Details section --> 
-                        <!--=========================-->
-                        <div id="details" class="">
-                            <div class="control-form">
-                                <div class="col-md-12">
-                                    <?= $form->field($model, 'title', ['enableAjaxValidation' => true])->textInput(['autocomplete' => 'off']) ?>
-                                    <?= $form->field($model, 'reason', ['enableAjaxValidation' => true])->textarea() ?>
-                                    <?php echo $form->field($model, 'appointment_date')->widget(DateTimePicker::classname(), [
+
+
+<!-- Start Inner Banner area -->
+<div class="inner-banner-area">
+            <div class="container">
+                <div class="row">
+                    <div class="innter-title">
+                        <h2>Add New Appointment</h2>
+                    </div>
+                </div>
+            </div>
+ </div>
+<!-- End Inner Banner area -->
+
+
+<div class="online-store-grid padding-space">
+            <div class="container">
+                <div class="row">
+                    <?php echo $this->render('//user/_left_sidebar.php'); ?>
+                    <div class="col-lg-9 col-md-9 col-sm-9">
+                        <div class="pro-rgt-top">
+                            <?php echo $this->render('_user_header.php'); ?>
+                        </div>
+                        <div class="whatclientsay">
+                            <h2 class="section-title-default2 title-bar-high2">My Appointment</h2>
+                            
+                            <div class="tab-content">
+                            <?php $form = ActiveForm::begin(['id' => 'form-addappointment']); ?>
+                            <?= $form->field($model, 'title', ['enableAjaxValidation' => true])->textInput(['autocomplete' => 'off']) ?>
+                            <?= $form->field($model, 'reason', ['enableAjaxValidation' => true])->textarea() ?>
+                            <?php echo $form->field($model, 'appointment_date')->widget(DateTimePicker::classname(), [
                                         'options' => ['placeholder' => 'Enter Date & time ...','autocomplete'=>"off"],
                                         'pluginOptions' => [
                                             'autoclose' => true
                                         ]
                                     ]); ?>
 
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <i class="fa fa-user fa-fw"></i> Select Trainer
-                                        </div>
-                                        <div class="panel-body">
-                                            <div class="list-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-user fa-fw"></i> Select Trainer
+                                </div>
+                                <div class="panel-body">
+                                    <div class="list-group">
                                                 <?php
                                                 $usercomponentmodel = new common\components\UserComponent();
                                                 $recommeded_trainer_data = $usercomponentmodel->recommended_trainer(Yii::$app->user->id, $subject, 0);
@@ -70,10 +77,10 @@ echo $this->render('_user_header.php');
                                                           </div>    
                                                      </div>
                                                     <?php } } else { ?>
-                                                    <div class="favoritesbox_botttom">
-                                                        <ul class="favorites_select">
-                                                            <li> No record found.</li>
-                                                        </ul>
+                                                    <div>
+                                                       
+                                                          No record found.
+                                                        
                                                     </div>
                                                 <?php } ?>
 
@@ -82,27 +89,20 @@ echo $this->render('_user_header.php');
                                         </div>
                                     </div>
 
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div align="center">
+                             
                                     <?= Html::a(Yii::t('app', 'Cancel'), ['user/myappointment'], ['class' => 'btn btn-outline btn-danger']) ?>
                                 <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-outline btn-success', 'id' => 'saveAppointment']) ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--=========================--> 
-                        <!-- Start Payment --> 
-                        <!--=========================-->
 
                         <?php ActiveForm::end(); ?>
                     </div>
+                            
+
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 </div>
+
 
 
 <?php $this->registerJs('   $(document).on("click", "#saveAppointment", function(){
@@ -133,4 +133,3 @@ echo $this->render('_user_header.php');
                             
 ', yii\web\View::POS_READY); ?>
 
-<?php Pjax::end(); ?>
