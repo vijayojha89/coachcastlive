@@ -22,7 +22,7 @@ $this->title = 'My Videos';
             <div class="container">
                 <div class="row">
                     <div class="innter-title">
-                        <h2>My Schedules</h2>
+                        <h2>Videos</h2>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@ $this->title = 'My Videos';
                             <?php echo $this->render('//user/_user_header.php'); ?>
                         </div>
                         <div class="whatclientsay">
-                            <h2 class="section-title-default2 title-bar-high2">My Videos</h2>
+                            <h2 class="section-title-default2 title-bar-high2">Videos</h2>
                             <?= 
                                 ListView::widget([
                                     'dataProvider' => $dataProvider,

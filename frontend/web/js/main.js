@@ -1,4 +1,4 @@
-(function ($) {
+(function($) {
 
     "use strict";
 
@@ -9,7 +9,7 @@
 
      -------------------------------------*/
 
-    $('.gym-carousel').each(function () {
+    $('.gym-carousel').each(function() {
 
         var carousel = $(this),
 
@@ -160,7 +160,7 @@
 
      ----------------------------*/
 
-    $(window).scroll(function () {
+    $(window).scroll(function() {
 
         if ($(this).scrollTop() > 100) {
 
@@ -177,9 +177,9 @@
 
     //Click event to scroll to top
 
-    $('.scrollToTop').on('click', function () {
+    $('.scrollToTop').on('click', function() {
 
-        $('html, body').animate({scrollTop: 0}, 800);
+        $('html, body').animate({ scrollTop: 0 }, 800);
 
         return false;
 
@@ -194,11 +194,11 @@
 
     $('nav#dropdown').meanmenu({
 
-        siteLogo: "<a href='index.html'><img src='img/mobile-logo.png' /></a>"
+        siteLogo: "<a href='http://www.coachcastlive.com'><img src='http://www.coachcastlive.com/img/mobile-logo.png' /></a>"
 
     });
 
-  
+
     new WOW().init();
 
 
@@ -208,13 +208,13 @@
 
     ------------------------------ */
 
-    $('.spinner .btn:first-of-type').on('click', function () {
+    $('.spinner .btn:first-of-type').on('click', function() {
 
         $('.spinner input').val(parseInt($('.spinner input').val(), 10) + 1);
 
     });
 
-    $('.spinner .btn:last-of-type').on('click', function () {
+    $('.spinner .btn:last-of-type').on('click', function() {
 
         $('.spinner input').val(parseInt($('.spinner input').val(), 10) - 1);
 
@@ -227,7 +227,7 @@
 
     -------------------------------------*/
 
-    $(".header-top-search.search-box").on('click', '.search-button', function (event) {
+    $(".header-top-search.search-box").on('click', '.search-button', function(event) {
 
         event.preventDefault();
 
@@ -257,7 +257,7 @@
 
     var accordion = $('#accordion');
 
-    accordion.children('.panel').children('.panel-collapse').each(function () {
+    accordion.children('.panel').children('.panel-collapse').each(function() {
 
         if ($(this).hasClass('in')) {
 
@@ -269,17 +269,17 @@
 
     accordion
 
-        .on('show.bs.collapse', function (e) {
+        .on('show.bs.collapse', function(e) {
 
-            $(e.target).prev('.panel-heading').addClass('active');
+        $(e.target).prev('.panel-heading').addClass('active');
 
-        })
+    })
 
-        .on('hide.bs.collapse', function (e) {
+    .on('hide.bs.collapse', function(e) {
 
-            $(e.target).prev('.panel-heading').removeClass('active');
+        $(e.target).prev('.panel-heading').removeClass('active');
 
-        });
+    });
 
 
     /*-------------------------------------
@@ -288,7 +288,7 @@
 
     -----------------------------------*/
 
-    $(window).scroll(function () {
+    $(window).scroll(function() {
 
         var s = $("#sticker"),
 
@@ -296,7 +296,8 @@
 
             windowpos = $(window).scrollTop(),
 
-            windowWidth = $(window).width(), type, topBarH;
+            windowWidth = $(window).width(),
+            type, topBarH;
 
         if (s.hasClass("header-style4")) {
 
@@ -354,8 +355,8 @@
             }
 
 
-        }else {
-            if($(".mean-bar .meanmenu-reveal").hasClass('meanclose')){
+        } else {
+            if ($(".mean-bar .meanmenu-reveal").hasClass('meanclose')) {
                 $(".mean-bar .meanmenu-reveal").trigger('click');
             }
         }
@@ -368,7 +369,7 @@
 
      -------------------------------------*/
 
-    $(window).on('load resize', function () {
+    $(window).on('load resize', function() {
 
         //Define the maximum height for mobile menu
 
@@ -384,7 +385,7 @@
 
         // Page Preloader
 
-        $('#preloader').fadeOut('slow', function () {
+        $('#preloader').fadeOut('slow', function() {
 
             $(this).remove();
 
@@ -397,11 +398,11 @@
 
     function HiddenResize1() {
 
-        $('.nivoSlider').css({overflow: 'visible', background: 'none'});
+        $('.nivoSlider').css({ overflow: 'visible', background: 'none' });
 
-        setTimeout(function () {
+        setTimeout(function() {
 
-            $('.nivo-main-image').stop().animate({opacity: 0}, 500);
+            $('.nivo-main-image').stop().animate({ opacity: 0 }, 500);
 
             currHeight = $('.nivoSlider').data('nivo:vars').currentImage.height();
 
@@ -411,7 +412,7 @@
 
     function HiddenResize2() {
 
-        $('.nivo-main-image').css({opacity: 1, height: currHeight});
+        $('.nivo-main-image').css({ opacity: 1, height: currHeight });
 
     }
 

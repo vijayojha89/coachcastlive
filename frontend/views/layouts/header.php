@@ -104,8 +104,8 @@ $unread_notifi_count = $mnl->unread_notifications(@Yii::$app->user->id);
                                     <li><a href="<?php echo Url::to(['site/about']); ?>">About Us</a></li>
                                     <li><a href="<?php echo Url::to(['site/howitworks']); ?>">How It Works</a></li>
                                     <li><a href="<?php echo Url::to(['site/contact']); ?>">Contact Us</a></li>
-                                    <li><a href="<?php echo Url::to(['site/login']); ?>">Login</a></li>
-                                    <li><a href="<?php echo Url::to(['site/signup']); ?>">Sign Up</a></li>   
+                                    <li><a href="<?php echo Url::to(['site/email-login']); ?>">Login</a></li>
+                                    <li><a href="<?php echo Url::to(['user/signup']); ?>">Sign Up</a></li>   
 
                                 <?php } else { ?>
                                     <li><a href="<?php echo Url::to(['site/index']); ?>">Dashboard</a></li>

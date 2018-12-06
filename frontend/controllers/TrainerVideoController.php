@@ -79,9 +79,8 @@ class TrainerVideoController extends Controller
                 unset($model->video_image);
             }
         
-            $videoUrl_1 = $gnl->uploadVideoS3HB($model,'video_file');
-            $model->video_file =  $videoUrl_1;
-        
+            $gnl->fileupload_File(realpath('../../') . '/uploads/', 'video_file', $model, 'video_file');
+            
             if ($model->video_file == '') {
                 unset($model->video_file);
             }
@@ -119,13 +118,13 @@ class TrainerVideoController extends Controller
                 unset($model->video_image);
             }
                 
-                $videoUrl_1 = $gnl->uploadVideoS3HB($model,'video_file');
-            $model->video_file =  $videoUrl_1;
-        
+             
+            
+            $gnl->fileupload_File(realpath('../../') . '/uploads/', 'video_file', $model, 'video_file');
+            
             if ($model->video_file == '') {
                 unset($model->video_file);
             }
-            
                     $model->save();
             
                                 
@@ -138,8 +137,86 @@ class TrainerVideoController extends Controller
         }
     }
     
+
+    public function actionPlay($id)
+    {
+        
+        $id = \common\components\GeneralComponent::decrypt($id);
+        $model = $this->findModel($id);
+        
+        
+        if(\Yii::$app->user->identity->role == 'user')
+        {
+            if($model->price > 0)
+            {
+                $sql = "SELECT * From user_video WHERE created_by = '".\Yii::$app->user->identity->id."' AND video_id=".$model->trainer_video_id;
+                $video_Detail = yii::$app->db->createCommand($sql)->queryOne();
+                if($video_Detail)
+                {
+                    return $this->render('play', [
+                        'model' => $model,
+                    ]);
+                }
+                else
+                {
+                    Yii::$app->getSession()->setFlash('error', Yii::t('app', 'You need to purchased this video for play.'));
+                    return $this->redirect(['index']);
+                }    
+                
+            }
+            else
+            {
+                return $this->render('play', [
+                    'model' => $model,
+                ]);
+            }
+        }
+        else
+        {
+            return $this->render('play', [
+                'model' => $model,
+            ]);
+        }        
+        
+    }
     
    
+    public function actionBuy($id)
+    {
+        $id = \common\components\GeneralComponent::decrypt($id);
+        $model = $this->findModel($id);
+
+        $sql = "SELECT * From user_video WHERE created_by = '".\Yii::$app->user->identity->id."' AND video_id=".$model->trainer_video_id;
+        $video_Detail = yii::$app->db->createCommand($sql)->queryOne();
+       
+        if(!$video_Detail)
+        {   
+            Yii::$app->db->createCommand()->insert('user_video',
+            [
+                'video_id' => $model->trainer_video_id,
+                'title' => $model->title,
+                'description' => $model->description,   
+                'workout_type_id' => $model->workout_type_id,
+                'price' => $model->price,
+                'video_image' => $model->video_image,
+                'video_file' => $model->video_file,
+                'created_by'=> \Yii::$app->user->identity->id,  
+                'created_date' => date('Y-m-d H:i:s'),
+                'status' => 1,
+                'trainer_id'=> $model->created_by,  
+               
+            ])->execute();
+
+                               
+            Yii::$app->getSession()->setFlash('success', Yii::t('app', 'You have successfully purchased video.'));
+            return $this->redirect(['index']);
+        } 
+        else 
+        {
+            Yii::$app->getSession()->setFlash('error', Yii::t('app', 'You have already purchased this video.'));
+            return $this->redirect(['index']);
+        }
+    }
                    
      
     /**

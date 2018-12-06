@@ -468,7 +468,7 @@ class User extends ActiveRecord implements IdentityInterface {
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
             'username' => 'Username',
-            'bio' => 'Bio',
+            'bio' => 'About Me',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password',
             'password_reset_token' => 'Password Reset Token',

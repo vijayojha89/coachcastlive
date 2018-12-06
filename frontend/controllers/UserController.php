@@ -333,6 +333,18 @@ class UserController extends Controller {
     /**
      * Cancel appointment
      */
+
+    public function actionCoaches()
+    {
+        $searchModel = new UserSearch();
+        $dataProvider = $searchModel->searchTrainer(Yii::$app->request->queryParams);
+
+        return $this->render('coacheslist', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+
+    }
     
     public function actionCancelAppointment()
     {
