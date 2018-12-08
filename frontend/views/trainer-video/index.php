@@ -40,6 +40,7 @@ $this->title = 'My Videos';
                         </div>
                         <div class="whatclientsay">
                             <h2 class="section-title-default2 title-bar-high2">Videos</h2>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" class="filterbtn"><i class="fa fa-filter"></i> Filter</a>
                             <?= 
                                 ListView::widget([
                                     'dataProvider' => $dataProvider,
@@ -59,4 +60,50 @@ $this->title = 'My Videos';
                     </div>
                 </div>
             </div>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade filterpopup" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+        <h4 class="modal-title">Search filter</h4>
+      </div>
+      <div class="modal-body">
+      
+      <div class="searchbox">
+               <div class="form-group">
+               <label class="control-label" for="">Search</label>
+             <input type="text" class="form-control" name="" placeholder="Search...">
+                                    </div>
+                                    <div class="form-group">
+                                    <label class="control-label" for="">Categories</label>
+                            <select class="form-control" name="">
+                            <option value=""></option>
+                            <option value="1">Sport</option>
+                            <option value="2">Strength Training</option>
+                            </select>
+
+                            
+                            </div>
+
+                        <div class="searcbtn">
+                             <button type="button" class="btn">Search</button>
+      <a class="btn btn-dark" data-dismiss="modal" href="javascript:void(0)">Close</a>
+                            </div>
+                            </div>
+
+      </div>
+     
+      
+    </div>
+
+  </div>
 </div>

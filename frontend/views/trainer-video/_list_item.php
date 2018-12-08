@@ -8,7 +8,7 @@ $gnl = new \common\components\GeneralComponent();
 $workoutdetail = Yii::$app->db->createCommand("SELECT name FROM workout_type WHERE workout_type_id =" . $model->workout_type_id)->queryOne();
 ?>
 <div class="col-sm-4"> 
-    <div class="box-wrap wow fadeInUp"> 
+    <div class="box-wrap wow fadeInUp videolist"> 
         <div class="box-img"> 
             <div class="box-img-center"> 
                 <img src="<?php echo $gnl->image_not_found_hb($model->video_image, 'video_image',1); ?>" />

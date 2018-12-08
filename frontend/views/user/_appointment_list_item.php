@@ -22,11 +22,11 @@ $gnl = new \common\components\GeneralComponent(); ?>
             <p><strong>Date & Time : </strong><?php echo date('d M Y h:i A',strtotime($model->appointment_date)); ?></p>
             <p><strong>Fee Pay : </strong>$<?php echo $model->price; ?></p>
             <?php if($model->status == 2) { ?>
-            <p><strong>Status : </strong><span class="badge badge-danger">Cancelled</span></p>    
+            <p><strong>Status : </strong><span class="badge badge-danger cancelled">Cancelled</span></p>    
             <?php } else if($model->appointment_status == 2) { ?>
-            <p><strong>Status : </strong><span class="badge badge-danger">Rejected</span></p>    
+            <p><strong>Status : </strong><span class="badge badge-danger rejected">Rejected</span></p>    
             <?php } else if($model->appointment_status != 2) {?>
-                <p><strong>Status : </strong><?php echo ($model->appointment_status == 0) ? '<span class="badge badge-danger">Pending</span>' : '<span class="badge badge-success">Accepted</span>'; ?></p>       
+                <p><strong>Status : </strong><?php echo ($model->appointment_status == 0) ? '<span class="badge badge-danger panding">Pending</span>' : '<span class="badge badge-success accepted">Accepted</span>'; ?></p>       
             <?php } ?> 
         </div>
     </div>    

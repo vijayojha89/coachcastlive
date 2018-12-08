@@ -35,7 +35,10 @@ $workoutdetail = Yii::$app->db->createCommand("SELECT name FROM workout_type WHE
                             <?php echo $this->render('//user/_user_header.php'); ?>
                         </div>
                         <div class="whatclientsay">
+                        <div class="row">
                            <!-- <h2 class="section-title-default2 title-bar-high2">Classe Detail</h2>-->
+                           <div class="col-md-2"><p><img class="img-circle" style="width:100px;height:100px;" src="<?php echo $gnl->image_not_found_hb($model->user->profile_photo, 'profile_photo',1); ?>" alt="User Avatar"></p></div>
+                           <div class="col-md-8 traierclass">
                             <h3>Title : <?= Html::encode($this->title) ?></h3>
                             <h3>Category : <?= $workoutdetail['name'] ?></h3>
                             <h3>Start Date : <?= $model->start_date ?></h3>
@@ -43,10 +46,16 @@ $workoutdetail = Yii::$app->db->createCommand("SELECT name FROM workout_type WHE
                             <h3>Time : <?= $model->time ?></h3>
                             <h3>Price : $<?= $model->price ?></h3>
                             <h3>Coach Name : <?php echo $model->user->first_name.' '.$model->user->last_name; ?></h3>
-                            <p><img class="img-circle" style="width:100px;height:100px;" src="<?php echo $gnl->image_not_found_hb($model->user->profile_photo, 'profile_photo',1); ?>" alt="User Avatar"></p>
+                            
 
-                            <a class="btn btn-success" title="Join"  href="<?php echo Url::to(['trainer-class/join', 'id' => \common\components\GeneralComponent::encrypt($model->trainer_class_id)]); ?>">Join Now</a>
+                            
                             <p><?php echo $model->description;?></p>
+
+                            </div>
+                            <div class="col-md-2">
+                            <a class="btn choosebtn" title="Join"  href="<?php echo Url::to(['trainer-class/join', 'id' => \common\components\GeneralComponent::encrypt($model->trainer_class_id)]); ?>">Join Now</a>
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>

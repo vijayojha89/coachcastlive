@@ -24,7 +24,7 @@ $gnl = new \common\components\GeneralComponent();?>
                                                                     </p>    
                                                                         
                                                                     <?php }else{ ?>
-                                                                    <p><strong>Status : </strong> <?php echo ($model->appointment_status == 2)? '<span class="badge badge-danger">Rejected</span>':'<span class="badge badge-success">Accepted</span>';?></p>    
+                                                                    <p><strong>Status : </strong> <?php echo ($model->appointment_status == 2)? '<span class="badge badge-danger rejected">Rejected</span>':'<span class="badge badge-success accepted">Accepted</span>';?></p>    
                                                                     <?php } ?>
                                                             </div>
                                                           </div>    
