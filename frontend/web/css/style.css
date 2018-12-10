@@ -8614,8 +8614,8 @@ input.krajee-datepicker, .input-group input.form-control{margin: 0 !important;
     position: relative;
     top: 0px;
     right: 0;
-    width: auto !important;
-    height: auto !important;
+    width: 80px !important;
+    height: 80px !important;
     margin: -60px auto 25px auto;
     max-width: 80px;
     max-height: 80px;
@@ -8649,11 +8649,18 @@ a.filterbtn {
 .filterpopup{z-index: 9999 !important;}
 .filterpopup .modal-content{ border-radius:0;}
 .filterpopup .modal-content .searchbox{ padding: 25px 0 0px 0; }
-.filterpopup .modal-header{ background: #8cc63f;}
+.filterpopup .modal-header{ background: #8cc63f;position: relative;}
 .filterpopup .modal-header h4{ font-size:22px; color: #fff;}
 .filterpopup .modal-content .searchbox .searcbtn{ text-align: center;}
 .filterpopup .modal-content .searchbox button{ width: auto;}
-
+.filterpopup .modal-header .close{position: absolute;
+    top: 0;
+    right: 0;
+    width: auto;
+    font-weight: 300;
+    opacity: 1;
+}
+.filterpopup .modal-header .close:hover{ color: #fff; opacity: 0.8;}
 
  @media only screen and (max-width: 1024px) {
 .container {width: 100%;}
