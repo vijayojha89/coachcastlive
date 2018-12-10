@@ -185,7 +185,7 @@ if(\Yii::$app->user->identity->role == 'user')
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <div class="findclass">
-                                        <a href="<?php echo Url::to(['site/trainers']); ?>">
+                                        <a href="<?php echo Url::to(['trainer/index']); ?>">
                                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
                                                 <g>
