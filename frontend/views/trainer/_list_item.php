@@ -15,8 +15,15 @@ $gnl = new \common\components\GeneralComponent();
             <div class="box-img-center"> 
                 <img src="<?php echo $gnl->image_not_found_hb($model->profile_photo, 'profile_photo',1); ?>" />
             </div>
-            <a href="#"><?php echo $model->first_name.' '.$model->last_name; ?></a>
         </div>
-        
+        <div class="box-contan"> 
+            <div class="box-right"> 
+                <div class="tr-info">
+                    <div class="video_edit class_prize">
+                        <h4><?php echo $model->first_name.' '.$model->last_name; ?></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

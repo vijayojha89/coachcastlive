@@ -74,31 +74,35 @@ $this->title = 'My Classes';
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-        <h4 class="modal-title">Search filter</h4>
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Filter</h4>
       </div>
       <div class="modal-body">
       
       <div class="searchbox">
-               <div class="form-group">
-               <label class="control-label" for="">Search</label>
-             <input type="text" class="form-control" name="" placeholder="Search...">
-                                    </div>
-                                    <div class="form-group">
-                                    <label class="control-label" for="">Categories</label>
-                            <select class="form-control" name="">
-                            <option value=""></option>
-                            <option value="1">Sport</option>
-                            <option value="2">Strength Training</option>
-                            </select>
+      <?php $form = ActiveForm::begin([
+        'action' => ['index'],
+        'method' => 'get',
+    ]); ?>
 
-                            
-                            </div>
+
+ <?= $form->field($searchModel, 'title') ?>
+
+
+               <?php
+        
+        $workoutdetail = Yii::$app->db->createCommand("SELECT * FROM workout_type")->queryAll();
+		$listData=ArrayHelper::map($workoutdetail,'workout_type_id','name');
+		echo $form->field($searchModel, 'workout_type_id')->dropDownList($listData, ['prompt'=>'']);
+	?>
+
 
                         <div class="searcbtn">
-                             <button type="button" class="btn">Search</button>
-      <a class="btn btn-dark" data-dismiss="modal" href="javascript:void(0)">Close</a>
+                             <?= Html::submitButton('Search', ['class' => 'btn']) ?>
+      <a class="btn btn-dark" href="<?php echo Url::to(['trainer-class/index']); ?>">Reset</a>
                             </div>
+                            
+    <?php ActiveForm::end(); ?>
                             </div>
 
       </div>
