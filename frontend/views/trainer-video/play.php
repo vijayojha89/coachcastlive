@@ -39,16 +39,28 @@ if(\Yii::$app->user->identity->role == 'user')
                         </div>
                         <div class="whatclientsay">
                             <h2 class="section-title-default2 title-bar-high2">Videos</h2>
-
                             <h3><?php echo $model->title;?></h3>
+
+                            <div class="row">
+                            <div class="col-md-3">
+                            <img class="img-circle videoimg" src="<?php echo $gnl->image_not_found_hb($model->user->profile_photo, 'profile_photo',1); ?>" alt="User Avatar">
+
+<p>Coach Name : <br><?php echo $model->user->first_name.' '.$model->user->last_name; ?></p>
+                            </div>
+                            <div class="col-md-9">
+                            
                             <p>Category : <?php echo @$workoutdetail['name']; ?></p>
                             <p>Description : <?php echo @$model->description; ?></p>
-                            <video controls>
+                           
+
+                             </div>
+                             <div class="col-md-12">
+                             <video controls>
                                 <source src="<?php echo 'http://'.$_SERVER['HTTP_HOST'].Yii::$app->homeUrl. 'uploads/video_file/'.$model->video_file;?>" type="video/mp4">
                             </video>  
-                            <img class="img-circle" style="width:100px;height:100px;" src="<?php echo $gnl->image_not_found_hb($model->user->profile_photo, 'profile_photo',1); ?>" alt="User Avatar">
-
- <p>Coach Name : <?php echo $model->user->first_name.' '.$model->user->last_name; ?></p>
+</div>
+                             </div>
+                           
 
                         </div>
                     </div>

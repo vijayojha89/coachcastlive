@@ -9,7 +9,7 @@ $gnl = new \common\components\GeneralComponent();
 
 ?>
 <?php //echo Url::to(['user/profile','id'=>$model->id]); ?>
-<div class="col-sm-4"> 
+<div class="col-sm-6"> 
     <div class="box-wrap wow fadeInUp"> 
         <div class="box-img"> 
             <div class="box-img-center"> 
