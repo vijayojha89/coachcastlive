@@ -53,7 +53,9 @@ $workoutdetail = Yii::$app->db->createCommand("SELECT name FROM workout_type WHE
 
                             </div>
                             <div class="col-md-2">
+                            <?php if(!isset($_REQUEST['isjoin'])){ ?> 
                             <a class="btn choosebtn" title="Join"  href="<?php echo Url::to(['trainer-class/join', 'id' => \common\components\GeneralComponent::encrypt($model->trainer_class_id)]); ?>">Join Now</a>
+                            <?php } ?>
                             </div>
                             </div>
                         </div>

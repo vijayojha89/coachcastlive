@@ -6,6 +6,8 @@ use Yii;
 use frontend\models\User;
 use common\models\UserSearch;
 use frontend\models\AppointmentSearch;
+use frontend\models\UserClassSearch;
+use frontend\models\UserVideoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -259,6 +261,31 @@ class UserController extends Controller {
     }
     
     
+    public function actionMyjoinclass()
+    {
+        
+        $searchModel = new UserClassSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('myjoinclass', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
+    public function actionMypurchasedvideo()
+    {
+        $searchModel = new UserVideoSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('mypurchasedvideo', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
     public function actionAddappointment()
     {
         $model = new \frontend\models\Appointment();
