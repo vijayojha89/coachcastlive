@@ -318,7 +318,7 @@
      padding-left: 0;
 }
  #preloader {
-     background: #ffffff url(../img/loading.gif) no-repeat scroll center center;
+     background: #ffffff url(../img/loader.gif) no-repeat scroll center center;
      height: 100%;
      left: 0;
      overflow: visible;
@@ -326,6 +326,7 @@
      top: 0;
      width: 100%;
      z-index: 99999;
+     background-size:60px; 
 }
  .btn-details {
      color: #ffffff;
@@ -8533,7 +8534,7 @@ input.krajee-datepicker, .input-group input.form-control{margin: 0 !important;
 .videosource video{ width: 100%; margin:25px 0 0 0;}
 
 .box-wrap .box-img{width: 100% !important;
-    height: 215px;
+    height: 195px;
     margin: 0 0 15px 0;
     width: 100%;
     display: table;
@@ -8547,7 +8548,7 @@ input.krajee-datepicker, .input-group input.form-control{margin: 0 !important;
     overflow: hidden;
     position: relative;
     display: table-cell;
-    height: 215px;
+    height: 195px;
     width: 100%;
     background: #f3f3f3;
     vertical-align: middle;
@@ -8627,8 +8628,8 @@ img.img-circle.videoimg {
     width: auto !important;
     height: auto !important;
     margin: 0px auto 15px auto;
-    max-width:100%;
-    max-height:100%;
+    max-width:250px;
+    max-height:250px;
     border-radius:0; 
 }
 .whatclientsay{position: relative;}
@@ -8660,7 +8661,7 @@ a.filterbtn {
     font-weight: 300;
     opacity: 1;
 }
-.filterpopup .modal-header .close:hover{ color: #fff; opacity: 0.8;}
+.filterpopup .modal-header .close:hover, .filterpopup .modal-header .close:focus{ color: #fff; opacity: 0.8;}
 
  @media only screen and (max-width: 1024px) {
 .container {width: 100%;}
