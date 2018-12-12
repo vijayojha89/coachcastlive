@@ -19,11 +19,12 @@ $gnl = new common\components\GeneralComponent();
 
 
                             <div class="availa">
-                                <a class="fl choosebtn" href="<?php echo Url::to(['trainer/availability']); ?>"><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;&nbsp;Availability</a>
+                                <a class="fl choosebtn" href="<?php echo Url::to(['coach-profile/view', 'id' => \common\components\GeneralComponent::encrypt($model->id)]); ?>"><i class="fa fa-user" aria-hidden="true"></i> &nbsp;&nbsp;My Profile</a>
+                                <a class="fl choosebtn" href="<?php echo Url::to(['coach-profile/availability', 'id' => \common\components\GeneralComponent::encrypt($model->id)]); ?>"><i class="fa fa-calendar" aria-hidden="true"></i> &nbsp;&nbsp;Availability</a>
                                 <!--<a class="fr choosebtn" href="#">My Schedule</a>-->
-                                <a class="fr choosebtn" href="<?php echo Url::to(['blog/index']); ?>"><i class="fa fa-user" aria-hidden="true"></i> &nbsp;&nbsp;About Me</a>
-                                <a class="fr choosebtn" href="<?php echo Url::to(['blog/index']); ?>"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;&nbsp;Book Appointment</a>
-                                <a class="fr choosebtn" href="<?php echo Url::to(['daily-inspirational/index']); ?>"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;&nbsp;Send Message</a>
+                                <a class="fr choosebtn" href="<?php echo Url::to(['coach-profile/aboutme', 'id' => \common\components\GeneralComponent::encrypt($model->id)]); ?>"><i class="fa fa-user" aria-hidden="true"></i> &nbsp;&nbsp;About Me</a>
+                                <a class="fr choosebtn" href="<?php echo Url::to(['coach-profile/book-appointment','id' => \common\components\GeneralComponent::encrypt($model->id)]); ?>"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;&nbsp;Book Appointment</a>
+                                <a class="fr choosebtn" href="<?php echo Url::to(['message/sendmessage','id'=>$model->id]);?>" data-toggle="modal" data-target="#message-modal" data-pjax="false"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;&nbsp;Send Message</a>
                             </div>
 
                             <div class="msg-check">
@@ -44,3 +45,16 @@ $gnl = new common\components\GeneralComponent();
                             </div>
                         </div>
                     </div>
+
+          
+
+
+<div id="message-modal" class="modal fade filterpopup" role="dialog">
+  <div class="modal-dialog" role="document" style="margin-top: 100px;">
+    <div class="modal-content">
+      
+      
+    </div>
+
+  </div>
+</div>
