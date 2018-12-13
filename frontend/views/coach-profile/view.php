@@ -42,8 +42,8 @@ $gnl = new \common\components\GeneralComponent();
                         <div class="pro-rgt-top">
                             <?php //echo $this->render('//coach-profile/_user_header.php',['model'=>$model]); ?>
                         </div>
-                        <div class="whatclientsay">
-                            <div class="coachClassSection">
+                        <div class="whatclientsay findcoachsection">
+                            <div class="coachClassSection ">
                             <h2 class="section-title-default2 title-bar-high2">My Classes</h2>
                              <?php if($coachClasses) { ?>
                                 <div class="gym-carousel nav-control-middle" data-loop="true" data-items="3" data-margin="15"
@@ -171,12 +171,12 @@ $gnl = new \common\components\GeneralComponent();
                             
                             <h2 class="section-title-default2 title-bar-high2">My Blogs</h2>
                             <?php if($coachBlogs) { ?>
-                                <div class="gym-carousel nav-control-middle" data-loop="true" data-items="3" data-margin="15"
+                                <div class="gym-carousel nav-control-middle" data-loop="true" data-items="2" data-margin="10"
                             data-autoplay="false" data-autoplay-timeout="10000" data-smart-speed="2000" data-dots="false"
                             data-nav="true" data-nav-speed="false" data-r-x-small="1" data-r-x-small-nav="true"
                             data-r-x-small-dots="false" data-r-x-medium="2" data-r-x-medium-nav="true"
-                            data-r-x-medium-dots="false" data-r-small="3" data-r-small-nav="true" data-r-small-dots="false"
-                            data-r-medium="3" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="3"
+                            data-r-x-medium-dots="false" data-r-small="2" data-r-small-nav="true" data-r-small-dots="false"
+                            data-r-medium="2" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="2"
                             data-r-large-nav="true" data-r-large-dots="false">
 
                                     <?php foreach($coachBlogs as $value){ ?>

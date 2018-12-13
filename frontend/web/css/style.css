@@ -6858,7 +6858,7 @@
      color: #646464;
 }
  .title-bar-high2 {
-     margin-bottom: 40px;
+     margin-bottom:55px;
      position: relative;
 }
  .title-bar-high2:before {
@@ -8662,6 +8662,14 @@ a.filterbtn {
     opacity: 1;
 }
 .filterpopup .modal-header .close:hover, .filterpopup .modal-header .close:focus{ color: #fff; opacity: 0.8;}
+
+
+.findcoachsection .nav-control-middle .owl-controls .owl-prev {left: -4px;top: 30%;}
+.findcoachsection  .nav-control-middle .owl-controls .owl-next {right: -4px;top: 30%;}
+.findcoachsection .owl-item .box-img .box-img-center{ text-align: center;}
+.findcoachsection .owl-carousel .owl-item img{display: inline-block !important;}
+.coachBlogsSection .blog_list_description{ min-height: 80px;}
+
 
  @media only screen and (max-width: 1024px) {
 .container {width: 100%;}

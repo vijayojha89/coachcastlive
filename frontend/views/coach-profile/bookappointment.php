@@ -46,7 +46,7 @@ $this->title = "Add Appointment";
                                         ]
                                     ]); ?>
                                     
-                                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-outline btn-success', 'id' => 'saveAppointment']) ?>
+                                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn', 'id' => 'saveAppointment']) ?>
 
                         <?php ActiveForm::end(); ?>
                     </div>
