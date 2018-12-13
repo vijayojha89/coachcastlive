@@ -45,7 +45,9 @@ class User extends \yii\db\ActiveRecord {
 
     public $confirm_password;
     public $user_type;
-
+    public $old_password;
+    
+    
     /**
      * @inheritdoc
      */
@@ -57,6 +59,22 @@ class User extends \yii\db\ActiveRecord {
      * @inheritdoc
      */
     public function rules() {
+
+        if (Yii::$app->controller->action->id == "profile") {
+        return [
+
+            [['first_name', 'last_name','mobile_no','city','state','zip'], 'required'],
+            [['first_name', 'last_name','city','state'], 'string', 'max' => 50],
+            [['zip'], 'string', 'max' => 8],
+            ['mobile_no', 'number'],
+            ['mobile_no', 'string', 'length' => [10, 20]],
+            //[['blog_fee_one_month','blog_fee_three_month','blog_fee_six_month','blog_fee_one_year','schedule_call_fee'], 'number', 'min' => 1],
+            ['profile_photo', 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'bmp']],
+           // ['banner_image', 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'bmp']],
+        ];
+        }
+        else
+        {   
         return [
             [['first_name', 'last_name', 'email'], 'required'],
             [['password_hash', 'confirm_password', 'mobile_no'], 'required'],
@@ -74,6 +92,7 @@ class User extends \yii\db\ActiveRecord {
             [['confirm_password'], 'compare', 'compareAttribute' => 'password_hash', 'skipOnEmpty' => false, 'message' => "Password's do not match."],
             [['profile_photo'], 'file', 'extensions' => 'jpg, jpeg, png, bmp'],
         ];
+        }
     }
 
     //Check unique email validation

@@ -573,15 +573,15 @@ class GeneralComponent extends Component {
         if ($from == "") {
             $from = Yii::$app->params['sitename'];
         }
-        $data = Yii::$app
-                ->mailer
-                ->compose(
-                        ['html' => 'emailTemplate-html', 'text' => 'emailTemplate-text'], ['messegedata' => $message,'logoimage'=>$logoimage]
-                )
-                ->setFrom([$settings['setting_email'] => Yii::$app->name . ' Support'])
-                ->setTo($to)
-                ->setSubject($sub)
-                ->send();
+        // $data = Yii::$app
+        //         ->mailer
+        //         ->compose(
+        //                 ['html' => 'emailTemplate-html', 'text' => 'emailTemplate-text'], ['messegedata' => $message,'logoimage'=>$logoimage]
+        //         )
+        //         ->setFrom([$settings['setting_email'] => Yii::$app->name . ' Support'])
+        //         ->setTo($to)
+        //         ->setSubject($sub)
+        //         ->send();
 
                 
         $mail = array();
