@@ -177,7 +177,7 @@ const app = function() {
             updateState({ publishers, subscribers, meta });
         }));
 
-        document.getElementById('start').addEventListener('click', startCall);
+        //document.getElementById('start').addEventListener('click', startCall);
         document.getElementById('toggleLocalAudio').addEventListener('click', toggleLocalAudio);
         document.getElementById('toggleLocalVideo').addEventListener('click', toggleLocalVideo);
     };

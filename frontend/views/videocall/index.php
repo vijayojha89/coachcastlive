@@ -36,6 +36,9 @@ $this->title = "Video Call";
                                         <progress-spinner dark style="font-size:50px"></progress-spinner>
                                         <div class="message with-spinner">Connecting</div>
                                     </div>
+                                    <div class="App-mask hidden" id="start-mask">
+                    <div class="message button clickable" id="start">Click to Start Call</div>
+                </div>
                                     <div id="cameraPublisherContainer" class="video-container hidden"></div>
                                     <div id="screenPublisherContainer" class="video-container hidden"></div>
                                     <div id="cameraSubscriberContainer" class="video-container-hidden"></div>
