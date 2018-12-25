@@ -25,6 +25,9 @@ $this->title = "Video Call";
                     </div>
                     <div class="whatclientsay">
                         <h2 class="section-title-default2 title-bar-high2">Videos</h2>
+                        <div id="timerSection" class="hidden">
+                            <span id="m_timer" class="style colorDefinition size_lg"></span>
+                        </div>
                         <div class="App">
                             <div class="App-main">
                                 <div id="controls" class='App-control-container hidden'>
@@ -57,26 +60,8 @@ $this->title = "Video Call";
 
 
 
-
-
-    <!-- <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://assets.tokbox.com/solutions/css/style.css">
-    <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/livestamp/1.1.2/livestamp.min.js"></script>
-    <script src="js/components/opentok-solutions-logging.js"></script>
-    <script src="js/components/opentok-text-chat.js"></script>
-    <script src="js/components/opentok-screen-sharing.js"></script>
-    <script src="js/components/opentok-annotation.js"></script>
-    <script src="js/components/opentok-archiving.js"></script>
-    <script src="js/components/opentok-acc-core.js"></script>
-    <script src="js/app.js"></script> -->
-
-    <?php
+ <?php
+ 
 $this->registerJsFile('//static.opentok.com/v2/js/opentok.min.js', [yii\web\JqueryAsset::className()]);
 $this->registerJsFile('//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js', [yii\web\JqueryAsset::className()]);
 $this->registerJsFile('//cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js', [yii\web\JqueryAsset::className()]);
@@ -97,8 +82,7 @@ $this->registerCssFile('@web/css/video_style.css');
 ?>
 
         <?php
-$this->registerJs("
-//    $('#button-join').trigger('click');
+$this->registerJs('
 
 
-", \yii\web\VIEW::POS_READY);?>
+', \yii\web\VIEW::POS_READY);?>
