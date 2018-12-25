@@ -286,6 +286,83 @@ class UserController extends Controller {
     }
 
 
+    public function actionProfile()
+    {
+        $gnl = new GeneralComponent();
+        $id = \Yii::$app->user->identity->id;
+        $model = $this->findModel($id);
+        $model->modified_by = \Yii::$app->user->identity->id;
+        $model->modified_date = date("Y-m-d H:i:s");
+        
+        $model_pwd = \common\models\ChangePassword::findOne($id);
+        $getpasswordhash = $model_pwd['password_hash'];
+        if (!$model_pwd) {
+            throw new NotFoundHttpException('User not found');
+        }
+        if(Yii::$app->request->isAjax && ($model_pwd->load(Yii::$app->request->post()) || $model->load(Yii::$app->request->post())) ){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model_pwd);
+        }  
+        else if ($model->load(Yii::$app->request->post()) )
+        {  
+            
+            $gnl->fileupload(realpath('../../') . '/uploads/', 'profile_photo', $model, 'profile_photo');
+            if ($model->profile_photo == '')
+            {
+                unset($model->profile_photo);
+            }
+//            $gnl->fileupload(realpath('../../') . '/uploads/', 'banner_image', $model, 'banner_image');
+//            if ($model->banner_image == '')
+//            {
+//                unset($model->banner_image);
+//            }
+            $model->save(false);  
+            Yii::$app->db->createCommand()->update('user', ['trainer_profile_complete' => 1], 'id='.$id)->execute();
+            Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Profile Updated Successfully'));
+            return $this->redirect(['profile']);
+           
+        } 
+        else if ($model_pwd->load(Yii::$app->request->post())) 
+        {
+            $oldpass = Yii::$app->request->post('ChangePassword')['old_password'];  
+            if (Yii::$app->getSecurity()->validatePassword($oldpass, $getpasswordhash))
+            {
+                $objSecurity = new \yii\base\Security();
+                if (!empty($model_pwd->password_hash)) {
+                    $model_pwd->password_hash = $objSecurity->generatePasswordHash($model_pwd->password_hash);
+                    $model_pwd->save(false);
+                }
+                else
+                {
+                        Yii::$app->getSession()->setFlash('danger', Yii::t('app', 'Please try again'));
+                        return $this->render('profile', [
+                       'model' => $model,
+                       'model_pwd' => $model_pwd,
+                   ]);
+                
+                 }
+            }
+            else
+            {
+                 Yii::$app->getSession()->setFlash('danger', Yii::t('app', 'Old Password is incorrect'));
+                        return $this->render('profile', [
+                       'model' => $model,
+                       'model_pwd' => $model_pwd,
+                   ]);
+            }
+            
+            Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Password Updated Successfully'));
+            return $this->redirect(['profile']);
+        }
+        else
+        {
+            return $this->render('profile', [
+                'model' => $model,
+                'model_pwd' => $model_pwd,
+            ]);
+        }
+    }
+
     public function actionAddappointment()
     {
         $model = new \frontend\models\Appointment();

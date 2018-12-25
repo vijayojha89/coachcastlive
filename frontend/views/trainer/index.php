@@ -39,6 +39,7 @@ $this->title = 'Find Coach';
                         </div>
                         <div class="whatclientsay">
                             <h2 class="section-title-default2 title-bar-high2">Coaches</h2>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" class="filterbtn"><i class="fa fa-filter"></i> Filter</a>
                             <?= 
                                     ListView::widget([
                                         'dataProvider' => $dataProvider,
@@ -58,4 +59,52 @@ $this->title = 'Find Coach';
                     </div>
                 </div>
             </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade filterpopup" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Filter</h4>
+      </div>
+      <div class="modal-body">
+      
+      <div class="searchbox">
+      <?php $form = ActiveForm::begin([
+        'action' => ['index'],
+        'method' => 'get',
+    ]); ?>
+
+
+ <?= $form->field($searchModel, 'first_name') ?>
+ <?= $form->field($searchModel, 'last_name') ?>
+ <?= $form->field($searchModel, 'email') ?>
+ <?= $form->field($searchModel, 'city') ?>
+ <?= $form->field($searchModel, 'state') ?>
+ <?= $form->field($searchModel, 'zip') ?>
+
+
+              
+
+                        <div class="searcbtn">
+                             <?= Html::submitButton('Search', ['class' => 'btn']) ?>
+      <a class="btn btn-dark" href="<?php echo Url::to(['trainer/index']); ?>">Reset</a>
+                            </div>
+                            
+    <?php ActiveForm::end(); ?>
+                            </div>
+
+      </div>
+     
+      
+    </div>
+
+  </div>
 </div>

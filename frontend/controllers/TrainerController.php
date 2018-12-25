@@ -36,6 +36,78 @@ class TrainerController extends \yii\web\Controller
         
    }
     
+
+   
+   public function actionAcceptReject()
+   {
+      $appointment_id = $_POST['appointment_id'];
+      $appointmentDetail = \frontend\models\Appointment::find()->where(['appointment_id' => $appointment_id, 'status' => 1, 'appointment_status' => 0])->one();
+      if(empty($appointmentDetail)){
+          Yii::$app->getSession()->setFlash('error', Yii::t('app', 'Something went wrong'));
+          echo "error";
+      }
+      else 
+      {
+          $userDetail = User::findOne($appointmentDetail->created_by);
+          $trainerDetail = User::findOne($appointmentDetail->trainer_id);
+          if($_REQUEST['action'] == "accept")
+          {
+              $sql_appointment = "UPDATE appointment SET appointment_status=1 WHERE appointment_id =".$appointmentDetail->appointment_id;
+              $data_appointment = yii::$app->db->createCommand($sql_appointment)->execute();
+          
+              $push_noti_msg = $trainerDetail['first_name'] . " " . $trainerDetail['last_name'] . " has accepted your appointment request.";
+              GeneralComponent::saveNotificationLog($appointmentDetail->appointment_id, $appointmentDetail->trainer_id, $appointmentDetail->created_by, 2, $push_noti_msg, $appointmentDetail->trainer_id);
+              
+              $appointment_confirm = array();
+              $appointment_confirm['appointment_id'] = $appointmentDetail->appointment_id;
+              $appointment_confirm['user_id'] = $appointmentDetail->created_by;
+              $appointment_confirm['trainer_id'] = $appointmentDetail->trainer_id;
+              $appointment_confirm['appointment_date'] = $appointmentDetail->appointment_date;
+              $appointment_confirm['created_date'] = date('Y-m-d H:i:s');
+              $appointment_confirm['status'] = 0;
+              \Yii::$app->db->createCommand()->insert('appointment_confirm',$appointment_confirm)->execute();
+              
+              $appointmentTime = date('Y-m-d h:i A',strtotime($appointmentDetail->appointment_date));
+              $gnl = new GeneralComponent();
+              $email_model = \common\models\EmailTemplate::findOne(15);
+              $subject = $email_model->emailtemplate_subject;
+              $bodymessage = $email_model->emailtemplate_body;
+              $bodymessage = str_replace('{username}', $userDetail->first_name.' '.$userDetail->last_name, $bodymessage);
+              $bodymessage = str_replace('{coachname}', $trainerDetail->first_name.' '.$trainerDetail->last_name, $bodymessage);
+              $bodymessage = str_replace('{appointmenttime}', $appointmentTime, $bodymessage);
+              $gnl->saveMail($userDetail->email, $subject, $bodymessage);
+              echo "success";
+              die;
+          }
+          else if($_REQUEST['action'] == "reject")
+          {
+              $sql_appointment = "UPDATE appointment SET appointment_status=2 WHERE appointment_id =".$appointmentDetail->appointment_id;
+              $data_appointment = yii::$app->db->createCommand($sql_appointment)->execute();
+              
+              $push_noti_msg = $trainerDetail['first_name'] . " " . $trainerDetail['last_name'] . " has rejected your appointment request.";
+              GeneralComponent::saveNotificationLog($appointmentDetail->appointment_id, $appointmentDetail->trainer_id, $appointmentDetail->created_by, 3, $push_noti_msg, $appointmentDetail->trainer_id);
+              
+              $appointmentTime = date('Y-m-d h:i A',strtotime($appointmentDetail->appointment_date));
+              $gnl = new GeneralComponent();
+              $email_model = \common\models\EmailTemplate::findOne(16);
+              $subject = $email_model->emailtemplate_subject;
+              $bodymessage = $email_model->emailtemplate_body;
+              $bodymessage = str_replace('{username}', $userDetail->first_name.' '.$userDetail->last_name, $bodymessage);
+              $bodymessage = str_replace('{coachname}', $trainerDetail->first_name.' '.$trainerDetail->last_name, $bodymessage);
+              $bodymessage = str_replace('{appointmenttime}', $appointmentTime, $bodymessage);
+              $gnl->saveMail($userDetail->email, $subject, $bodymessage);
+              echo "success";
+              die;
+          }
+          else
+          {    
+               echo "error";
+               die;
+          }     
+      }
+          
+      exit;     
+   }
     
     public function actionIndex()
     {

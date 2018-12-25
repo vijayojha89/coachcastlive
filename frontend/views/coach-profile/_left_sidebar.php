@@ -11,11 +11,12 @@ $gnl = new common\components\GeneralComponent();
     <div class="col-lg-3 col-md-3 col-sm-3">
                         <div class="right-sidebar">
 
-                            <div class="profile-pic">
-                                <div><img src="<?php echo $gnl->image_not_found_hb($model->profile_photo, 'profile_photo', 1); ?>" alt="profile">
-                                <span><?php echo $model->first_name. ' '.$model->last_name; ?></span>
+
+<div class="profile-pic">
+                                <div class="userpic"><a class="imguser" href="javascript:void(0);"><img src="<?php echo $gnl->image_not_found_hb( $model->profile_photo,'profile_photo',1);?>" alt="profile"></a>
                                 </div>
-                            </div>    
+                                        <span><?php echo $model->first_name. ' '.$model->last_name; ?></span>
+                            </div>
 
 
                             <div class="availa">

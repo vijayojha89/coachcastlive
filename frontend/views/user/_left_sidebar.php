@@ -14,7 +14,7 @@ $userdata = Yii::$app->db->createCommand("Select * from user where id = ".Yii::$
                         <div class="right-sidebar">
 
                             <div class="profile-pic">
-                                <div class="userpic"><a class="imguser" href="#"><img src="<?php echo $gnl->image_not_found_hb( $userdata['profile_photo'],'profile_photo',1);?>" alt="profile"></a><a
+                                <div class="userpic"><a class="imguser" href="javascript:void(0);"><img src="<?php echo $gnl->image_not_found_hb( $userdata['profile_photo'],'profile_photo',1);?>" alt="profile"></a><a
                                         class="editpic" href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
                                 <span><?php  echo $userdata['first_name'].' '.$userdata['last_name'];?></span>
                             </div>
