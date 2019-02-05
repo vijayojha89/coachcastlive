@@ -5,8 +5,8 @@ const options = {
 
     credentials: {
         apiKey: "46240312",
-        sessionId: "2_MX40NjI0MDMxMn5-MTU0NTcxNTQ3OTAwNn5rdEpRUDlVc1ZqUE9qbDY1Y0VubG9jbFp-QX4",
-        token: "T1==cGFydG5lcl9pZD00NjI0MDMxMiZzaWc9NzcyYWMzZWU2Y2IxN2VlZjY2NGUzNzBlMGRiMTU4ZGViNDhkYmI3ODpzZXNzaW9uX2lkPTJfTVg0ME5qSTBNRE14TW41LU1UVTBOVGN4TlRRM09UQXdObjVyZEVwUlVEbFZjMVpxVUU5cWJEWTFZMFZ1Ykc5amJGcC1RWDQmY3JlYXRlX3RpbWU9MTU0NTcxNTQ3OSZyb2xlPXB1Ymxpc2hlciZub25jZT0xNTQ1NzE1NDc5LjQ2MzQzMjUwOTU1OQ=="
+        sessionId: "2_MX40NjI0MDMxMn5-MTU0NzA1ODc2MzcyMX5hOTlpT0wvbTNQcUQ4NjJZMFNGTGppWVB-QX4",
+        token: "T1==cGFydG5lcl9pZD00NjI0MDMxMiZzaWc9MTViN2FiMWEzZTFlODU1ZmJkZTlhZjg3YzUyNGNiMjdmYjVhNzM0YTpzZXNzaW9uX2lkPTJfTVg0ME5qSTBNRE14TW41LU1UVTBOekExT0RjMk16Y3lNWDVoT1RscFQwd3ZiVE5RY1VRNE5qSlpNRk5HVEdwcFdWQi1RWDQmY3JlYXRlX3RpbWU9MTU0NzA1ODc2NCZyb2xlPXB1Ymxpc2hlciZub25jZT0xNTQ3MDU4NzY0LjA3MzMxODU4MTU2NzY1"
     },
 
     // A container can either be a query selector or an HTMLElement
@@ -74,6 +74,7 @@ const app = function() {
 
         const videoContainerClass = `App-video-container ${(sharingScreen || viewingSharedScreen) ? 'center' : ''}`;
         document.getElementById('appVideoContainer').setAttribute('class', videoContainerClass);
+        document.getElementById('appVideoContainerTwo').setAttribute('class', videoContainerClass);
 
         const cameraPublisherClass =
             `video-container ${!!activeCameraSubscribers || sharingScreen ? 'small' : ''} ${!!activeCameraSubscribers || sharingScreen ? 'small' : ''} ${sharingScreen || viewingSharedScreen ? 'left' : ''}`;

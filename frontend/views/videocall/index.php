@@ -35,6 +35,10 @@ $this->title = "Video Call";
 						<span class="reportabuse"><em>Report Abuse</em></span>
 
 						<div class="row">
+                        <div class="App-mask" id="connecting-mask">
+                                                        <progress-spinner dark style="font-size:50px"></progress-spinner>
+                                                        <div class="message with-spinner">Connecting</div>
+                                                    </div>
 							<div class="col-md-6">
 
 								<div class="videouser">
@@ -49,15 +53,10 @@ $this->title = "Video Call";
                                                 </div>
 
                                                 <div class="App-video-container" id="appVideoContainer">
-                                                    <div class="App-mask" id="connecting-mask">
-                                                        <progress-spinner dark style="font-size:50px"></progress-spinner>
-                                                        <div class="message with-spinner">Connecting</div>
-                                                    </div>
+                                                    
                                                     <div class="App-mask hidden" id="start-mask">
                                                         <div class="message button clickable" id="start">Click to Start Call</div>
                                                     </div>
-                                                    <!-- <div id="cameraPublisherContainer" class="video-container hidden"></div>
-                                                    <div id="screenPublisherContainer" class="video-container hidden"></div> -->
                                                     <div id="cameraSubscriberContainer" class="video-container-hidden"></div>
                                                     <div id="screenSubscriberContainer" class="video-container-hidden"></div>
                                                 </div>
@@ -81,15 +80,14 @@ $this->title = "Video Call";
 								<div class="videouser">
 									<div class="v-user"><span>Nicole</span></div>
 									<div class="videousers">
-
-                                         <div class="App-video-container" id="appVideoContainer">
-                                                    
-                                                  
+                                    <div class="App">
+                                            <div class="App-main">
+                                         <div class="App-video-container" id="appVideoContainerTwo">
                                                     <div id="cameraPublisherContainer" class="video-container hidden"></div>
                                                     <div id="screenPublisherContainer" class="video-container hidden"></div>
-                                                    <!-- <div id="cameraSubscriberContainer" class="video-container-hidden"></div>
-                                                    <div id="screenSubscriberContainer" class="video-container-hidden"></div> -->
-                                                </div>
+                                        </div>
+                                        </div>
+                                     </div>   
 
                                     </div>
 								</div>
