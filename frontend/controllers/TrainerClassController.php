@@ -55,6 +55,26 @@ class TrainerClassController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+
+    public function actionBroadcast($id)
+    {
+        $id = \common\components\GeneralComponent::decrypt($id);
+
+        return $this->render('broadcast', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+
+    public function actionLivesession($id)
+    {
+        $id = \common\components\GeneralComponent::decrypt($id);
+
+        return $this->render('livesession', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
      /**
      * Creates a new TrainerClass model.
      * If creation is successful, the browser will be redirected to the 'view' page.

@@ -45,7 +45,8 @@
         "stripe/stripe-php": "^4.9",
         "kartik-v/yii2-mpdf": "*",
         "kartik-v/yii2-field-range": "*",
-		"twilio/sdk": "^5.21"
+		"twilio/sdk": "^5.21",
+		"opentok/opentok": "4.2.x"
     },
     "require-dev": {
         "codeception/codeception": "*",
