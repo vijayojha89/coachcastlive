@@ -9610,13 +9610,30 @@ input[type=password] {
     background: #f1f1f1;
 }
 
-.videocall{ width: 100%; margin: 0; padding:25px 0 0 0;}
-.videouser{ width: 100%; margin: 0; padding: 0; position: relative; border: 1px solid #eee;}
+.videocall {
+    width: 100%;
+    margin: 0;
+    padding: 25px 0 0 0;
+}
 
+.videouser {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    border: 1px solid #eee;
+}
 
+.livecallingbtoom {
+    width: 100%;
+    margin: 0;
+    padding: 25px 0 0 0;
+    position: relative;
+    text-align: center;
+}
 
-.livecallingbtoom{width: 100%; margin: 0; padding:25px 0 0 0; position: relative; text-align: center;}
-.livecallingbtoom a{width: auto;
+.livecallingbtoom a {
+    width: auto;
     margin: 0;
     padding: 5px 8px;
     background: #fff;
@@ -9629,22 +9646,44 @@ input[type=password] {
     font-style: initial;
 }
 
-.reportabuse{ width: 100%; margin:0 0 20px 0; padding: 0; text-align: center;float:left;}
-.reportabuse em{ width:auto; 
-    margin: 0;    
+.reportabuse {
+    width: 100%;
+    margin: 0 0 20px 0;
+    padding: 0;
+    text-align: center;
+    float: left;
+}
+
+.reportabuse em {
+    width: auto;
+    margin: 0;
     padding: 5px 15px;
     background: #fff;
     border: 1px solid #eee;
     border-radius: 5px;
-     text-align: center;
-    display: inline-block; 
+    text-align: center;
+    display: inline-block;
     font-size: 16px;
-    font-weight: 500; 
-    font-style: initial;}
+    font-weight: 500;
+    font-style: initial;
+}
 
-.livechating{width: 100%;margin: 0 0 50px 0 ;padding: 0 15px;display: inline-block;}
-.videouser .v-user{ width: 100%; text-align: center; margin:-20px 0 0 0; padding: 0;}
-.videouser .v-user span{    width: auto;
+.livechating {
+    width: 100%;
+    margin: 0 0 50px 0;
+    padding: 0 15px;
+    display: inline-block;
+}
+
+.videouser .v-user {
+    width: 100%;
+    text-align: center;
+    margin: -20px 0 0 0;
+    padding: 0;
+}
+
+.videouser .v-user span {
+    width: auto;
     margin: 0px 0 15px 0;
     padding: 5px 15px;
     background: #fff;
@@ -9662,7 +9701,12 @@ input[type=password] {
     display: inline-block;
 }
 
-.videousers .App-main{ height: 300px; border: none;    position: relative;}
+.videousers .App-main {
+    height: 300px;
+    border: none;
+    position: relative;
+}
+
 .videousers .App-video-container .video-container.small {
     position: relative !important;
     top: 0 !important;
@@ -9672,8 +9716,6 @@ input[type=password] {
     border: 1px solid #fcba00;
     z-index: 2;
 }
-
-
 
 
 /* vjaycss */

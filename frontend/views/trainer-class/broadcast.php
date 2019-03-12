@@ -14,8 +14,8 @@ use OpenTok\Role;
 $this->title = $model->title;
 Yii::$app->db->createCommand("UPDATE class_online SET status=0 WHERE class_id =" . $model->trainer_class_id." AND DATE(created_date) ='".date('Y-m-d')."'")->execute();
     
-    $apiKey = "46240312";
-    $apiSecret = "f370782db6a592c836700ac30ed325f1ced5ec42";
+    $apiKey = "46271762";
+    $apiSecret = "8332f36f7e4547b1e9ae794b5f3223dc331be089";
 
     $opentok = new OpenTok($apiKey, $apiSecret);
     // A session that uses the OpenTok Media Router, which is required for archiving:
@@ -46,8 +46,60 @@ Yii::$app->db->createCommand("UPDATE class_online SET status=0 WHERE class_id ="
 
 
 $stringCrendital = json_encode($credential);
+
 ?>
 
+<style>
+/* ul.outer-comment{ width:100%; margin:0 0 15px 0; padding:0;} */
+/* ul.outer-comment li{ width:100%; margin:0 0 15px 0; padding:0 15px 0 15px;} */
+/* ul.outer-comment li ul{ width:100%; margin:0 0 15px 0; padding:0 0 0 15px;} */
+/* ul.outer-comment li ul li{ padding:0 0px 0 15px;} */
+textarea#comment{ padding:15px !important;}
+#frm-comment input#submitButton{
+    float:right; width:auto;
+}
+#comment-message {
+    margin-left: 20px;
+    color: #189a18;
+    display: none;
+}
+
+.comment-form-container .single-client-say .client-picture img {
+    background: #ececec;
+    border-radius: 50%;
+    padding: 4px;
+    height: 60px;
+    width: 60px;
+    transition: all 0.3s ease 0s;
+}
+
+.comment-form-container .single-client-say .client-content {
+    padding-left: 10px;
+}
+.comment-form-container .single-client-say .client-content h3 {
+    font-size:14px;
+}    
+.comment-form-container .reply_section input.btn-submit {
+    background-color: #8cc63f;
+    color: white;
+    padding: 5px;
+    margin: 0px;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    /* opacity: 0.9; */
+}
+
+.comment-form-container textarea, .comment-form-container textarea.form-control {
+    /* margin: 0 !important; */
+    /* border: none !important; */
+    border: 1px solid #eee !important;
+    padding: 5px!important;
+    /* font-size: 14px; */
+    width: 100%;
+}
+
+</style>
 <!-- Start Inner Banner area -->
 <div class="inner-banner-area">
             <div class="container">
@@ -73,8 +125,8 @@ $stringCrendital = json_encode($credential);
                         <div class="whatclientsay">
                         <div>
                            <h2 class="section-title-default2 title-bar-high2">Broadcast</h2>
+                           <button id="startStop" class="classStartStopBtn btn-broadcast hidden"><i class="fa fa-filter"></i> Start Broadcast</button>
                            <div id="credentials" style="display:none;" data='<?php echo $stringCrendital;?>'></div>
-                         
                            <div>
                              <div class="col-lg-8 main-container">
                                 <div id="main" class="">
@@ -94,6 +146,7 @@ $stringCrendital = json_encode($credential);
                          </div>     
 
     <div class="broadcast-controls-container" >
+    
         <div class="rtmp-container" style="display:none;">
             <span id="rtmpLabel">Want to stream to YouTube Live or Facebook Live? Add your RTMP Server URL and Stream Name:</span>   >
             <span class="hidden error" id="rtmpError">The entered RTMP server and/or stream name are not valid. Please check the url and try again.</span>
@@ -103,9 +156,9 @@ $stringCrendital = json_encode($credential);
                 <input id="rtmpStream" type="text" placeholder="myStreamName" />
             </div>
         </div>
-      <button id="startStop" class="btn-broadcast hidden">
-        Start Broadcast
-      </button>
+
+                      
+      
       <div id="urlContainer" class="url-container hidden" style="display:none;">
         <div id="broadcastURL" class="opacity-0 no-show"></div>
         <div id="copyURL" class="copy-link" data-clipboard-target="#broadcastURL">
@@ -117,7 +170,41 @@ $stringCrendital = json_encode($credential);
         </div>
       </div>
     </div>
+                       
+    
+    <div class="comment-form-container" style="">
+                            <div id="output" class="notification_list"></div>
+                            
+
+
+
+
+
+
+                            <div id="comment-message">Comments Added Successfully!</div>
+                                <form id="frm-comment">
+                                    <div class="input-row">
+                                        <input type="hidden" name="comment_id" id="commentId" placeholder="Name" /> 
+                                        <input type="hidden" name="user_id" id="userId" placeholder="Name" value="<?php echo \Yii::$app->user->identity->id;?>" /> 
+                                        <input type="hidden" name="class_session_id" id="class_session_id" value="<?php echo $credential['sessionId'];?>" /> 
+                                        <input class="input-field" type="hidden" name="name" id="name" value="<?php echo \Yii::$app->user->identity->first_name.' '.\Yii::$app->user->identity->last_name;?>" />
+                                    </div>
+                                    <div class="input-row">
+                                        <textarea class="input-field" type="text" name="comment"
+                                            id="comment" placeholder="Add a Comment"></textarea>
+                                    </div>
+                                    <div>
+                                        <input type="button" class="btn-submit" id="submitButton"
+                                            value="Publish" />
+                                    </div>
+
+                                </form>
+                            </div>
+                          
                            
+                        </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -143,9 +230,109 @@ $stringCrendital = json_encode($credential);
  
  
  ?>
- 
- <?php
- $this->registerJs('
- 
- 
- ', \yii\web\VIEW::POS_READY);?>
+ <?php 
+
+$this->registerJs('
+
+
+    
+
+$("#submitButton").click(function () {
+    if($.trim($("#comment").val())  == "")
+    {
+        alert("Comment field is required!")
+        return false;
+    }
+
+    $("#comment-message").css("display", "none");
+ var str = $("#frm-comment").serialize();
+
+ $.ajax({
+     url: "comment-add",
+     data: str,
+     type: "post",
+     success: function (response)
+     {
+         var result = eval("(" + response + ")");
+         if (response)
+         {
+             $("#comment-message").css("display", "inline-block");
+             $("#comment").val("");
+             $("#commentId").val("");
+             listComment();
+         } else
+         {
+             alert("Failed to add comments !");
+             return false;
+         }
+     }
+ });
+});
+
+
+function listComment() {
+   /* $.post("comment-list?id='.$credential['sessionId'].'",*/
+
+   $.post("comment-list?id=1_MX40NjI3MTc2Mn5-MTU1MjQyMDE4MjE4M34veHV1UEZmRWZ0ejJ3V3p5ZndMc2dVeUp-fg",
+            function (data) {
+                   var data = JSON.parse(data);
+                
+                var comments = "";
+                var replies = "";
+                var item = "";
+                var parent = -1;
+                var results = new Array();
+
+                var list = $(\'<ul class="outer-comment">\');
+                var item = $("<li>").html(comments);
+
+                for (var i = 0; (i < data.length); i++)
+                {
+                    var commentId = data[i]["comment_id"];
+                    parent = data[i]["parent_comment_id"];
+
+                    if (parent == "0")
+                    {
+                        // comments = "<div class=\'comment-row\'>"+
+                        // "<div class=\'comment-info\'><span class=\'commet-row-label\'>from</span> <span class=\'posted-by\'>" + data[i][\'comment_sender_name\'] + " </span> <span class=\'commet-row-label\'>at</span> <span class=\'posted-at\'>" + data[i][\'date\'] + "</span></div>" + 
+                        // "<div class=\'comment-text\'>" + data[i][\'comment\'] + "</div>"+
+                        // "<div class=\'rpl\'><!--<a class=\'btn-like\' onClick=\'postReply(" + commentId + ")\'>5 Likes</a>--><a class=\'btn-reply\' onClick=\'postReply(" + commentId + ")\'>Reply</a></div></div></div>";
+
+
+                        comments = "<div class=\'notification_item\'><div class=\'single-client-say\'><div class=\'pull-left client-picture\'><img src=\'http://localhost/coachcastlive/uploads/profile_photo/thumb/WbM5v-yCaiZFBhzNbdx9ZbY5CpCAkiYp.jpg\'></div><div class=\'media-body client-content\'><h3>"+ data[i][\'user_name\'] +"</h3><p>"+data[i][\'comment\'] +"</p><p class=\"reply_section\"><textarea placeholder=\'Type a message\'></textarea><input type=\'button\' class=\'btn-submit\' value=\'Post Reply\'><input type=\'button\' class=\'pull-right btn-submit\' value=\'&nbsp;&nbsp;&nbsp;Reply&nbsp;&nbsp;&nbsp;\' onClick=\'postReply(" + commentId + ")\'></p></div></div></div>";
+
+                        var item = $("<li>").html(comments);
+                        list.append(item);
+                        var reply_list = $("<ul>");
+                        item.append(reply_list);
+                        listReplies(commentId, data, reply_list);
+                    }
+                }
+                $("#output").html(list);
+            }); 
+}
+
+listComment();
+
+
+function listReplies(commentId, data, list) {
+    for (var i = 0; (i < data.length); i++)
+    {
+        if (commentId == data[i].parent_comment_id)
+        {
+            var comments = "<div class=\'comment-row\'>"+
+            " <div class=\'comment-info\'><span class=\'commet-row-label\'>from</span> <span class=\'posted-by\'>" + data[i][\'comment_sender_name\'] + " </span> <span class=\'commet-row-label\'>at</span> <span class=\'posted-at\'>" + data[i][\'date\'] + "</span></div>" + 
+            "<div class=\'comment-text\'>" + data[i][\'comment\'] + "</div>"+
+            "<div class=\'rpl\'><!--<a class=\'btn-like\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'> 5 Likes</a>--><a class=\'btn-reply\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'>Reply</a></div></div>"+
+            "</div>";
+            var item = $("<li>").html(comments);
+            var reply_list = $(\'<ul>\');
+            list.append(item);
+            item.append(reply_list);
+            listReplies(data[i].comment_id, data, reply_list);
+        }
+    }
+}
+
+
+',  yii\web\View::POS_READY);?>

@@ -78,7 +78,7 @@ class AppointmentSearch extends Appointment
                  $query->andFilterWhere(['<=', 'appointment.appointment_status', 1]);
              }
              
-             //$query->andFilterWhere(['=', 'appointment.created_by', Yii::$app->user->id]);
+             $query->andFilterWhere(['=', 'appointment.created_by', Yii::$app->user->id]);
             
             
         return $dataProvider;

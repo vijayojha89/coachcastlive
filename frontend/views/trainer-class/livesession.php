@@ -9,16 +9,17 @@ use OpenTok\MediaMode;
 use OpenTok\ArchiveMode;
 use OpenTok\Session;
 use OpenTok\Role;
-
+$gnl = new common\components\GeneralComponent();
 
 $this->title = $model->title;
 $classOnlineDetail = Yii::$app->db->createCommand("SELECT * FROM class_online WHERE class_id =" . $model->trainer_class_id." AND DATE(created_date) ='".date('Y-m-d')."' AND status=1")->queryOne();
 
 if($classOnlineDetail)
 {
-    $apiKey = "46240312";
-    $apiSecret = "f370782db6a592c836700ac30ed325f1ced5ec42";
-    
+   
+    $apiKey = "46271762";
+    $apiSecret = "8332f36f7e4547b1e9ae794b5f3223dc331be089";
+
     $opentok = new OpenTok($apiKey, $apiSecret);
     $sessionId = $classOnlineDetail['session_id'];
     $token = $opentok->generateToken($sessionId);
@@ -32,6 +33,9 @@ if($classOnlineDetail)
 
 $stringCrendital = json_encode($credential);
 ?>
+<input id="userIdHidden" name="userIdHidden" value="<?php echo YII::$app->user->identity->id;?>"/>
+<input id="nameHidden" name="nameHidden" value="<?php echo YII::$app->user->identity->first_name.' '.YII::$app->user->identity->last_name;?>"/>
+<input id="photoHidden" name="photoHidden" value="<?php echo $gnl->image_not_found_hb( YII::$app->user->identity->profile_photo,'profile_photo',1);?>"/>
 <!-- Start Inner Banner area -->
 <div class="inner-banner-area">
             <div class="container">

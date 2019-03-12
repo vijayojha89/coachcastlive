@@ -5,6 +5,7 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'httpurl'=>'http://' . $_SERVER['HTTP_HOST'].'/coachcastlive/uploads/',
     'url'=>'http://' . $_SERVER['HTTP_HOST'].'/coachcastlive/',
+    'HttpsUrl'=>'https://' . $_SERVER['HTTP_HOST'],
     'career_category'=>[
                             "0"=>"Designer",
                             "1"=>"Engineering",

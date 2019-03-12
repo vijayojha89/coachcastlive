@@ -27,7 +27,7 @@ $workoutdetail = Yii::$app->db->createCommand("SELECT name FROM workout_type WHE
                 <p class="blog_list_date">End Date : <?php echo date('d M Y',strtotime($model->end_date));?></p>
                 <p class="blog_list_date">Time : <?php echo date('h:i A',strtotime($model->time));?></p>-->
                 <p>
-                    <span style="text-align:right;"><a href="<?php echo Url::to(['trainer-class/livesession', 'id' => \common\components\GeneralComponent::encrypt($model->class_id)]); ?>" class="btn btn-danger"><i class="fa fa-video-camera"></i>&nbsp;Live Session</a></span>
+                    <span style="text-align:right;"><a href="<?php echo Yii::$app->params['HttpsUrl'].Url::to(['trainer-class/livesession', 'id' => \common\components\GeneralComponent::encrypt($model->class_id)]); ?>" class="btn btn-danger"><i class="fa fa-video-camera"></i>&nbsp;Live Session</a></span>
                 </p>
              </div>
             <div class="box-right"> 

@@ -42,10 +42,12 @@
             type: 'broadcast',
             data: 'status'
         });
-
+        var userId = document.getElementById("userIdHidden").value;
+        var name = document.getElementById("nameHidden").value;
+        var photo = document.getElementById("photoHidden").value;
         session.signal({
             type: 'userJoin',
-            data: { 'id': '1', 'name': 'vijay', 'avatar': 'http://localhost/coachcastlive/uploads/profile_photo/g-2pbCw5P3qkzBPKPhQM2KS-BR4NcYgs.jpg' }
+            data: { 'id': userId, 'name': name, 'avatar': photo }
         });
     };
 

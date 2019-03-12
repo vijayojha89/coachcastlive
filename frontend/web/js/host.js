@@ -89,14 +89,17 @@
             if (broadcast.rtmp) {
                 rtmpActive.classList.remove('hidden');
             }
+            signal(session, broadcast.status);
         } else {
             startStopButton.classList.remove('active');
             startStopButton.innerHTML = 'Broadcast Over';
             startStopButton.disabled = true;
             rtmpActive.classList.add('hidden');
+            signal(session, broadcast.status);
+            window.location = BASE_URL;
         }
 
-        signal(session, broadcast.status);
+        //signal(session, broadcast.status);
     };
 
     // Let the user know that the url has been copied to the clipboard

@@ -66,6 +66,31 @@ class TrainerClassController extends Controller
     }
 
 
+    public function actionCommentAdd()
+    {
+        $sessionId = isset($_POST['class_session_id']) ? $_POST['class_session_id'] : "";
+        $commentId = isset($_POST['comment_id']) ? $_POST['comment_id'] : "";
+        $comment = isset($_POST['comment']) ? $_POST['comment'] : "";
+        $commentSenderName = isset($_POST['name']) ? $_POST['name'] : "";
+        $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
+        $date = date('Y-m-d H:i:s');
+
+        $sql = "INSERT INTO class_comment(class_session_id,parent_comment_id,comment,user_name,user_id,created_date) VALUES ('" . $sessionId . "','" . $commentId . "','" . $comment . "','" . $commentSenderName . "','" . $user_id . "','" . $date . "')";
+        $query = \Yii::$app->db->createCommand($sql)->execute();
+        return true;
+    }   
+
+    public function actionCommentList($id)
+    {
+        $sql = "SELECT * FROM class_comment WHERE class_session_id = '".$id."' ORDER BY parent_comment_id asc, class_comment_id asc";
+        $query = \Yii::$app->db->createCommand($sql);
+        $record_set = $query->queryAll();
+        echo json_encode($record_set);
+        die;
+    }
+
+
+
     public function actionLivesession($id)
     {
         $id = \common\components\GeneralComponent::decrypt($id);
