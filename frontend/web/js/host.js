@@ -219,7 +219,7 @@
     };
 
     // var updateBroadcastLayout = function() {
-    //     http.post('http://localhost:5000/broadcast/layout', { streams: broadcast.streams })
+    //     http.post('http://`localhost`:5000/broadcast/layout', { streams: broadcast.streams })
     //         .then(function(result) { console.log(result); })
     //         .catch(function(error) { console.log(error); });
     // };
@@ -270,20 +270,22 @@
 
         session.on('signal:userJoin', function(event) {
             if (event.data) {
+                // alert("EWRR");
+                onlineUserList();
 
-                var noUserFound = document.getElementById('noUserFound');
-                noUserFound.classList.add('hidden');
+                // var noUserFound = document.getElementById('noUserFound');
+                // noUserFound.classList.add('hidden');
 
-                var div = document.createElement('div');
-                div.setAttribute("id", "userJoinId-" + event.data.id);
+                // var div = document.createElement('div');
+                // div.setAttribute("id", "userJoinId-" + event.data.id);
 
-                div.innerHTML = '<ul class="userJoinbox-ul">\
-                                    <li><img class="img-circle" src="' + event.data.avatar + '" alt="profile" width="64"></li>\
-                                    <li><strong>' + event.data.name + '</strong></li>\
-                                </ul>';
+                // div.innerHTML = '<ul class="userJoinbox-ul">\
+                //                     <li><img class="img-circle" src="' + event.data.avatar + '" alt="profile" width="64"></li>\
+                //                     <li><strong>' + event.data.name + '</strong></li>\
+                //                 </ul>';
 
 
-                document.getElementById('userJoinList').appendChild(div);
+                // document.getElementById('userJoinList').appendChild(div);
             }
         });
 

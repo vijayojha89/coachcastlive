@@ -10,12 +10,12 @@ use OpenTok\ArchiveMode;
 use OpenTok\Session;
 use OpenTok\Role;
 
-
+$gnl = new \common\components\GeneralComponent();
 $this->title = $model->title;
 Yii::$app->db->createCommand("UPDATE class_online SET status=0 WHERE class_id =" . $model->trainer_class_id." AND DATE(created_date) ='".date('Y-m-d')."'")->execute();
     
-    $apiKey = "46271762";
-    $apiSecret = "8332f36f7e4547b1e9ae794b5f3223dc331be089";
+    $apiKey = Yii::$app->params['openTokApiKey'];
+    $apiSecret = Yii::$app->params['openTokApiSecret'];
 
     $opentok = new OpenTok($apiKey, $apiSecret);
     // A session that uses the OpenTok Media Router, which is required for archiving:
@@ -78,12 +78,21 @@ textarea#comment{ padding:15px !important;}
 }
 .comment-form-container .single-client-say .client-content h3 {
     font-size:14px;
+}
+.comment-form-container .message_section input.btn-submit {
+    background-color: #8cc63f;
+    color: white;
+    padding: 5px;
+    margin: 0px;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    /* opacity: 0.9; */
 }    
 .comment-form-container .reply_section input.btn-submit {
     background-color: #8cc63f;
     color: white;
     padding: 5px;
-    margin: 0px;
     border: none;
     cursor: pointer;
     width: auto;
@@ -98,7 +107,9 @@ textarea#comment{ padding:15px !important;}
     /* font-size: 14px; */
     width: 100%;
 }
-
+.notification_list ul li ul {
+    margin-left:10%;
+}
 </style>
 <!-- Start Inner Banner area -->
 <div class="inner-banner-area">
@@ -186,6 +197,7 @@ textarea#comment{ padding:15px !important;}
                                     <div class="input-row">
                                         <input type="hidden" name="comment_id" id="commentId" placeholder="Name" /> 
                                         <input type="hidden" name="user_id" id="userId" placeholder="Name" value="<?php echo \Yii::$app->user->identity->id;?>" /> 
+                                        <input type="hidden" name="user_image" id="userImage" value="<?php echo $gnl->image_not_found_hb(\Yii::$app->user->identity->profile_photo, 'profile_photo', 1); ?>" /> 
                                         <input type="hidden" name="class_session_id" id="class_session_id" value="<?php echo $credential['sessionId'];?>" /> 
                                         <input class="input-field" type="hidden" name="name" id="name" value="<?php echo \Yii::$app->user->identity->first_name.' '.\Yii::$app->user->identity->last_name;?>" />
                                     </div>
@@ -230,12 +242,61 @@ textarea#comment{ padding:15px !important;}
  
  
  ?>
+ 
+<script>
+
+</script>
+
  <?php 
 
 $this->registerJs('
 
 
-    
+$(document).on("click", ".replyButton", function () {
+    $("#commentId").val($(this).prev().val());
+    $(".replyButton").removeClass("hide"); 
+    $(".message_section").addClass("hide");
+    $(this).parent().prev().removeClass("hide");
+    $(this).addClass("hide");
+});
+
+
+$(document).on("click", ".postReply", function () {
+    var comment = $(this).prev().val();
+    if(comment == "")
+    {
+        alert("Comment field is required!")
+        return false;
+    }
+    var str = $("#frm-comment").serializeArray();
+        str.forEach(function (item) {
+            if (item.name == "comment") {
+                item.value = comment;
+            }
+        });
+
+    str = $.param(str);
+    $.ajax({
+        url: "comment-add",
+        data: str,
+        type: "post",
+        success: function (response)
+        {
+            var result = eval("(" + response + ")");
+            if (response)
+            {
+                $("#comment-message").css("display", "inline-block");
+                $("#commentId").val("");
+                listComment();
+            } else
+            {
+                alert("Failed to add comments !");
+                return false;
+            }
+        }
+    });
+});
+
 
 $("#submitButton").click(function () {
     if($.trim($("#comment").val())  == "")
@@ -269,11 +330,57 @@ $("#submitButton").click(function () {
  });
 });
 
+$(document).on("click", ".btn-blockUser", function () {
+    var classOnlineUserId = $(this).attr("id");
+    $.post("blockuser?id="+classOnlineUserId,
+            function (data) {
+                onlineUserList();
+                listComment();
+            }); 
+
+});
+
+window.onlineUserList=function(){
+    $.post("onlineuser-list?id=3",
+            function (data) {
+                var data = JSON.parse(data);
+                if(data.length > 0)
+                {
+                    $("#noUserFound").hide();
+                }    
+
+                var allDivContent = "";
+                for (var i = 0; (i < data.length); i++)
+                {
+                     
+                     var imagePath = data[i][\'user_image\'];
+                     var div = "<div id=\'userJoinId-"+data[i][\'class_online_user\']+"\'><ul class=\'userJoinbox-ul\'>";
+                     div +=          "<li style=\'width:20%;vertical-align:top;\'><img class=\'img-circle\' src=\'"+imagePath+"\' alt=\'profile\' width=\'50\'></li>";
+                     div +=           "<li style=\'width:55%;\'><strong>"+ data[i][\'user_name\'] + "</strong></li>";
+                    
+                     if(data[i][\'is_block\'] == "0")
+                     {
+                        div +=           "<li style=\'width:20%;text-align:right;vertical-align:top;\'><a href=\'javascript:void(0);\' id=\'"+data[i][\'class_online_user_id\']+"\' class=\'btn btn-danger btn-blockUser\'>Block</a></li>";
+                     }   
+
+                     div +=           "</ul></div>";
+
+                     allDivContent  += div;
+                    
+                }
+                $("#userJoinList").html(\'\');
+                $("#userJoinList").append(allDivContent);
+            }); 
+ };
+
+   
+
+ onlineUserList();
+ 
+
 
 function listComment() {
-   /* $.post("comment-list?id='.$credential['sessionId'].'",*/
-
-   $.post("comment-list?id=1_MX40NjI3MTc2Mn5-MTU1MjQyMDE4MjE4M34veHV1UEZmRWZ0ejJ3V3p5ZndMc2dVeUp-fg",
+   $.post("comment-list?id='.$credential['sessionId'].'",
             function (data) {
                    var data = JSON.parse(data);
                 
@@ -288,18 +395,29 @@ function listComment() {
 
                 for (var i = 0; (i < data.length); i++)
                 {
-                    var commentId = data[i]["comment_id"];
+                    var commentId = data[i]["class_comment_id"];
                     parent = data[i]["parent_comment_id"];
 
                     if (parent == "0")
                     {
-                        // comments = "<div class=\'comment-row\'>"+
-                        // "<div class=\'comment-info\'><span class=\'commet-row-label\'>from</span> <span class=\'posted-by\'>" + data[i][\'comment_sender_name\'] + " </span> <span class=\'commet-row-label\'>at</span> <span class=\'posted-at\'>" + data[i][\'date\'] + "</span></div>" + 
-                        // "<div class=\'comment-text\'>" + data[i][\'comment\'] + "</div>"+
-                        // "<div class=\'rpl\'><!--<a class=\'btn-like\' onClick=\'postReply(" + commentId + ")\'>5 Likes</a>--><a class=\'btn-reply\' onClick=\'postReply(" + commentId + ")\'>Reply</a></div></div></div>";
-
-
-                        comments = "<div class=\'notification_item\'><div class=\'single-client-say\'><div class=\'pull-left client-picture\'><img src=\'http://localhost/coachcastlive/uploads/profile_photo/thumb/WbM5v-yCaiZFBhzNbdx9ZbY5CpCAkiYp.jpg\'></div><div class=\'media-body client-content\'><h3>"+ data[i][\'user_name\'] +"</h3><p>"+data[i][\'comment\'] +"</p><p class=\"reply_section\"><textarea placeholder=\'Type a message\'></textarea><input type=\'button\' class=\'btn-submit\' value=\'Post Reply\'><input type=\'button\' class=\'pull-right btn-submit\' value=\'&nbsp;&nbsp;&nbsp;Reply&nbsp;&nbsp;&nbsp;\' onClick=\'postReply(" + commentId + ")\'></p></div></div></div>";
+                        comments = "<div class=\'notification_item\'>";
+                        comments +=    "<div class=\'single-client-say\'>";
+                        comments +=         "<div class=\'pull-left client-picture\'>";
+                        comments +=                "<img src=\'"+data[i][\'user_image\']+"\'>";
+                        comments +=          "</div>";
+                        comments +=          "<div class=\'media-body client-content\'>";
+                        comments +=             "<h3>"+ data[i][\'user_name\'] +"</h3><p>"+data[i][\'comment\'] +"</p>";
+                        comments +=             "<p class=\"message_section hide\">";
+                        comments +=                 "<textarea placeholder=\'Type a message\'></textarea>";
+                        comments +=                 "<input type=\'button\' class=\'btn-submit postReply\' value=\'Post Reply\'>";
+                        comments +=             "</p>";
+                        comments +=             "<p class=\'reply_section\'>";
+                        comments +=                 "<input type=\'hidden\' class=\'hiddenCommentId\' value=\'"+commentId+"\'>";
+                        comments +=                 "<input type=\'button\' class=\'pull-right btn-submit replyButton\' value=\'&nbsp;&nbsp;&nbsp;Reply&nbsp;&nbsp;&nbsp;\'>";
+                        comments +=             "</p>";
+                        comments +=          "</div>";
+                        comments +=     " </div>";
+                        comments += "</div>";
 
                         var item = $("<li>").html(comments);
                         list.append(item);
@@ -316,15 +434,22 @@ listComment();
 
 
 function listReplies(commentId, data, list) {
+  
     for (var i = 0; (i < data.length); i++)
     {
         if (commentId == data[i].parent_comment_id)
         {
-            var comments = "<div class=\'comment-row\'>"+
-            " <div class=\'comment-info\'><span class=\'commet-row-label\'>from</span> <span class=\'posted-by\'>" + data[i][\'comment_sender_name\'] + " </span> <span class=\'commet-row-label\'>at</span> <span class=\'posted-at\'>" + data[i][\'date\'] + "</span></div>" + 
-            "<div class=\'comment-text\'>" + data[i][\'comment\'] + "</div>"+
-            "<div class=\'rpl\'><!--<a class=\'btn-like\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'> 5 Likes</a>--><a class=\'btn-reply\' onClick=\'postReply(" + data[i][\'comment_id\'] + ")\'>Reply</a></div></div>"+
-            "</div>";
+            comments = "<div class=\'notification_item\'>";
+                        comments +=    "<div class=\'single-client-say\'>";
+                        comments +=         "<div class=\'pull-left client-picture\'>";
+                        comments +=               "<img src=\'"+data[i][\'user_image\']+"\'>";
+                        comments +=          "</div>";
+                        comments +=          "<div class=\'media-body client-content\'>";
+                        comments +=             "<h3>"+ data[i][\'user_name\'] +"</h3><p>"+data[i][\'comment\'] +"</p>";
+                        comments +=          "</div>";
+                        comments +=     " </div>";
+                        comments += "</div>";
+
             var item = $("<li>").html(comments);
             var reply_list = $(\'<ul>\');
             list.append(item);

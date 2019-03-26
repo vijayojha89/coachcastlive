@@ -16,27 +16,34 @@ $classOnlineDetail = Yii::$app->db->createCommand("SELECT * FROM class_online WH
 
 if($classOnlineDetail)
 {
-   
-    $apiKey = "46271762";
-    $apiSecret = "8332f36f7e4547b1e9ae794b5f3223dc331be089";
-
+    $apiKey = Yii::$app->params['openTokApiKey'];
+    $apiSecret = Yii::$app->params['openTokApiSecret'];
+    
     $opentok = new OpenTok($apiKey, $apiSecret);
     $sessionId = $classOnlineDetail['session_id'];
     $token = $opentok->generateToken($sessionId);
     
-        
     $credential = [];
     $credential["apiKey"] = $apiKey;
     $credential["sessionId"] = $sessionId;
     $credential["token"] = $token;
+
+
+    Yii::$app->db->createCommand()->insert('class_online_user',
+    [
+        'class_online_id' => $classOnlineDetail['class_online_id'],
+        'class_id' => $classOnlineDetail['class_id'],
+        'user_id' => YII::$app->user->identity->id,
+        'user_name' => YII::$app->user->identity->first_name.' '.YII::$app->user->identity->last_name,   
+        'user_image' => $gnl->image_not_found_hb( YII::$app->user->identity->profile_photo,'profile_photo',1),
+        'created_date' => date('Y-m-d H:i:s'),
+        'status' => 1,
+    ])->execute();
 }
 
 $stringCrendital = json_encode($credential);
 ?>
-<input id="userIdHidden" name="userIdHidden" value="<?php echo YII::$app->user->identity->id;?>"/>
-<input id="nameHidden" name="nameHidden" value="<?php echo YII::$app->user->identity->first_name.' '.YII::$app->user->identity->last_name;?>"/>
-<input id="photoHidden" name="photoHidden" value="<?php echo $gnl->image_not_found_hb( YII::$app->user->identity->profile_photo,'profile_photo',1);?>"/>
-<!-- Start Inner Banner area -->
+
 <div class="inner-banner-area">
             <div class="container">
                 <div class="row">

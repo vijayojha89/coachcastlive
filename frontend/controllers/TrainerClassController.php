@@ -59,7 +59,11 @@ class TrainerClassController extends Controller
     public function actionBroadcast($id)
     {
         $id = \common\components\GeneralComponent::decrypt($id);
-
+        // $userId = Yii::$app->user->identity->id;
+        // $sql = "SELECT * FROM user_class WHERE class_id = '".$model->trainer_class_id."' AND  ORDER BY parent_comment_id asc, class_comment_id asc";
+        // $query = \Yii::$app->db->createCommand($sql);
+        // $record_set = $query->queryAll();
+       
         return $this->render('broadcast', [
             'model' => $this->findModel($id),
         ]);
@@ -73,9 +77,10 @@ class TrainerClassController extends Controller
         $comment = isset($_POST['comment']) ? $_POST['comment'] : "";
         $commentSenderName = isset($_POST['name']) ? $_POST['name'] : "";
         $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
+        $user_image = isset($_POST['user_image']) ? $_POST['user_image'] : "";
         $date = date('Y-m-d H:i:s');
 
-        $sql = "INSERT INTO class_comment(class_session_id,parent_comment_id,comment,user_name,user_id,created_date) VALUES ('" . $sessionId . "','" . $commentId . "','" . $comment . "','" . $commentSenderName . "','" . $user_id . "','" . $date . "')";
+        $sql = "INSERT INTO class_comment(class_session_id,parent_comment_id,comment,user_name,user_id,user_image,created_date) VALUES ('" . $sessionId . "','" . $commentId . "','" . $comment . "','" . $commentSenderName . "','" . $user_id . "','".$user_image."','" . $date . "')";
         $query = \Yii::$app->db->createCommand($sql)->execute();
         return true;
     }   
@@ -89,7 +94,28 @@ class TrainerClassController extends Controller
         die;
     }
 
+    public function actionOnlineuserList($id)
+    {
+        $sql = "SELECT * FROM class_online_user WHERE class_online_id = '".$id."'";
+        $query = \Yii::$app->db->createCommand($sql);
+        $record_set = $query->queryAll();
+        echo json_encode($record_set);
+        die;
+    }
 
+    public function actionBlockuser($id)
+    {
+        $sql = "SELECT * FROM class_online_user WHERE class_online_user_id = '".$id."'";
+        $result = \Yii::$app->db->createCommand($sql)->queryOne();
+        if($result)
+        {
+            Yii::$app->db->createCommand("UPDATE class_online_user SET is_block=1 WHERE class_id =" . $result['class_id']." AND user_id ='".$result['user_id']."'")->execute();
+        }
+        echo '<pre>';
+        print_r($result);
+        die;
+
+    }
 
     public function actionLivesession($id)
     {

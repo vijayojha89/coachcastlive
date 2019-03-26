@@ -42,12 +42,9 @@
             type: 'broadcast',
             data: 'status'
         });
-        var userId = document.getElementById("userIdHidden").value;
-        var name = document.getElementById("nameHidden").value;
-        var photo = document.getElementById("photoHidden").value;
         session.signal({
             type: 'userJoin',
-            data: { 'id': userId, 'name': name, 'avatar': photo }
+            data: { 'id': 'reset' }
         });
     };
 
