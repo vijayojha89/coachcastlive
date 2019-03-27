@@ -10,6 +10,7 @@
         showControls: false
     };
 
+    var sessionTempData = "";
     /**
      * Get our OpenTok API Key, Session ID, and Token from the JSON embedded
      * in the HTML.
@@ -47,6 +48,15 @@
             data: { 'id': 'reset' }
         });
     };
+
+
+    window.refreshCommentUser = function() {
+        sessionTempData.signal({
+            type: 'refreshComment',
+            data: { 'id': 'all' }
+        });
+    };
+
 
     /**
      * Update the banner based on the status of the broadcast (active or ended)
@@ -110,6 +120,38 @@
             }
             updateBanner(status);
         });
+
+        session.on('signal:refreshCoachComment', function(event) {
+            if (event.data) {
+                listComment();
+            }
+        });
+
+        session.on('signal:coachUserBlock', function(event) {
+            var userId = document.getElementById("hidden_user_id").value;
+            if (event.data) {
+
+                if (event.data.id == userId) {
+                    document.getElementById("frm-comment").style.display = "none";
+
+                }
+
+            }
+        });
+
+        session.on('signal:coachUserUnBlock', function(event) {
+            var userId = document.getElementById("hidden_user_id").value;
+
+            if (event.data) {
+
+                if (event.data.id == userId) {
+                    document.getElementById("frm-comment").style.display = "block";
+
+                }
+
+            }
+        });
+
     };
 
     var init = function() {
@@ -124,6 +166,7 @@
 
                 setEventListeners(session);
                 checkBroadcastStatus(session);
+                sessionTempData = session;
             }
         });
     };

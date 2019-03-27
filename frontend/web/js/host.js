@@ -15,6 +15,28 @@
         showControls: false
     };
 
+    var sessionTempData = "";
+    window.refreshCoachComment = function() {
+        sessionTempData.signal({
+            type: 'refreshCoachComment',
+            data: { 'id': 'all' }
+        });
+    };
+
+    window.coachUserBlock = function(id) {
+        sessionTempData.signal({
+            type: 'coachUserBlock',
+            data: { 'id': id }
+        });
+    };
+
+    window.coachUserUnBlock = function(id) {
+        sessionTempData.signal({
+            type: 'coachUserUnBlock',
+            data: { 'id': id }
+        });
+    };
+
     /**
      * Get our OpenTok http Key, Session ID, and Token from the JSON embedded
      * in the HTML.
@@ -270,22 +292,13 @@
 
         session.on('signal:userJoin', function(event) {
             if (event.data) {
-                // alert("EWRR");
                 onlineUserList();
+            }
+        });
 
-                // var noUserFound = document.getElementById('noUserFound');
-                // noUserFound.classList.add('hidden');
-
-                // var div = document.createElement('div');
-                // div.setAttribute("id", "userJoinId-" + event.data.id);
-
-                // div.innerHTML = '<ul class="userJoinbox-ul">\
-                //                     <li><img class="img-circle" src="' + event.data.avatar + '" alt="profile" width="64"></li>\
-                //                     <li><strong>' + event.data.name + '</strong></li>\
-                //                 </ul>';
-
-
-                // document.getElementById('userJoinList').appendChild(div);
+        session.on('signal:refreshComment', function(event) {
+            if (event.data) {
+                listComment();
             }
         });
 
@@ -347,6 +360,8 @@
                 analytics.log('initialize', 'variationAttempt');
                 analytics.log('initialize', 'variationSuccess');
             }
+            sessionTempData = session;
+
         });
     };
 

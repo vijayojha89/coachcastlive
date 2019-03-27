@@ -110,6 +110,22 @@ class TrainerClassController extends Controller
         if($result)
         {
             Yii::$app->db->createCommand("UPDATE class_online_user SET is_block=1 WHERE class_id =" . $result['class_id']." AND user_id ='".$result['user_id']."'")->execute();
+            Yii::$app->db->createCommand("UPDATE user_class SET is_block=1 WHERE class_id =" . $result['class_id']." AND created_by ='".$result['user_id']."'")->execute();
+        }
+        echo '<pre>';
+        print_r($result);
+        die;
+
+    }
+
+    public function actionUnblockuser($id)
+    {
+        $sql = "SELECT * FROM class_online_user WHERE class_online_user_id = '".$id."'";
+        $result = \Yii::$app->db->createCommand($sql)->queryOne();
+        if($result)
+        {
+            Yii::$app->db->createCommand("UPDATE class_online_user SET is_block=0 WHERE class_id =" . $result['class_id']." AND user_id ='".$result['user_id']."'")->execute();
+            Yii::$app->db->createCommand("UPDATE user_class SET is_block=0 WHERE class_id =" . $result['class_id']." AND created_by ='".$result['user_id']."'")->execute();
         }
         echo '<pre>';
         print_r($result);
@@ -120,10 +136,23 @@ class TrainerClassController extends Controller
     public function actionLivesession($id)
     {
         $id = \common\components\GeneralComponent::decrypt($id);
+        $model = $this->findModel($id);
+        $userId = Yii::$app->user->identity->id;
+        $sql = "SELECT * FROM user_class WHERE class_id = '".$model->trainer_class_id."' AND created_by='".$userId."'";
+        $result = \Yii::$app->db->createCommand($sql)->queryOne();
+        if($result)
+        {
+            return $this->render('livesession', [
+                'model' => $model,
+                'userClassDetail'=>$result
+            ]);
+        }
+        else
+        {
+            Yii::$app->getSession()->setFlash('error', Yii::t('app', 'You are not authorized'));
+            return $this->redirect(['user/myjoinclass']);
 
-        return $this->render('livesession', [
-            'model' => $this->findModel($id),
-        ]);
+        }
     }
 
      /**

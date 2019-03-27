@@ -183,38 +183,30 @@ textarea#comment{ padding:15px !important;}
     </div>
                        
     
-    <div class="comment-form-container" style="">
-                            <div id="output" class="notification_list"></div>
-                            
+                            <div class="comment-form-container" style="">
+                                <div id="output" class="notification_list"></div>
+                                <div id="comment-message">Comments Added Successfully!</div>
+                                    <form id="frm-comment">
+                                        <div class="input-row">
+                                            <input type="hidden" name="comment_id" id="commentId" placeholder="Name" /> 
+                                            <input type="hidden" name="user_id" id="userId" placeholder="Name" value="<?php echo \Yii::$app->user->identity->id;?>" /> 
+                                            <input type="hidden" name="user_image" id="userImage" value="<?php echo $gnl->image_not_found_hb(\Yii::$app->user->identity->profile_photo, 'profile_photo', 1); ?>" /> 
+                                            <input type="hidden" name="class_session_id" id="class_session_id" value="<?php echo $credential['sessionId'];?>" /> 
+                                            <input class="input-field" type="hidden" name="name" id="name" value="<?php echo \Yii::$app->user->identity->first_name.' '.\Yii::$app->user->identity->last_name;?>" />
+                                        </div>
+                                        <div class="input-row">
+                                            <textarea class="input-field" type="text" name="comment"
+                                                id="comment" placeholder="Add a Comment"></textarea>
+                                        </div>
+                                        <div>
+                                            <input type="button" class="btn-submit" id="submitButton"
+                                                value="Publish" />
+                                        </div>
 
-
-
-
-
-
-                            <div id="comment-message">Comments Added Successfully!</div>
-                                <form id="frm-comment">
-                                    <div class="input-row">
-                                        <input type="hidden" name="comment_id" id="commentId" placeholder="Name" /> 
-                                        <input type="hidden" name="user_id" id="userId" placeholder="Name" value="<?php echo \Yii::$app->user->identity->id;?>" /> 
-                                        <input type="hidden" name="user_image" id="userImage" value="<?php echo $gnl->image_not_found_hb(\Yii::$app->user->identity->profile_photo, 'profile_photo', 1); ?>" /> 
-                                        <input type="hidden" name="class_session_id" id="class_session_id" value="<?php echo $credential['sessionId'];?>" /> 
-                                        <input class="input-field" type="hidden" name="name" id="name" value="<?php echo \Yii::$app->user->identity->first_name.' '.\Yii::$app->user->identity->last_name;?>" />
-                                    </div>
-                                    <div class="input-row">
-                                        <textarea class="input-field" type="text" name="comment"
-                                            id="comment" placeholder="Add a Comment"></textarea>
-                                    </div>
-                                    <div>
-                                        <input type="button" class="btn-submit" id="submitButton"
-                                            value="Publish" />
-                                    </div>
-
-                                </form>
+                                    </form>
                             </div>
-                          
-                           
-                        </div>
+
+                             </div>
 
 
                             </div>
@@ -285,8 +277,8 @@ $(document).on("click", ".postReply", function () {
             var result = eval("(" + response + ")");
             if (response)
             {
-                $("#comment-message").css("display", "inline-block");
                 $("#commentId").val("");
+                refreshCoachComment();
                 listComment();
             } else
             {
@@ -318,8 +310,10 @@ $("#submitButton").click(function () {
          if (response)
          {
              $("#comment-message").css("display", "inline-block");
+             $("#comment-message").fadeOut(5000);
              $("#comment").val("");
              $("#commentId").val("");
+             refreshCoachComment();
              listComment();
          } else
          {
@@ -332,8 +326,23 @@ $("#submitButton").click(function () {
 
 $(document).on("click", ".btn-blockUser", function () {
     var classOnlineUserId = $(this).attr("id");
+    var userid = $(this).attr("userid");
     $.post("blockuser?id="+classOnlineUserId,
             function (data) {
+                coachUserBlock(userid);
+                onlineUserList();
+                listComment();
+            }); 
+
+});
+
+
+$(document).on("click", ".btn-unblockUser", function () {
+    var classOnlineUserId = $(this).attr("id");
+    var userid = $(this).attr("userid");
+    $.post("unblockuser?id="+classOnlineUserId,
+            function (data) {
+                coachUserUnBlock(userid);
                 onlineUserList();
                 listComment();
             }); 
@@ -356,11 +365,15 @@ window.onlineUserList=function(){
                      var imagePath = data[i][\'user_image\'];
                      var div = "<div id=\'userJoinId-"+data[i][\'class_online_user\']+"\'><ul class=\'userJoinbox-ul\'>";
                      div +=          "<li style=\'width:20%;vertical-align:top;\'><img class=\'img-circle\' src=\'"+imagePath+"\' alt=\'profile\' width=\'50\'></li>";
-                     div +=           "<li style=\'width:55%;\'><strong>"+ data[i][\'user_name\'] + "</strong></li>";
+                     div +=           "<li style=\'width:45%;\'><strong>"+ data[i][\'user_name\'] + "</strong></li>";
                     
                      if(data[i][\'is_block\'] == "0")
                      {
-                        div +=           "<li style=\'width:20%;text-align:right;vertical-align:top;\'><a href=\'javascript:void(0);\' id=\'"+data[i][\'class_online_user_id\']+"\' class=\'btn btn-danger btn-blockUser\'>Block</a></li>";
+                        div +=           "<li style=\'width:20%;text-align:right;vertical-align:top;\'><a href=\'javascript:void(0);\' id=\'"+data[i][\'class_online_user_id\']+"\' userid=\'"+data[i][\'user_id\']+"\' class=\'btn btn-danger btn-blockUser\'>Block</a></li>";
+                     }
+                     else
+                     {
+                        div +=           "<li style=\'width:20%;text-align:right;vertical-align:top;\'><a href=\'javascript:void(0);\' id=\'"+data[i][\'class_online_user_id\']+"\' userid=\'"+data[i][\'user_id\']+"\' class=\'btn btn-success btn-unblockUser\'>Unblock</a></li>";
                      }   
 
                      div +=           "</ul></div>";
@@ -378,8 +391,8 @@ window.onlineUserList=function(){
  onlineUserList();
  
 
+window.listComment=function(){
 
-function listComment() {
    $.post("comment-list?id='.$credential['sessionId'].'",
             function (data) {
                    var data = JSON.parse(data);
@@ -433,7 +446,7 @@ function listComment() {
 listComment();
 
 
-function listReplies(commentId, data, list) {
+window.listReplies=function(commentId, data, list){
   
     for (var i = 0; (i < data.length); i++)
     {
