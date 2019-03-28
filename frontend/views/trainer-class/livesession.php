@@ -29,6 +29,7 @@ if($classOnlineDetail)
     $credential["token"] = $token;
 
 
+    Yii::$app->db->createCommand("UPDATE class_online_user SET status=0 WHERE class_online_id ='" . $classOnlineDetail['class_online_id']."' AND user_id ='".YII::$app->user->identity->id."'")->execute();
     Yii::$app->db->createCommand()->insert('class_online_user',
     [
         'class_online_id' => $classOnlineDetail['class_online_id'],
@@ -38,8 +39,10 @@ if($classOnlineDetail)
         'user_image' => $gnl->image_not_found_hb( YII::$app->user->identity->profile_photo,'profile_photo',1),
         'created_date' => date('Y-m-d H:i:s'),
         'status' => 1,
+        'is_block'=>$userClassDetail['is_block']
     ])->execute();
 }
+
 
 $stringCrendital = json_encode($credential);
 ?>
@@ -142,7 +145,7 @@ textarea#comment{ padding:15px !important;}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="comment-form-container" style="">
+                                <div class="comment-form-container" id="comment-form-container">
                                 <div id="output" class="notification_list"></div>
                                 <div id="comment-message">Comments Added Successfully!</div>
                                 <?php
@@ -197,6 +200,7 @@ textarea#comment{ padding:15px !important;}
  <?php
  $this->registerJs('
  
+//  $("#comment-form-container").hide();
  
 $("#submitButton").click(function () {
     if($.trim($("#comment").val())  == "")

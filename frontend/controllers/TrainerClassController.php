@@ -96,7 +96,7 @@ class TrainerClassController extends Controller
 
     public function actionOnlineuserList($id)
     {
-        $sql = "SELECT * FROM class_online_user WHERE class_online_id = '".$id."'";
+        $sql = "SELECT * FROM class_online_user WHERE class_online_id = '".$id."' AND status = 1";
         $query = \Yii::$app->db->createCommand($sql);
         $record_set = $query->queryAll();
         echo json_encode($record_set);

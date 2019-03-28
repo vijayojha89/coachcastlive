@@ -26,9 +26,11 @@ $workoutdetail = Yii::$app->db->createCommand("SELECT name FROM workout_type WHE
                 <!--<p class="blog_list_date">Start Date : <?php echo date('d M Y',strtotime($model->start_date));?></p>
                 <p class="blog_list_date">End Date : <?php echo date('d M Y',strtotime($model->end_date));?></p>
                 <p class="blog_list_date">Time : <?php echo date('h:i A',strtotime($model->time));?></p>-->
+                <?php if(\Yii::$app->user->identity->role == 'trainer'){ ?>
                 <p>
                     <span style="text-align:right;"><a href="<?php echo Yii::$app->params['HttpsUrl'].Url::to(['trainer-class/broadcast', 'id' => \common\components\GeneralComponent::encrypt($model->trainer_class_id)]); ?>" class="btn btn-danger"><i class="fa fa-video-camera"></i>&nbsp;Start Class</a></span>
                 </p>
+                <?php } ?>
              </div>
             <div class="box-right"> 
 

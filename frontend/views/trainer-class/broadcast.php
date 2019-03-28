@@ -37,7 +37,7 @@ Yii::$app->db->createCommand("UPDATE class_online SET status=0 WHERE class_id ="
         'created_date' => date('Y-m-d H:i:s'),
     ])
     ->execute();
-    
+    $class_online_id = Yii::$app->db->getLastInsertID();
         
     $credential = [];
     $credential["apiKey"] = $apiKey;
@@ -183,7 +183,7 @@ textarea#comment{ padding:15px !important;}
     </div>
                        
     
-                            <div class="comment-form-container" style="">
+                            <div class="comment-form-container" id="comment-form-container">
                                 <div id="output" class="notification_list"></div>
                                 <div id="comment-message">Comments Added Successfully!</div>
                                     <form id="frm-comment">
@@ -243,7 +243,7 @@ textarea#comment{ padding:15px !important;}
 
 $this->registerJs('
 
-
+$("#comment-form-container").hide();
 $(document).on("click", ".replyButton", function () {
     $("#commentId").val($(this).prev().val());
     $(".replyButton").removeClass("hide"); 
@@ -350,7 +350,8 @@ $(document).on("click", ".btn-unblockUser", function () {
 });
 
 window.onlineUserList=function(){
-    $.post("onlineuser-list?id=3",
+    $.post("onlineuser-list?id='.$class_online_id.'",
+
             function (data) {
                 var data = JSON.parse(data);
                 if(data.length > 0)
@@ -364,8 +365,8 @@ window.onlineUserList=function(){
                      
                      var imagePath = data[i][\'user_image\'];
                      var div = "<div id=\'userJoinId-"+data[i][\'class_online_user\']+"\'><ul class=\'userJoinbox-ul\'>";
-                     div +=          "<li style=\'width:20%;vertical-align:top;\'><img class=\'img-circle\' src=\'"+imagePath+"\' alt=\'profile\' width=\'50\'></li>";
-                     div +=           "<li style=\'width:45%;\'><strong>"+ data[i][\'user_name\'] + "</strong></li>";
+                     div +=          "<li style=\'width:20%;vertical-align:top;margin-right:5px;\'><img class=\'img-circle\' src=\'"+imagePath+"\' alt=\'profile\' width=\'50\'></li>";
+                     div +=           "<li style=\'width:45%;\'><b>"+ data[i][\'user_name\'] + "</b></li>";
                     
                      if(data[i][\'is_block\'] == "0")
                      {
@@ -385,11 +386,6 @@ window.onlineUserList=function(){
                 $("#userJoinList").append(allDivContent);
             }); 
  };
-
-   
-
- onlineUserList();
- 
 
 window.listComment=function(){
 

@@ -190,9 +190,9 @@
                 broadcast = R.merge(broadcast, broadcastData);
                 var startStopButton = document.getElementById('startStop');
                 startStopButton.disabled = false;
-
                 updateStatus(session, 'active');
                 analytics.log('startBroadcast', 'variationSuccess');
+                document.getElementById('comment-form-container').style.display = "block";
             }).catch(function(error) {
                 console.log(error);
                 analytics.log('startBroadcast', 'variationError');
