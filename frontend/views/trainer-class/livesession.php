@@ -12,7 +12,6 @@ use OpenTok\Role;
 $gnl = new common\components\GeneralComponent();
 
 $this->title = $model->title;
-$classOnlineDetail = Yii::$app->db->createCommand("SELECT * FROM class_online WHERE class_id =" . $model->trainer_class_id." AND DATE(created_date) ='".date('Y-m-d')."' AND status=1")->queryOne();
 
 if($classOnlineDetail)
 {
@@ -41,6 +40,7 @@ if($classOnlineDetail)
         'status' => 1,
         'is_block'=>$userClassDetail['is_block']
     ])->execute();
+    $class_online_user_id = Yii::$app->db->getLastInsertID();
 }
 
 
@@ -75,7 +75,11 @@ textarea#comment{ padding:15px !important;}
     padding-left: 10px;
 }
 .comment-form-container .single-client-say .client-content h3 {
-    font-size:14px;
+    font-size:16px;
+}
+.notification_list .notification_item p:last-child{
+    font-size:15px;
+    color:#000;
 }
 .comment-form-container .message_section input.btn-submit {
     background-color: #8cc63f;
@@ -120,7 +124,7 @@ textarea#comment{ padding:15px !important;}
  </div>
 <!-- End Inner Banner area -->
 
-
+<input type="hidden" name="class_online_user_id" id="class_online_user_id" value="<?php echo $class_online_user_id;?>"/>
 <input type="hidden" name="hidden_user_id" id="hidden_user_id" value="<?php echo \Yii::$app->user->identity->id;?>" /> 
 <div class="online-store-grid padding-space">
             <div class="container">
@@ -133,7 +137,7 @@ textarea#comment{ padding:15px !important;}
                         <div class="whatclientsay">
                         <div>
                            <h2 class="section-title-default2 title-bar-high2">Live Session - <?php echo $model->title;?></h2>
-
+                           <button id="exitClass" class="classStartStopBtn btn-danger"><i class="fa fa-sign-out"></i>Exit</button>
                                 <div id="credentials" style="display:none;" data='<?php echo $stringCrendital;?>'></div>
                                 <div style="width:100%;">
                                     <div id="main" class="main-container" style="width:100%">
@@ -145,7 +149,8 @@ textarea#comment{ padding:15px !important;}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="comment-form-container" id="comment-form-container">
+                                <div class="comment-form-container" id="comment-form-container" style="clear:both;">
+                                <h2 class="section-title-default2 title-bar-high2" style="margin-bottom:20px;">Comments</h2>
                                 <div id="output" class="notification_list"></div>
                                 <div id="comment-message">Comments Added Successfully!</div>
                                 <?php
@@ -202,6 +207,21 @@ textarea#comment{ padding:15px !important;}
  
 //  $("#comment-form-container").hide();
  
+
+$("#exitClass").click(function () {
+ var class_online_user_id = $("#class_online_user_id").val();   
+ $.ajax({
+     url: "exitclass?id="+class_online_user_id,
+     type: "get",
+     success: function (response)
+     {
+        exituserfromclass();
+        window.location = BASE_URL+"/user/myjoinclass";
+     }
+ });
+});
+
+
 $("#submitButton").click(function () {
     if($.trim($("#comment").val())  == "")
     {

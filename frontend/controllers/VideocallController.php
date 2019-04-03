@@ -79,9 +79,14 @@ class VideocallController extends Controller {
    
 
    
-    public function actionIndex()
+    public function actionIndex($id)
     {
-        return $this->render('index'); 
+        $id = \common\components\GeneralComponent::decrypt($id);
+        $sql = "SELECT * FROM appointment_confirm WHERE appointment_id = '".$id."' AND status = 1";
+        $result = \Yii::$app->db->createCommand($sql)->queryOne();
+        return $this->render('index', [
+            'appointmentDetail'=>$result,
+        ]); 
     }   
    
  

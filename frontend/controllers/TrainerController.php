@@ -64,7 +64,7 @@ class TrainerController extends \yii\web\Controller
               $appointment_confirm['trainer_id'] = $appointmentDetail->trainer_id;
               $appointment_confirm['appointment_date'] = $appointmentDetail->appointment_date;
               $appointment_confirm['created_date'] = date('Y-m-d H:i:s');
-              $appointment_confirm['status'] = 0;
+              $appointment_confirm['status'] = 1;
               \Yii::$app->db->createCommand()->insert('appointment_confirm',$appointment_confirm)->execute();
               
               $appointmentTime = date('Y-m-d h:i A',strtotime($appointmentDetail->appointment_date));

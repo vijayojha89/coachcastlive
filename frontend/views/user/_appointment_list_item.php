@@ -8,13 +8,13 @@ $gnl = new \common\components\GeneralComponent(); ?>
         <?php } ?>
         
         <?php if($model->appointment_status == "1"){ ?> 
-                                                             <!--<label><a class="btn btn-primary" href="<?php  echo Url::to(['videocall/index']);?>"><i class="fa fa-phone"></i>&nbsp;&nbsp;Call</a></label>-->
+                                                             <label><a class="btn btn-primary" href="<?php  echo Url::to(['videocall/index']);?>"><i class="fa fa-phone"></i>&nbsp;&nbsp;Call</a></label>
                                                              <?php } ?>
                                                              
     </div> 
     <div class="panel-body">
         <div class="pic-box"> 
-            <a><img class="img-circle" src="<?php echo $gnl->image_not_found_hb($model->user->profile_photo, 'profile_photo', 1); ?>"></a>
+            <a><img class="img-circle" src="<?php echo $gnl->image_not_found_hb($model->trainer->profile_photo, 'profile_photo', 1); ?>"></a>
         </div> 
         <div class="info-box">
             <p><strong>Title : </strong><?php echo $model->title; ?></p>

@@ -4,6 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 
 $gnl = new \common\components\GeneralComponent();
+
 ?>
 <?= $this->render('/site/needhelp') ?>
 <div id="myModal1" class="modal fade popupwidth " role="dialog"></div>

@@ -1,6 +1,39 @@
 <?php
-
+require __DIR__."/../../../uploads/class_api/vendor/autoload.php";
+use yii\helpers\Html;
 use yii\helpers\Url;
+
+use OpenTok\OpenTok;
+use OpenTok\MediaMode;
+use OpenTok\ArchiveMode;
+use OpenTok\Session;
+use OpenTok\Role;
+
+$apiKey = Yii::$app->params['openTokApiKey'];
+$apiSecret = Yii::$app->params['openTokApiSecret'];
+
+$opentok = new OpenTok($apiKey, $apiSecret);
+
+
+$sessionNeed = 1;
+if($appointmentDetail)
+{
+    if($appointmentDetail['sessionId'])
+    {
+        $sessionNeed = 0;
+    }
+}
+
+
+if($sessionNeed == 1)
+{   
+    $session = $opentok->createSession();
+    $sessionId = $session->getSessionId();
+    $token = $opentok->generateToken($sessionId);
+}
+
+  
+
 $this->title = "Video Call";
 ?>
 
@@ -29,82 +62,28 @@ $this->title = "Video Call";
 						<span id="m_timer" class="style colorDefinition size_lg"></span>
 					</div>
 
-
-					<div class="videocall">
-
-						<span class="reportabuse"><em>Report Abuse</em></span>
-
-						<div class="row">
-                        <div class="App-mask" id="connecting-mask">
-                                                        <progress-spinner dark style="font-size:50px"></progress-spinner>
-                                                        <div class="message with-spinner">Connecting</div>
-                                                    </div>
-							<div class="col-md-6">
-
-								<div class="videouser">
-									<div class="v-user"><span>Tiffany</span></div>
-									<div class="videousers">
-
-                                        <div class="App">
-                                            <div class="App-main">
-                                                <div id="controls" class='App-control-container hidden'>
-                                                    <div class="ots-video-control circle audio" id="toggleLocalAudio"></div>
-                                                    <div class="ots-video-control circle video" id="toggleLocalVideo"></div>
-                                                </div>
-
-                                                <div class="App-video-container" id="appVideoContainer">
-                                                    
-                                                    <div class="App-mask hidden" id="start-mask">
-                                                        <div class="message button clickable" id="start">Click to Start Call</div>
-                                                    </div>
-                                                    <div id="cameraSubscriberContainer" class="video-container-hidden"></div>
-                                                    <div id="screenSubscriberContainer" class="video-container-hidden"></div>
-                                                </div>
-                                               
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="livecallingbtoom">
-                                            <a href="#">My Videos</a>
-                                            <a href="#">My Blogs</a>
-                                            <a href="#">My Classes</a>
-                                            <a href="#">Make Appointment</a>
-                                        </div>
-
+                    <div class="App">
+                            <div class="App-main">
+                                <div id="controls" class='App-control-container hidden'>
+                                    <div class="ots-video-control circle audio" id="toggleLocalAudio"></div>
+                                    <div class="ots-video-control circle video" id="toggleLocalVideo"></div>
+                                </div>
+                                <div class="App-video-container" id="appVideoContainer">
+                                    <div class="App-mask" id="connecting-mask">
+                                        <progress-spinner dark style="font-size:50px"></progress-spinner>
+                                        <div class="message with-spinner">Connecting</div>
                                     </div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="videouser">
-									<div class="v-user"><span>Nicole</span></div>
-									<div class="videousers">
-                                    <div class="App">
-                                            <div class="App-main">
-                                         <div class="App-video-container" id="appVideoContainerTwo">
-                                                    <div id="cameraPublisherContainer" class="video-container hidden"></div>
-                                                    <div id="screenPublisherContainer" class="video-container hidden"></div>
-                                        </div>
-                                        </div>
-                                     </div>   
-
+                                    <div class="App-mask hidden" id="start-mask">
+                                        <div class="message button clickable" id="start">Click to Start Call</div>
                                     </div>
-								</div>
+                                    <div id="cameraPublisherContainer" class="video-container hidden"></div>
+                                    <div id="screenPublisherContainer" class="video-container hidden"></div>
+                                    <div id="cameraSubscriberContainer" class="video-container-hidden"></div>
+                                    <div id="screenSubscriberContainer" class="video-container-hidden"></div>
+                                </div>
+                                <div id="chat" class="App-chat-container"></div>
                             </div>
-                            
-
-
-
-                        <div class="livechating">
-                            <div id="chat" class="App-chat-container"></div>
-                        </div>
-
-						</div>
-
-					</div>
-
-
+                        </div>    
 
 
 

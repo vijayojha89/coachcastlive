@@ -124,7 +124,7 @@ textarea#comment{ padding:15px !important;}
 <!-- End Inner Banner area -->
 
 
-
+<input type="hidden" name="class_online_id" id="class_online_id" value="<?php echo $class_online_id;?>"/>
 <div class="online-store-grid padding-space">
             <div class="container">
                 <div class="row">
@@ -150,8 +150,9 @@ textarea#comment{ padding:15px !important;}
                                 <div class="userJoinbox">
                                 <h3 style="text-align:center;"><u>Join User List</u></h3>
                                     <div id="userJoinList">
-                                        <div id="noUserFound"> No user found</div>
+                                      
                                     </div>
+                                    <div id="noUserFound"> No user found</div>
                                 </div>   
                             </div>
                          </div>     
@@ -183,7 +184,8 @@ textarea#comment{ padding:15px !important;}
     </div>
                        
     
-                            <div class="comment-form-container" id="comment-form-container">
+                            <div class="comment-form-container" id="comment-form-container" style="clear:both;">
+                            <h2 class="section-title-default2 title-bar-high2" style="margin-bottom:20px;">Comments</h2>
                                 <div id="output" class="notification_list"></div>
                                 <div id="comment-message">Comments Added Successfully!</div>
                                     <form id="frm-comment">
@@ -252,6 +254,17 @@ $(document).on("click", ".replyButton", function () {
     $(this).addClass("hide");
 });
 
+$(window).on("beforeunload", function(){
+    var class_online_id = $("#class_online_id").val();
+    $.ajax({
+        url: "coachexit?id="+class_online_id,
+        type: "get",
+        success: function (response)
+        {
+          
+        }
+    });
+});
 
 $(document).on("click", ".postReply", function () {
     var comment = $(this).prev().val();
@@ -357,8 +370,11 @@ window.onlineUserList=function(){
                 if(data.length > 0)
                 {
                     $("#noUserFound").hide();
+                }
+                if(data.length == 0)
+                {
+                    $("#noUserFound").show();
                 }    
-
                 var allDivContent = "";
                 for (var i = 0; (i < data.length); i++)
                 {

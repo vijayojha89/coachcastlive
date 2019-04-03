@@ -57,6 +57,12 @@
         });
     };
 
+    window.exituserfromclass = function() {
+        sessionTempData.signal({
+            type: 'userJoin',
+            data: { 'id': 'reset' }
+        });
+    }
 
     /**
      * Update the banner based on the status of the broadcast (active or ended)

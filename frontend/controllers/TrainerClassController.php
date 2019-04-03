@@ -140,12 +140,24 @@ class TrainerClassController extends Controller
         $userId = Yii::$app->user->identity->id;
         $sql = "SELECT * FROM user_class WHERE class_id = '".$model->trainer_class_id."' AND created_by='".$userId."'";
         $result = \Yii::$app->db->createCommand($sql)->queryOne();
+        
+        $classOnlineDetail = Yii::$app->db->createCommand("SELECT * FROM class_online WHERE class_id =" . $model->trainer_class_id." AND DATE(created_date) ='".date('Y-m-d')."' AND status=1")->queryOne();
+
         if($result)
         {
-            return $this->render('livesession', [
-                'model' => $model,
-                'userClassDetail'=>$result
-            ]);
+            if($classOnlineDetail)
+            {
+                return $this->render('livesession', [
+                    'model' => $model,
+                    'userClassDetail'=>$result,
+                    'classOnlineDetail'=>$classOnlineDetail,
+                ]);
+            }
+            else
+            {
+                Yii::$app->getSession()->setFlash('error', Yii::t('app', 'Coach is not available please join later.'));
+                return $this->redirect(['user/myjoinclass']);
+            }    
         }
         else
         {
@@ -154,6 +166,22 @@ class TrainerClassController extends Controller
 
         }
     }
+
+
+    public function actionExitclass($id)
+    {
+        Yii::$app->db->createCommand("UPDATE class_online_user SET status=0 WHERE class_online_user_id =" . $id)->execute();
+        echo "success";
+        die;
+    }
+
+    public function actionCoachexit($id)
+    {
+         
+         Yii::$app->db->createCommand("UPDATE class_online SET status=0 WHERE class_online_id =" . $id)->execute();
+        echo "success";
+        die;
+    }     
 
      /**
      * Creates a new TrainerClass model.
