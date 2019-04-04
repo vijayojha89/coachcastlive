@@ -1,13 +1,14 @@
 /* global AccCore */
 //f370782db6a592c836700ac30ed325f1ced5ec42
 let otCore;
+var el = document.getElementById('credentials');
+let credentials = JSON.parse(el.getAttribute('data'));
+let userName = document.getElementById('userName').value;
+el.remove();
 const options = {
 
-    credentials: {
-        apiKey: "46240312",
-        sessionId: "2_MX40NjI0MDMxMn5-MTU0NzA1ODc2MzcyMX5hOTlpT0wvbTNQcUQ4NjJZMFNGTGppWVB-QX4",
-        token: "T1==cGFydG5lcl9pZD00NjI0MDMxMiZzaWc9MTViN2FiMWEzZTFlODU1ZmJkZTlhZjg3YzUyNGNiMjdmYjVhNzM0YTpzZXNzaW9uX2lkPTJfTVg0ME5qSTBNRE14TW41LU1UVTBOekExT0RjMk16Y3lNWDVoT1RscFQwd3ZiVE5RY1VRNE5qSlpNRk5HVEdwcFdWQi1RWDQmY3JlYXRlX3RpbWU9MTU0NzA1ODc2NCZyb2xlPXB1Ymxpc2hlciZub25jZT0xNTQ3MDU4NzY0LjA3MzMxODU4MTU2NzY1"
-    },
+
+    credentials: credentials,
 
     // A container can either be a query selector or an HTMLElement
     // eslint-disable-next-line no-unused-vars
@@ -29,8 +30,8 @@ const options = {
         callProperties: null, // Using default
     },
     textChat: {
-        name: ['David', 'Paul', 'Emma', 'George', 'Amanda'][Math.random() * 5 | 0], // eslint-disable-line no-bitwise
-        waitingMessage: 'Messages will be delivered when other users arrive',
+        name: userName, // eslint-disable-line no-bitwise
+        waitingMessage: 'Welcome here you can chat..',
         container: '#chat',
         alwaysOpen: true,
     },
@@ -66,15 +67,17 @@ const app = function() {
      * Update the size and position of video containers based on the number of
      * publishers and subscribers specified in the meta property returned by otCore.
      */
+
     const updateVideoContainers = () => {
         const { meta } = state;
+
         const sharingScreen = meta ? !!meta.publisher.screen : false;
         const viewingSharedScreen = meta ? meta.subscriber.screen : false;
         const activeCameraSubscribers = meta ? meta.subscriber.camera : 0;
 
+
         const videoContainerClass = `App-video-container ${(sharingScreen || viewingSharedScreen) ? 'center' : ''}`;
         document.getElementById('appVideoContainer').setAttribute('class', videoContainerClass);
-        document.getElementById('appVideoContainerTwo').setAttribute('class', videoContainerClass);
 
         const cameraPublisherClass =
             `video-container ${!!activeCameraSubscribers || sharingScreen ? 'small' : ''} ${!!activeCameraSubscribers || sharingScreen ? 'small' : ''} ${sharingScreen || viewingSharedScreen ? 'left' : ''}`;
@@ -89,13 +92,27 @@ const app = function() {
 
         const screenSubscriberClass = `video-container ${!viewingSharedScreen ? 'hidden' : ''}`;
         document.getElementById('screenSubscriberContainer').setAttribute('class', screenSubscriberClass);
-    };
 
+        if (meta.publisher.total == 1 && meta.subscriber.total) {
+            startTimer();
+            document.getElementById('chat').setAttribute('class', 'App-chat-container');
+            document.getElementById('timerSection').setAttribute('class', 'timerSection');
+        } else {
+            if (window.x != undefined && window.x != 'undefined') {
+                window.clearInterval(window.x);
+            }
+
+            document.getElementById('timerSection').setAttribute('class', 'timerSection hidden');
+            document.getElementById('chat').setAttribute('class', 'App-chat-container hidden');
+        }
+
+    };
 
     /**
      * Update the UI
      * @param {String} update - 'connected', 'active', or 'meta'
      */
+
     const updateUI = (update) => {
         const { connected, active } = state;
 
@@ -105,7 +122,7 @@ const app = function() {
                     document.getElementById('connecting-mask').classList.add('hidden');
                     //document.getElementById('start-mask').classList.remove('hidden');
                     startCall();
-                    startTimer();
+                    //startTimer();
                 }
                 break;
             case 'active':
@@ -197,10 +214,10 @@ const app = function() {
     const startTimer = function() {
         document.getElementById('timerSection').classList.remove('hidden');
         var countDownDate = new Date();
-        countDownDate = new Date(countDownDate.setMinutes(countDownDate.getMinutes() + 10));
+        countDownDate = new Date(countDownDate.setMinutes(countDownDate.getMinutes() + 15));
 
         // Update the count down every 1 second
-        var x = setInterval(function() {
+        window.x = setInterval(function() {
 
             // Get todays date and time
             var now = new Date().getTime();
@@ -220,7 +237,8 @@ const app = function() {
 
             // If the count down is finished, write some text 
             if (distance < 0) {
-                clearInterval(x);
+                //clearInterval(x);
+                window.clearInterval(window.x);
                 document.getElementById("m_timer").innerHTML = "EXPIRED";
             }
         }, 1000);

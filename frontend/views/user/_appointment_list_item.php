@@ -8,7 +8,7 @@ $gnl = new \common\components\GeneralComponent(); ?>
         <?php } ?>
         
         <?php if($model->appointment_status == "1"){ ?> 
-                                                             <label><a class="btn btn-primary" href="<?php  echo Url::to(['videocall/index']);?>"><i class="fa fa-phone"></i>&nbsp;&nbsp;Call</a></label>
+                                                             <label><a class="btn btn-primary" href="<?php  echo Url::to(['videocall/index','id'=>\common\components\GeneralComponent::encrypt($model->appointment_id)]);?>"><i class="fa fa-phone"></i>&nbsp;&nbsp;Call</a></label>
                                                              <?php } ?>
                                                              
     </div> 
